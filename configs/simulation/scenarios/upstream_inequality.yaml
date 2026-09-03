@@ -1,0 +1,9 @@
+scenario:
+  name: upstream_inequality
+  description: Upstream Black-versus-White shifts with no direct race effect.
+  upstream:
+    enabled: true
+    effect_level: moderate
+  direct:
+    enabled: false
+    effect_level: null

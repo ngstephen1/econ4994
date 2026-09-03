@@ -1,0 +1,9 @@
+scenario:
+  name: fair_baseline
+  description: No race-specific upstream shifts and no direct race effect.
+  upstream:
+    enabled: false
+    effect_level: null
+  direct:
+    enabled: false
+    effect_level: null

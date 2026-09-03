@@ -1,0 +1,354 @@
+# Canonical version-1 population and underwriting calibration.
+# Values are documented in docs/simulation_calibration.md.
+config_version: 2
+calibration_revision: dti_dependency_recalibration
+
+calibration_labels:
+  empirical: Empirically motivated approximation
+  plausible: Researcher-chosen plausible calibration
+  experimental: Researcher-chosen experimental treatment
+
+simulation:
+  random_seed: 4994
+  n_samples: 100000
+  focal_protected_attribute: race
+  focal_comparison:
+    reference: White
+    comparison: Black
+
+population:
+  demographic_dependence:
+    method: independent_categorical_draws
+    classification: plausible
+  demographics:
+    race:
+      classification: empirical
+      shares:
+        White: 0.67
+        Black: 0.12
+        Asian: 0.09
+        American Indian or Alaska Native: 0.01
+        Other / Multiracial: 0.11
+    ethnicity:
+      classification: empirical
+      shares:
+        Hispanic or Latino: 0.14
+        Not Hispanic or Latino: 0.86
+    sex:
+      classification: plausible
+      shares:
+        Male: 0.54
+        Female: 0.46
+    age_group:
+      classification: plausible
+      shares:
+        18-24: 0.03
+        25-34: 0.24
+        35-44: 0.28
+        45-54: 0.21
+        55-64: 0.15
+        65+: 0.09
+
+latent_factors:
+  financial_stability:
+    distribution: normal
+    mean: 0.0
+    standard_deviation: 1.0
+    classification: plausible
+  neighborhood_advantage:
+    distribution: normal
+    mean: 0.0
+    standard_deviation: 1.0
+    classification: plausible
+  dependence:
+    correlation: 0.20
+    classification: plausible
+
+context_variables:
+  neighborhood_income_index:
+    equation:
+      intercept: 1.00
+      neighborhood_advantage_coefficient: 0.18
+      residual_standard_deviation: 0.12
+    bounds:
+      minimum: 0.40
+      maximum: 2.00
+      method: clip
+    classification: empirical
+  neighborhood_minority_share:
+    equation:
+      link: logistic
+      intercept: -0.85
+      neighborhood_advantage_coefficient: -0.45
+      residual_standard_deviation: 0.75
+    bounds:
+      minimum: 0.0
+      maximum: 1.0
+      method: logistic_link
+    baseline_race_dependency: false
+    baseline_predictor_eligible: false
+    classification: plausible
+  local_unemployment_rate:
+    equation:
+      intercept: 0.040
+      neighborhood_advantage_coefficient: -0.006
+      residual_standard_deviation: 0.010
+    bounds:
+      minimum: 0.015
+      maximum: 0.150
+      method: clip
+    baseline_predictor_eligible: false
+    classification: empirical
+
+financial_variables:
+  annual_income:
+    distribution: conditional_lognormal
+    reference_median_usd: 95000.0
+    log_residual_standard_deviation: 0.40
+    financial_stability_coefficient: 0.20
+    neighborhood_advantage_coefficient: 0.12
+    age_group_multipliers:
+      18-24: 0.55
+      25-34: 0.90
+      35-44: 1.05
+      45-54: 1.10
+      55-64: 1.05
+      65+: 0.85
+    bounds:
+      minimum: 20000.0
+      maximum: 500000.0
+      method: clip
+    classification: empirical
+  credit_score:
+    distribution: conditional_normal
+    reference_mean: 720.0
+    residual_standard_deviation: 40.0
+    financial_stability_coefficient: 25.0
+    standardized_log_income_coefficient: 10.0
+    integer_rounding: nearest
+    bounds:
+      minimum: 500
+      maximum: 850
+      method: clip
+    classification: empirical
+  employment_years:
+    meaning: accumulated_employment_history
+    internal_age_draw:
+      method: uniform_within_age_group
+      open_ended_age_group_maximum: 80
+    maximum_history_years: 45.0
+    employment_fraction:
+      intercept: 0.55
+      financial_stability_coefficient: 0.12
+      residual_standard_deviation: 0.18
+      minimum: 0.0
+      maximum: 1.0
+    classification: plausible
+  liquid_assets:
+    distribution: conditional_lognormal
+    reference_median_usd: 35000.0
+    log_residual_standard_deviation: 0.70
+    log_income_elasticity: 0.65
+    financial_stability_coefficient: 0.25
+    age_group_multipliers:
+      18-24: 0.20
+      25-34: 0.65
+      35-44: 1.00
+      45-54: 1.35
+      55-64: 1.65
+      65+: 1.80
+    bounds:
+      minimum: 1000.0
+      maximum: 750000.0
+      method: clip
+    classification: plausible
+  existing_monthly_debt:
+    distribution: zero_inflated_conditional_lognormal
+    zero_probability: 0.15
+    positive_reference_median_usd: 650.0
+    log_residual_standard_deviation: 0.65
+    income_elasticity: 0.35
+    financial_stability_coefficient: -0.12
+    bounds:
+      minimum: 0.0
+      maximum: 6000.0
+      method: clip
+    classification: plausible
+  debt_to_income_ratio:
+    construction: back_end_ratio_with_internal_housing_payment
+    numerator:
+      existing_debt_field: existing_monthly_debt
+      projected_housing_payment_field: internal_not_persisted
+    denominator: annual_income / 12
+    bounds:
+      minimum: 0.0
+      maximum: 0.65
+      method: winsorize
+    maximum_allowed_boundary_share: 0.05
+    classification: empirical
+
+loan_property_variables:
+  loan_purpose:
+    shares:
+      Home purchase: 0.70
+      Refinance: 0.25
+      Home improvement: 0.05
+    classification: empirical
+  loan_type:
+    shares:
+      Conventional: 0.73
+      FHA: 0.16
+      VA: 0.09
+      USDA/RHS: 0.02
+    classification: empirical
+  occupancy_type:
+    shares:
+      Principal residence: 0.88
+      Second residence: 0.04
+      Investment property: 0.08
+    classification: plausible
+  property_value:
+    distribution: conditional_lognormal
+    reference_median_usd: 400000.0
+    # B1 researcher-chosen dependency parameters recalibrated after DTI diagnosis.
+    log_residual_standard_deviation: 0.18
+    income_elasticity: 0.90
+    neighborhood_income_elasticity: 0.35
+    purpose_multipliers:
+      Home purchase: 1.00
+      Refinance: 1.05
+      Home improvement: 0.75
+    occupancy_multipliers:
+      Principal residence: 1.00
+      Second residence: 1.05
+      Investment property: 1.10
+    bounds:
+      minimum: 80000.0
+      maximum: 2000000.0
+      method: clip
+    classification: empirical
+  loan_to_value_ratio:
+    distribution: shifted_scaled_beta
+    beta_shape_alpha: 4.0
+    beta_shape_beta: 2.5
+    base_minimum: 0.45
+    base_maximum: 0.98
+    loan_type_offsets:
+      Conventional: 0.00
+      FHA: 0.07
+      VA: 0.08
+      USDA/RHS: 0.08
+    purpose_offsets:
+      Home purchase: 0.00
+      Refinance: -0.08
+      Home improvement: -0.35
+    occupancy_offsets:
+      Principal residence: 0.00
+      Second residence: -0.03
+      Investment property: -0.08
+    bounds:
+      minimum: 0.10
+      maximum: 0.98
+      method: clip
+    classification: empirical
+  loan_amount:
+    construction: property_value * loan_to_value_ratio
+    classification: derived
+  income_to_loan_ratio:
+    construction: annual_income / loan_amount
+    classification: derived
+
+internal_housing_payment:
+  persist: false
+  annual_interest_rate: 0.0675
+  amortization_months: 360
+  monthly_principal_interest_factor: 0.00648598
+  monthly_tax_insurance_factor_of_property_value: 0.0012
+  equation: loan_amount * pi_factor + property_value * tax_insurance_factor
+  classification: empirical
+
+approval_model:
+  link: logistic
+  intercept:
+    mode: calibrate_once_then_freeze
+    target_mean_probability: 0.80
+    calibration_seed: 499400
+    calibration_population_size: 1000000
+    solver: bisection
+    search_bounds:
+      minimum: -20.0
+      maximum: 20.0
+    solver_tolerance: 0.00000001
+    target_tolerance: 0.0005
+    reuse_for_all_scenarios: true
+    classification: empirical
+  continuous_terms:
+    annual_income:
+      transform: (ln(value) - ln(95000)) / 0.50
+      coefficient: 0.20
+    credit_score:
+      transform: (value - 720) / 50
+      coefficient: 0.65
+    employment_years:
+      transform: (value - 10) / 10
+      coefficient: 0.10
+    liquid_assets:
+      transform: (ln(value + 1000) - ln(36000)) / 1.00
+      coefficient: 0.20
+    debt_to_income_ratio:
+      transform: (value - 0.36) / 0.10
+      coefficient: -0.70
+    loan_to_value_ratio:
+      transform: (value - 0.80) / 0.10
+      coefficient: -0.40
+  categorical_terms:
+    loan_purpose:
+      reference: Home purchase
+      coefficients:
+        Home purchase: 0.00
+        Refinance: 0.05
+        Home improvement: -0.15
+    loan_type:
+      reference: Conventional
+      coefficients:
+        Conventional: 0.00
+        FHA: -0.10
+        VA: 0.05
+        USDA/RHS: -0.05
+    occupancy_type:
+      reference: Principal residence
+      coefficients:
+        Principal residence: 0.00
+        Second residence: -0.15
+        Investment property: -0.30
+  excluded_terms:
+    - loan_amount
+    - property_value
+    - income_to_loan_ratio
+    - neighborhood_income_index
+    - neighborhood_minority_share
+    - local_unemployment_rate
+  slope_classification: plausible
+
+outcomes:
+  approval_probability_true:
+    persist: true
+  approved:
+    distribution: Bernoulli
+    probability_source: approval_probability_true
+  denial_reason:
+    persist: true
+    enabled: false
+    fill_value: null
+
+validation:
+  realized_approval_rate_tolerance:
+    standard_error_multiplier: 3.0
+    absolute_margin: 0.002
+  maximum_clipped_share_per_variable: 0.05
+
+output:
+  format: parquet
+  dataset_directory: data/synthetic
+  resolved_config_directory: results/metrics
+  save_resolved_config: true

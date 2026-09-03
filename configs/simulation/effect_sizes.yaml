@@ -1,0 +1,125 @@
+# Researcher-chosen synthetic treatments, not empirical estimates of
+# discrimination or real Black-White mortgage-market differences.
+effect_library_version: 1
+
+focal_experiment:
+  protected_attribute: race
+  reference_category: White
+  comparison_category: Black
+
+direct_effects:
+  classification: experimental
+  scale: log_odds
+  levels:
+    mild:
+      log_odds_by_race:
+        White: 0.00
+        Black: -0.10
+        Asian: 0.00
+        American Indian or Alaska Native: 0.00
+        Other / Multiracial: 0.00
+    moderate:
+      log_odds_by_race:
+        White: 0.00
+        Black: -0.25
+        Asian: 0.00
+        American Indian or Alaska Native: 0.00
+        Other / Multiracial: 0.00
+    strong:
+      log_odds_by_race:
+        White: 0.00
+        Black: -0.50
+        Asian: 0.00
+        American Indian or Alaska Native: 0.00
+        Other / Multiracial: 0.00
+
+upstream_effects:
+  classification: experimental
+  reference_category: White
+  comparison_category: Black
+  affected_variables:
+    - annual_income
+    - credit_score
+    - liquid_assets
+  levels:
+    mild:
+      annual_income:
+        shifted_parameter: log_location
+        additive_shift_by_race:
+          White: 0.000000
+          Black: -0.051293
+          Asian: 0.000000
+          American Indian or Alaska Native: 0.000000
+          Other / Multiracial: 0.000000
+        conditional_black_multiplier: 0.95
+      credit_score:
+        shifted_parameter: location_points
+        additive_shift_by_race:
+          White: 0.0
+          Black: -10.0
+          Asian: 0.0
+          American Indian or Alaska Native: 0.0
+          Other / Multiracial: 0.0
+      liquid_assets:
+        shifted_parameter: log_location
+        additive_shift_by_race:
+          White: 0.000000
+          Black: -0.105361
+          Asian: 0.000000
+          American Indian or Alaska Native: 0.000000
+          Other / Multiracial: 0.000000
+        conditional_black_multiplier: 0.90
+    moderate:
+      annual_income:
+        shifted_parameter: log_location
+        additive_shift_by_race:
+          White: 0.000000
+          Black: -0.105361
+          Asian: 0.000000
+          American Indian or Alaska Native: 0.000000
+          Other / Multiracial: 0.000000
+        conditional_black_multiplier: 0.90
+      credit_score:
+        shifted_parameter: location_points
+        additive_shift_by_race:
+          White: 0.0
+          Black: -25.0
+          Asian: 0.0
+          American Indian or Alaska Native: 0.0
+          Other / Multiracial: 0.0
+      liquid_assets:
+        shifted_parameter: log_location
+        additive_shift_by_race:
+          White: 0.000000
+          Black: -0.287682
+          Asian: 0.000000
+          American Indian or Alaska Native: 0.000000
+          Other / Multiracial: 0.000000
+        conditional_black_multiplier: 0.75
+    strong:
+      annual_income:
+        shifted_parameter: log_location
+        additive_shift_by_race:
+          White: 0.000000
+          Black: -0.223144
+          Asian: 0.000000
+          American Indian or Alaska Native: 0.000000
+          Other / Multiracial: 0.000000
+        conditional_black_multiplier: 0.80
+      credit_score:
+        shifted_parameter: location_points
+        additive_shift_by_race:
+          White: 0.0
+          Black: -50.0
+          Asian: 0.0
+          American Indian or Alaska Native: 0.0
+          Other / Multiracial: 0.0
+      liquid_assets:
+        shifted_parameter: log_location
+        additive_shift_by_race:
+          White: 0.000000
+          Black: -0.693147
+          Asian: 0.000000
+          American Indian or Alaska Native: 0.000000
+          Other / Multiracial: 0.000000
+        conditional_black_multiplier: 0.50

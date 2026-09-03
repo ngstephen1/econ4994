@@ -1,0 +1,181 @@
+# Design template only. This is not a runnable experiment configuration.
+schema_version: draft-1
+
+simulation:
+  random_seed: null  # Integer required for a runnable configuration.
+  n_samples: null  # Positive integer required for a runnable configuration.
+  scenario: null
+  allowed_scenarios:
+    - fair_baseline
+    - direct_discrimination
+    - upstream_inequality
+    - mixed_mechanism
+
+population:
+  focal_protected_attribute: null
+  reference_category: null
+  demographics:
+    race:
+      categories:
+        - White
+        - Black
+        - Asian
+        - American Indian or Alaska Native
+        - Other / Multiracial
+      shares: null  # Mapping from category to probability.
+    ethnicity:
+      categories:
+        - Hispanic or Latino
+        - Not Hispanic or Latino
+      shares: null
+    sex:
+      categories:
+        - Male
+        - Female
+      shares: null
+    age_group:
+      categories:
+        - 18-24
+        - 25-34
+        - 35-44
+        - 45-54
+        - 55-64
+        - 65+
+      shares: null
+  demographic_dependence: null  # Independence or a documented joint process.
+
+financial_variables:
+  annual_income:
+    distribution: null
+    parameters: null
+  credit_score:
+    distribution: null
+    parameters: null
+    bounds: null
+  employment_years:
+    distribution: null
+    parameters: null
+    age_consistency_rule: null
+  liquid_assets:
+    distribution: null
+    parameters: null
+  existing_monthly_debt:
+    distribution: null
+    parameters: null
+  debt_to_income_ratio:
+    construction: null
+    parameters: null
+    bounds: null
+
+loan_property_variables:
+  loan_amount:
+    distribution: null
+    parameters: null
+    dependencies: null
+  property_value:
+    distribution: null
+    parameters: null
+    dependencies: null
+  loan_to_value_ratio:
+    construction: loan_amount / property_value
+    bounds: null
+  loan_purpose:
+    categories:
+      - Home purchase
+      - Refinance
+      - Home improvement
+    shares: null
+  loan_type:
+    categories:
+      - Conventional
+      - FHA
+      - VA
+      - USDA/RHS
+    shares: null
+  occupancy_type:
+    categories:
+      - Principal residence
+      - Second residence
+      - Investment property
+    shares: null
+
+context_variables:
+  neighborhood_income_index:
+    distribution: null
+    parameters: null
+  neighborhood_minority_share:
+    distribution: null
+    parameters: null
+    bounds: null
+  local_unemployment_rate:
+    distribution: null
+    parameters: null
+    bounds: null
+
+derived_variables:
+  income_to_loan_ratio:
+    construction: annual_income / loan_amount
+
+approval_model:
+  link: logistic
+  intercept: null
+  continuous_terms:
+    annual_income:
+      transform: null
+      coefficient: null
+    credit_score:
+      transform: null
+      coefficient: null
+    employment_years:
+      transform: null
+      coefficient: null
+    liquid_assets:
+      transform: null
+      coefficient: null
+    debt_to_income_ratio:
+      transform: null
+      coefficient: null
+    loan_to_value_ratio:
+      transform: null
+      coefficient: null
+    local_unemployment_rate:
+      transform: null
+      coefficient: null
+  categorical_terms:
+    loan_purpose:
+      reference_category: null
+      coefficients: null
+    loan_type:
+      reference_category: null
+      coefficients: null
+    occupancy_type:
+      reference_category: null
+      coefficients: null
+
+scenario_effects:
+  upstream:
+    enabled: null
+    affected_variables: null
+    group_parameter_shifts: null
+  direct:
+    enabled: null
+    protected_attribute: null
+    reference_category: null
+    log_odds_effects: null
+
+outcomes:
+  include_approval_probability_true: true
+  approved:
+    distribution: Bernoulli
+    probability_source: approval_probability_true
+  denial_reason:
+    enabled: null
+    mechanism: null
+    categories: null
+
+output:
+  format: parquet
+  dataset_path: null
+  resolved_config_path: null
+  metadata_path: null
+  save_resolved_config: true

@@ -1,0 +1,59 @@
+# Python environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python caches and build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+secrets.toml
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+
+# Generated data (retain directory markers)
+data/synthetic/**
+!data/synthetic/.gitkeep
+data/processed/**
+!data/processed/.gitkeep
+data/external/**
+!data/external/.gitkeep
+
+# Generated experiment outputs (retain directory markers)
+results/metrics/**
+!results/metrics/.gitkeep
+results/figures/**
+!results/figures/.gitkeep
+results/tables/**
+!results/tables/.gitkeep
+
+# Serialized model artifacts
+*.joblib
+*.pkl
+*.pickle

@@ -1,0 +1,9 @@
+scenario:
+  name: mixed_mechanism
+  description: Both upstream and direct Black-versus-White treatments.
+  upstream:
+    enabled: true
+    effect_level: moderate
+  direct:
+    enabled: true
+    effect_level: moderate

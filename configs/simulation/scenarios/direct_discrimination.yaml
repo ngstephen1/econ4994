@@ -1,0 +1,9 @@
+scenario:
+  name: direct_discrimination
+  description: Direct Black-versus-White treatment with no upstream race shifts.
+  upstream:
+    enabled: false
+    effect_level: null
+  direct:
+    enabled: true
+    effect_level: moderate
