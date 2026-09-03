@@ -4,8 +4,8 @@
 
 <p align="center">
   <a href="https://www.python.org/downloads/"><img alt="Python 3.11+" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
-  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: ML benchmark" src="https://img.shields.io/badge/phase-ML_benchmark-159A9C?style=flat-square"></a>
-  <a href="tests"><img alt="Tests: 63 passing" src="https://img.shields.io/badge/tests-63_passing-2E7D32?style=flat-square"></a>
+  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: interactive dashboard" src="https://img.shields.io/badge/phase-interactive_dashboard-159A9C?style=flat-square"></a>
+  <a href="tests"><img alt="Tests: 76 passing" src="https://img.shields.io/badge/tests-76_passing-2E7D32?style=flat-square"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-E87722?style=flat-square"></a>
 </p>
 
@@ -15,6 +15,26 @@
 </p>
 
 ---
+
+## Menu
+
+| Start here | Run the project | Understand the research | Browse outputs |
+|---|---|---|---|
+| [Research question](#the-research-question) | [Quick start](#quick-start) | [How the generator works](#how-the-generator-works) | [Repository map](#repository-map) |
+| [Four experimental worlds](#four-experimental-worlds) | [Launch the dashboard](#launch-the-interactive-dashboard) | [Calibration snapshot](#calibration-snapshot) | [Documentation index](#documentation-index) |
+| [Current capabilities](#what-is-implemented) | [Run the tests](#verify-the-installation) | [Research safeguards](#research-safeguards) | [Data preview](docs/data_and_results_preview.md) |
+| [Project status](docs/PROJECT_STATUS.md) | [Reproduce the benchmarks](#reproduce-the-research-benchmarks) | [Methodology](docs/research_design.md) | [Results summaries](docs/dataset_summary_statistics.md) |
+
+### New here? Follow one of these paths
+
+| Your goal | Recommended path |
+|---|---|
+| Understand the project in five minutes | Read the [research question](#the-research-question), [four worlds](#four-experimental-worlds), and [research safeguards](#research-safeguards). |
+| Explore without reading the code first | Complete [Quick start](#quick-start), then [launch the dashboard](#launch-the-interactive-dashboard). |
+| Inspect the generated data manually | Open the [data and results preview](docs/data_and_results_preview.md), [dataset inventory](docs/dataset_inventory.md), and [summary statistics](docs/dataset_summary_statistics.md). |
+| Reproduce the scientific results | Run the [statistical and ML benchmarks](#reproduce-the-research-benchmarks), then read their linked methodology documents. |
+| Understand or modify the implementation | Start with the [repository map](#repository-map), then read [generator design](docs/generator_design.md) and the tests beside each module. |
+| See what is finished and what comes next | Open [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) and the [roadmap](#roadmap). |
 
 ## The research question
 
@@ -70,10 +90,13 @@ estimates of real-world discrimination.
 - Logistic, random-forest, and histogram-gradient-boosting benchmarks.
 - Held-out group audits, disparity-reproduction metrics, probability recovery,
   calibration bins, and a non-trained synthetic oracle reference.
+- A six-page Streamlit research dashboard for in-memory simulation, active-sample
+  regression, saved ML benchmark exploration, and cross-mechanism comparison.
+- Bounded custom synthetic treatments, a fixed-seed sensitivity curve, dataset
+  exports, and a no-retraining global-threshold explorer.
 
-The Streamlit dashboard and HMDA analysis are intentionally reserved for later
-phases. Prediction-error metrics relative to lender decisions are not presented
-as proof of normative fairness.
+HMDA analysis remains reserved for a later phase. Prediction-error metrics
+relative to lender decisions are not presented as proof of normative fairness.
 
 ## Quick start
 
@@ -87,8 +110,19 @@ python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt
-pytest
 ```
+
+### Verify the installation
+
+```bash
+python3 -c "import fair_lending; print('fair_lending import OK')"
+python3 -m pytest -q
+```
+
+If both commands succeed, the package, scientific dependencies, and test
+environment are available.
+
+### First synthetic dataset
 
 Generate and validate a 10,000-row fair-baseline dataset:
 
@@ -120,6 +154,8 @@ intercept provenance, package version, timestamp, and dataset shape.
 > calibration artifact automatically. Later runs reuse it;
 > `--recalibrate-intercept` deliberately rebuilds it.
 
+### Reproduce the research benchmarks
+
 Run the deterministic four-scenario statistical recovery experiment:
 
 ```bash
@@ -141,6 +177,25 @@ This reuses the same scenario datasets, makes one stable 60/20/20 split, tunes
 three model families on validation log loss, and evaluates race-blind and
 race-aware sensitivity regimes on identical test records. See
 [ML benchmark](docs/ml_benchmark.md).
+
+### Launch the interactive dashboard
+
+After generating the statistical and ML benchmark artifacts, run:
+
+```bash
+python3 -m streamlit run dashboard/app.py
+```
+
+The dashboard can generate new samples in memory, including bounded custom
+treatments, and rerun the validated statistical specifications. Its ML page uses
+saved held-out benchmark probabilities, so moving the classification threshold
+does not retrain models. See [Dashboard guide](docs/dashboard.md).
+
+The dashboard opens at `http://localhost:8501` by default. Start with
+**Research Overview** for the concepts or **Simulation Lab** to generate an
+interactive sample. Generated benchmark files are intentionally ignored by Git,
+so run both benchmark commands above before opening the ML and mechanism pages
+on a fresh clone.
 
 ## How the generator works
 
@@ -185,18 +240,34 @@ candidates, before/after distributions, and intercept provenance.
 
 | Path | Purpose |
 |---|---|
+| `README.md` | Entry point, setup instructions, navigation, and project overview |
 | `configs/simulation/` | Baseline calibration, treatment library, and scenario switches |
 | `src/fair_lending/simulation/` | Generator, approval DGP, calibration, diagnostics, and validation |
 | `src/fair_lending/analysis/` | Descriptive estimands, statsmodels logits, and standardized contrasts |
 | `src/fair_lending/models/` | ML features, splitting, pipelines, evaluation, and race-group audit |
-| `experiments/` | Reproducible research and calibration entry points |
+| `src/fair_lending/dashboard/` | Reusable dashboard data, simulation, export, chart, and state services |
+| `experiments/` | Reproducible statistical and ML benchmark entry points |
+| `dashboard/` | Multipage Streamlit research interface |
 | `data/synthetic/` | Generated Parquet datasets; ignored by Git |
 | `data/external/` | Future external inputs, including HMDA; ignored by Git |
 | `results/` | Generated metrics, tables, and figures; ignored by Git |
-| `tests/` | Configuration, generator, scenario, and calibration tests |
+| `tests/` | Generator, statistical, ML, dashboard, and reproducibility tests |
 | `notebooks/` | Exploration only; never the source of core research logic |
-| `dashboard/` | Future Streamlit interface |
-| `docs/` | Research design, assumptions, calibration, and project status |
+| `docs/` | Research design, assumptions, calibration, results, and project status |
+
+### Common entry points
+
+| Task | File or command |
+|---|---|
+| Generate one synthetic dataset | `python3 -m fair_lending.simulation.generate --help` |
+| Run statistical recovery | `python3 experiments/run_statistical_recovery.py` |
+| Run the ML benchmark | `python3 experiments/run_ml_benchmark.py` |
+| Launch the dashboard | `python3 -m streamlit run dashboard/app.py` |
+| Run all tests | `python3 -m pytest -q` |
+| Check current phase | [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) |
+
+> `data/` and `results/` contain locally generated artifacts and are ignored by
+> Git. Their `.gitkeep` files preserve the directory layout on a fresh clone.
 
 ## Research safeguards
 
@@ -213,7 +284,7 @@ candidates, before/after distributions, and intercept provenance.
 - Predictive accuracy and normative fairness are different questions.
 - Synthetic findings cannot establish that real-world lenders discriminate.
 
-## Documentation
+## Documentation index
 
 | Document | Contents |
 |---|---|
@@ -226,6 +297,7 @@ candidates, before/after distributions, and intercept provenance.
 | [DTI recalibration](docs/dti_recalibration.md) | Tail diagnosis, candidates, and selected revision |
 | [Statistical recovery](docs/statistical_recovery.md) | First descriptive and logistic recovery experiment |
 | [ML benchmark](docs/ml_benchmark.md) | Predictive performance, disparity reproduction, and true-probability recovery |
+| [Dashboard guide](docs/dashboard.md) | Pages, controls, caching, artifacts, launch instructions, and cautions |
 | [Data and results preview](docs/data_and_results_preview.md) | Human-readable dataset and CSV excerpts for manual review |
 | [Dataset inventory](docs/dataset_inventory.md) | File sizes, schema completeness, categories, and validation identities |
 | [Dataset summary statistics](docs/dataset_summary_statistics.md) | Numeric distributions and group outcomes across all four scenarios |
@@ -239,7 +311,7 @@ candidates, before/after distributions, and intercept provenance.
 - [x] Descriptive and statistical disparity analysis
 - [x] Machine-learning evaluation
 - [ ] Research-relevant fairness analysis
-- [ ] Interactive Streamlit dashboard
+- [x] Interactive Streamlit dashboard
 - [ ] Carefully scoped 2024 HMDA application
 
 ## Later HMDA application

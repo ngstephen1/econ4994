@@ -294,6 +294,7 @@ def run_experiment() -> dict[str, Path]:
     calibration_rows: list[dict] = []
     oracle_rows: list[dict] = []
     split_rows: list[dict] = []
+    prediction_frames: list[pd.DataFrame] = []
     prediction_cache: dict[tuple[str, str, str], tuple[pd.DataFrame, np.ndarray]] = {}
     shared_ids: dict[str, list[str]] | None = None
 
@@ -385,6 +386,24 @@ def run_experiment() -> dict[str, Path]:
                 ).assign(**common)
                 calibration_rows.extend(binned.to_dict("records"))
                 prediction_cache[(scenario, regime, model_name)] = (split.test, probability)
+                prediction_frames.append(
+                    split.test.loc[
+                        :,
+                        [
+                            "application_id",
+                            "race",
+                            "approved",
+                            "approval_probability_true",
+                        ],
+                    ]
+                    .assign(
+                        predicted_probability=probability,
+                        scenario=scenario,
+                        feature_regime=regime,
+                        model=model_name,
+                    )
+                    .reset_index(drop=True)
+                )
 
     benchmark = pd.DataFrame(benchmark_rows)
     group_audit = pd.DataFrame(group_rows)
@@ -393,6 +412,7 @@ def run_experiment() -> dict[str, Path]:
     calibration_table = pd.DataFrame(calibration_rows)
     oracle = pd.DataFrame(oracle_rows)
     split_table = pd.DataFrame(split_rows)
+    test_predictions = pd.concat(prediction_frames, ignore_index=True)
 
     validation_summary = (
         selection.loc[selection["selected"]]
@@ -491,6 +511,7 @@ def run_experiment() -> dict[str, Path]:
         "figure_true_recovery": figures / "ml_true_probability_recovery.png",
         "figure_group_calibration": figures / "ml_group_calibration.png",
         "metadata": metrics / "ml_benchmark_metadata.json",
+        "test_predictions": metrics / "ml_test_predictions.parquet",
     }
     for frame, key in (
         (benchmark, "benchmark"),
@@ -505,6 +526,7 @@ def run_experiment() -> dict[str, Path]:
         (statistical_comparison, "statistical_comparison"),
     ):
         frame.to_csv(paths[key], index=False)
+    test_predictions.to_parquet(paths["test_predictions"], index=False, engine="pyarrow")
 
     _configure_plot_style()
     _performance_figure(benchmark, paths["figure_performance"])

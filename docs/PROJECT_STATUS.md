@@ -2,7 +2,7 @@
 
 ## Current phase
 
-Phase 5 — first machine-learning benchmark completed.
+Phase 6 — interactive synthetic fair-lending dashboard completed.
 
 ## Completed
 
@@ -45,6 +45,18 @@ Phase 5 — first machine-learning benchmark completed.
   true-probability recovery, and synthetic-oracle metrics completed.
 - Five ML benchmark figures and deterministic leakage/splitting/behavior tests
   completed.
+- Six-page Streamlit research dashboard implemented around the existing
+  simulation, statistical, and ML APIs.
+- In-memory scenario generation, bounded custom treatments, active-sample
+  statsmodels analysis, and a fixed-seed direct-effect sensitivity curve added.
+- Saved benchmark exploration, race-blind/race-aware comparison, group audits,
+  calibration, true-probability recovery, and a no-retraining global-threshold
+  explorer added.
+- Mechanism comparison, 24-field data dictionary, reproducibility metadata,
+  CSV/Parquet/JSON downloads, controlled missing-artifact messages, caching, and
+  cross-page state implemented.
+- Dashboard support tests, Streamlit script execution checks, and local server
+  route checks completed.
 
 ## Resolved calibration finding
 
@@ -74,8 +86,8 @@ synthetic mechanisms, not claims about real lenders. Full results are in
 
 ## Next
 
-- Build an interactive dashboard on top of the validated simulation,
-  statistical, and ML APIs.
+- Design focused synthetic sensitivity experiments around direct-effect and
+  upstream-treatment strength.
 - Preserve the distinction between label prediction, true-probability recovery,
   disparity reproduction, and normative fairness.
-- Continue deferring HMDA work until the synthetic workflow is complete.
+- Continue deferring HMDA work until the planned synthetic workflow is complete.
