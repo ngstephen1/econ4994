@@ -1,70 +1,83 @@
-# Fairness and Disparities in Mortgage Lending Decisions
+<p align="center">
+  <img src="docs/assets/fair-lending-logo.svg" alt="Fair Lending Lab — Economics, Simulation, Equity, and Reproducible Research Software" width="100%">
+</p>
 
-This repository supports a Virginia Tech ECON 4994 undergraduate research
-capstone in the Economics of Diversity, Equity, and Inclusion minor. The
-project studies whether mortgage lending decisions differ across demographic
-groups after accounting for borrower and loan characteristics.
+<p align="center">
+  <a href="https://www.python.org/downloads/"><img alt="Python 3.11+" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
+  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: Statistical recovery" src="https://img.shields.io/badge/phase-statistical_recovery-159A9C?style=flat-square"></a>
+  <a href="tests"><img alt="Tests: 50 passing" src="https://img.shields.io/badge/tests-50_passing-2E7D32?style=flat-square"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-E87722?style=flat-square"></a>
+</p>
 
-## Research objective
+<p align="center">
+  <strong>A synthetic-first study of fairness and disparities in mortgage lending decisions.</strong><br>
+  Virginia Tech ECON 4994 · Economics of Diversity, Equity, and Inclusion
+</p>
 
-The project combines economics, simulation, statistics, machine learning,
-fairness evaluation, and reproducible research software. Prediction is a tool
-for studying disparity mechanisms; maximizing predictive performance is not
-the primary research objective.
+---
 
-## Synthetic-first design
+## The research question
 
-The first stage will construct synthetic mortgage-lending environments with
-known data-generating processes. These controlled simulations will be used to
-evaluate whether statistical and machine-learning methods recover deliberately
-specified mechanisms, including a fair baseline, direct discrimination,
-upstream inequality, and a mixed mechanism.
+> Are some demographic groups more likely to be denied mortgages after
+> accounting for differences in borrower and loan characteristics?
 
-The version-1 synthetic generator and its validation layer are implemented.
-Statistical models, machine-learning models, fairness analyses, and research
-experiments have not yet been implemented. The repository scaffold, variable
-schema, causal order, scenario definitions, numerical calibration, and
-generator behavior are documented and represented in configuration files.
+This capstone combines economics, simulation, statistics, machine learning,
+fairness evaluation, and reproducible research software. Prediction is used as
+a tool for understanding disparity mechanisms—not as an end in itself.
 
-## Later HMDA application
+## Why synthetic data comes first
 
-After the synthetic experiments are implemented and validated, the framework
-may be applied to 2024 Home Mortgage Disclosure Act (HMDA) data. Observed
-differences in HMDA will be described as disparities or adjusted disparities,
-not automatically interpreted as discrimination. HMDA data is not part of the
-current implementation phase and is not stored in this repository.
+An observed mortgage gap can reflect financial characteristics, direct
+differential treatment, upstream inequality, geography, omitted variables, or
+several mechanisms at once. Observational data does not reveal which mechanism
+is true by itself.
 
-## Repository structure
+This project begins with controlled synthetic worlds where the complete
+data-generating process is known. Statistical and machine-learning methods can
+therefore be evaluated against ground truth before the framework is applied to
+real HMDA data.
 
-```text
-configs/simulation/       Baseline calibration, treatment library, and scenarios
-data/synthetic/           Generated synthetic data (ignored by Git)
-data/processed/           Generated processed data (ignored by Git)
-data/external/            External data, including future HMDA inputs (ignored)
-src/fair_lending/         Reusable research package
-  simulation/             Synthetic data-generating processes
-  analysis/               Descriptive and statistical analysis
-  models/                 Predictive model training and evaluation
-  fairness/               Research-relevant fairness measures
-  utils/                  Shared, lightweight utilities
-experiments/              Reproducible experiment entry points
-notebooks/                Exploratory notebooks, not the source of core logic
-dashboard/                Future Streamlit interface
-results/metrics/          Generated metrics (ignored by Git)
-results/figures/          Generated figures (ignored by Git)
-results/tables/           Generated tables (ignored by Git)
-docs/                     Research design and project status
-tests/                    Automated tests
-```
+### Four experimental worlds
 
-Empty generated-data and output directories are retained with `.gitkeep`
-files. Their generated contents are excluded from version control.
+| Scenario | Upstream group differences | Direct race term | Intended signal |
+|---|:---:|:---:|---|
+| `fair_baseline` | No | No | Sampling variation only |
+| `direct_discrimination` | No | Yes | Conditional direct disparity |
+| `upstream_inequality` | Yes | No | Disparity through financial mediators |
+| `mixed_mechanism` | Yes | Yes | Both pathways operating together |
 
-## Setup
+White is the reference group and Black is the initial focal comparison. Direct
+and upstream effects are researcher-inserted experimental treatments—not
+estimates of real-world discrimination.
+
+## What is implemented
+
+- A vectorized, seed-controlled 24-field mortgage-application generator.
+- Config-driven demographic, financial, context, property, and loan processes.
+- Correlated latent factors without persisting unobserved variables.
+- Fair, direct, upstream, and mixed scenarios with explicit ground truth.
+- A logistic approval mechanism with stored true approval probabilities.
+- One-time fair-baseline intercept calibration, frozen across scenarios.
+- Structured schema, distribution, identity, clipping, and scenario validation.
+- Deterministic DTI diagnostics and a documented population recalibration.
+- Parquet output with adjacent configuration and reproducibility metadata.
+- A self-contained automated test suite.
+- Descriptive Black-White gaps with independent-proportion confidence intervals.
+- Four nested statsmodels logit specifications matched to the known DGP.
+- Standardized adjusted probability contrasts and direct-effect recovery tables.
+- Three reproducible figures for the first 100,000-row statistical experiment.
+
+Machine-learning classifiers, research fairness metrics, the Streamlit
+dashboard, and HMDA analysis are intentionally reserved for later phases.
+
+## Quick start
 
 Python 3.11 or newer is required.
 
 ```bash
+git clone https://github.com/ngstephen1/econ4994.git
+cd econ4994
+
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
@@ -72,10 +85,7 @@ python3 -m pip install -r requirements.txt
 pytest
 ```
 
-Project dependencies are declared in `pyproject.toml`. The requirements file
-installs the package in editable mode together with development dependencies.
-
-After installation, a small reproducible dataset can be generated with:
+Generate and validate a 10,000-row fair-baseline dataset:
 
 ```bash
 python3 -m fair_lending.simulation.generate \
@@ -85,25 +95,139 @@ python3 -m fair_lending.simulation.generate \
   --seed 4994
 ```
 
-The command writes Parquet data and adjacent metadata, then saves structured
-validation output under `results/`. The first normal run reuses the calibrated
-intercept artifact; pass `--recalibrate-intercept` only when deliberately
-rebuilding that one-million-row fair-baseline calibration artifact.
+The command writes:
 
-## Current status
+```text
+data/synthetic/
+├── synthetic_fair_baseline_moderate_n10000_seed4994.parquet
+└── synthetic_fair_baseline_moderate_n10000_seed4994.metadata.json
 
-The research context, repository scaffold, simulation design, version-1
-calibration, generator, and initial generator-validation workflow are
-established. The original DTI-tail issue has been diagnosed and recalibrated
-below the predeclared 5% ceiling-mass threshold, and the canonical validation
-runs pass their structural checks. The synthetic DGP is ready for the next
-modeling phase. See
-[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md),
-[docs/research_design.md](docs/research_design.md),
-[docs/synthetic_schema.md](docs/synthetic_schema.md), and
-[docs/simulation_scenarios.md](docs/simulation_scenarios.md). Numerical
-assumptions and their evidence labels are in
-[docs/simulation_calibration.md](docs/simulation_calibration.md).
-Implementation details are in
-[docs/generator_design.md](docs/generator_design.md), and the population change
-is documented in [docs/dti_recalibration.md](docs/dti_recalibration.md).
+results/
+├── metrics/validation_synthetic_fair_baseline_moderate_n10000_seed4994.json
+└── tables/summary_synthetic_fair_baseline_moderate_n10000_seed4994.csv
+```
+
+Generated data and results are ignored by Git. The metadata contains the
+resolved configuration, config fingerprint, random-stream assignments,
+intercept provenance, package version, timestamp, and dataset shape.
+
+> On a fresh clone, the first generation run creates the local one-million-row
+> calibration artifact automatically. Later runs reuse it;
+> `--recalibrate-intercept` deliberately rebuilds it.
+
+Run the deterministic four-scenario statistical recovery experiment:
+
+```bash
+python3 experiments/run_statistical_recovery.py
+```
+
+This generates one 100,000-row, seed-4994 dataset per scenario, fits Models
+0–3, and writes compact tables, figures, and experiment metadata under
+`results/`. See [Statistical recovery](docs/statistical_recovery.md) for the
+specifications, observed results, and interpretation cautions.
+
+## How the generator works
+
+```text
+protected attributes + exogenous context
+                    ↓
+       upstream economic conditions
+                    ↓
+ income · credit · employment · assets · debt
+                    ↓
+       property and loan application
+                    ↓
+          DTI · LTV · capacity ratios
+                    ↓
+       latent underwriting score
+                    ↓
+    true approval probability → approval draw
+```
+
+The generator uses separate NumPy `SeedSequence` streams for demographics,
+latent factors, context, financial variables, loans, and approval draws. The
+same resolved configuration, seed, and code revision reproduce the same data.
+
+## Calibration snapshot
+
+The current population calibration resolved an excessive DTI boundary mass by
+strengthening the income–property dependency without changing mortgage payment
+assumptions or experimental treatment sizes.
+
+| Check | Result |
+|---|---:|
+| Fair-baseline target mean approval probability | `0.8000` |
+| Achieved one-million-row calibration mean | `0.8000000003` |
+| Original DTI ceiling mass | `10.7893%` |
+| Recalibrated DTI ceiling mass | `4.2781%` |
+| Predeclared maximum | `5.0000%` |
+
+See [DTI recalibration](docs/dti_recalibration.md) for the diagnosis, rejected
+candidates, before/after distributions, and intercept provenance.
+
+## Repository map
+
+| Path | Purpose |
+|---|---|
+| `configs/simulation/` | Baseline calibration, treatment library, and scenario switches |
+| `src/fair_lending/simulation/` | Generator, approval DGP, calibration, diagnostics, and validation |
+| `src/fair_lending/analysis/` | Descriptive estimands, statsmodels logits, and standardized contrasts |
+| `experiments/` | Reproducible research and calibration entry points |
+| `data/synthetic/` | Generated Parquet datasets; ignored by Git |
+| `data/external/` | Future external inputs, including HMDA; ignored by Git |
+| `results/` | Generated metrics, tables, and figures; ignored by Git |
+| `tests/` | Configuration, generator, scenario, and calibration tests |
+| `notebooks/` | Exploration only; never the source of core research logic |
+| `dashboard/` | Future Streamlit interface |
+| `docs/` | Research design, assumptions, calibration, and project status |
+
+## Research safeguards
+
+> **A disparity is not automatically evidence of discrimination.**
+
+- Synthetic discrimination exists only where the researcher explicitly inserts
+  a direct treatment.
+- Adjusted disparities remain model-dependent and are not automatically causal
+  estimates.
+- Race, ethnicity, and sex are audit/treatment attributes, not ordinary
+  baseline underwriting predictors.
+- Variables downstream of inequality can become bad controls and hide part of
+  the pathway being studied.
+- Predictive accuracy and normative fairness are different questions.
+- Synthetic findings cannot establish that real-world lenders discriminate.
+
+## Documentation
+
+| Document | Contents |
+|---|---|
+| [Project status](docs/PROJECT_STATUS.md) | Current phase, completed work, and next steps |
+| [Research design](docs/research_design.md) | Questions, causal structure, and estimands |
+| [Synthetic schema](docs/synthetic_schema.md) | Exact 24-field schema and variable roles |
+| [Simulation scenarios](docs/simulation_scenarios.md) | Four worlds and expected qualitative behavior |
+| [Simulation calibration](docs/simulation_calibration.md) | Numerical assumptions and evidence labels |
+| [Generator design](docs/generator_design.md) | Architecture, random streams, DGP, and validation |
+| [DTI recalibration](docs/dti_recalibration.md) | Tail diagnosis, candidates, and selected revision |
+| [Statistical recovery](docs/statistical_recovery.md) | First descriptive and logistic recovery experiment |
+
+## Roadmap
+
+- [x] Research design and repository scaffold
+- [x] Synthetic schema and scenario definitions
+- [x] Calibrated, validated synthetic generator
+- [x] DTI diagnosis and population recalibration
+- [x] Descriptive and statistical disparity analysis
+- [ ] Machine-learning evaluation
+- [ ] Research-relevant fairness analysis
+- [ ] Interactive Streamlit dashboard
+- [ ] Carefully scoped 2024 HMDA application
+
+## Later HMDA application
+
+After the synthetic experiments are complete, the framework may be applied to
+2024 Home Mortgage Disclosure Act data. Real-data findings will use terms such
+as **disparity**, **adjusted disparity**, or **demographic gap**. An observed
+HMDA difference will not automatically be labeled discrimination.
+
+## License
+
+Released under the [MIT License](LICENSE).

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title description">
+  <title id="title">Fair Lending Lab</title>
+  <desc id="description">A house containing balanced scales beside the words Fair Lending Lab, Economics, Simulation, Equity, and Reproducible Research Software.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151B2B"/>
+      <stop offset="0.55" stop-color="#24213A"/>
+      <stop offset="1" stop-color="#3A1730"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFB05A"/>
+      <stop offset="1" stop-color="#E87722"/>
+    </linearGradient>
+    <linearGradient id="balance" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8EF1DF"/>
+      <stop offset="1" stop-color="#3BC7BB"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#E87722" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#E87722" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#FFFFFF" stroke-opacity="0.045" stroke-width="1"/>
+      <circle cx="0" cy="0" r="1.8" fill="#8EF1DF" fill-opacity="0.22"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#050712" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="360" rx="30" fill="url(#background)"/>
+  <rect width="1200" height="360" rx="30" fill="url(#grid)"/>
+  <circle cx="220" cy="180" r="174" fill="url(#glow)"/>
+
+  <g filter="url(#shadow)">
+    <path d="M90 176L220 67L350 176" fill="none" stroke="url(#roof)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M119 160V290H321V160" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.88" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M220 151V258" stroke="url(#balance)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M166 188H274" stroke="url(#balance)" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="220" cy="188" r="12" fill="#151B2B" stroke="#8EF1DF" stroke-width="6"/>
+    <path d="M184 190L165 229M256 190L275 229" stroke="#8EF1DF" stroke-width="5" stroke-linecap="round"/>
+    <path d="M139 229H191C189 247 178 257 165 257C152 257 141 247 139 229Z" fill="#E87722"/>
+    <path d="M249 229H301C299 247 288 257 275 257C262 257 251 247 249 229Z" fill="#E87722"/>
+    <path d="M185 271H255" stroke="#8EF1DF" stroke-width="9" stroke-linecap="round"/>
+  </g>
+
+  <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+    <text x="410" y="145" fill="#FFFFFF" font-size="65" font-weight="760" letter-spacing="1">FAIR LENDING</text>
+    <text x="414" y="205" fill="#FFB05A" font-size="38" font-weight="650" letter-spacing="8">LAB</text>
+    <rect x="414" y="228" width="570" height="2" rx="1" fill="#FFFFFF" fill-opacity="0.18"/>
+    <text x="414" y="271" fill="#D8DDEA" font-size="19" font-weight="500" letter-spacing="3">ECONOMICS  •  SIMULATION  •  EQUITY</text>
+    <text x="414" y="306" fill="#8EF1DF" font-size="16" font-weight="650" letter-spacing="4">REPRODUCIBLE RESEARCH SOFTWARE</text>
+  </g>
+
+  <g fill="none" stroke-linecap="round">
+    <path d="M1030 98L1070 78L1110 108L1150 62" stroke="#8EF1DF" stroke-opacity="0.62" stroke-width="3"/>
+    <path d="M1030 166L1070 145L1110 174L1150 129" stroke="#E87722" stroke-opacity="0.68" stroke-width="3"/>
+    <path d="M1030 234L1070 213L1110 242L1150 197" stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="3"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="1030" cy="98" r="5" fill-opacity="0.8"/>
+    <circle cx="1070" cy="78" r="5" fill="#8EF1DF"/>
+    <circle cx="1110" cy="108" r="5" fill-opacity="0.8"/>
+    <circle cx="1150" cy="62" r="5" fill="#8EF1DF"/>
+    <circle cx="1030" cy="166" r="5" fill-opacity="0.8"/>
+    <circle cx="1070" cy="145" r="5" fill="#E87722"/>
+    <circle cx="1110" cy="174" r="5" fill-opacity="0.8"/>
+    <circle cx="1150" cy="129" r="5" fill="#E87722"/>
+    <circle cx="1030" cy="234" r="5" fill-opacity="0.55"/>
+    <circle cx="1070" cy="213" r="5" fill-opacity="0.55"/>
+    <circle cx="1110" cy="242" r="5" fill-opacity="0.55"/>
+    <circle cx="1150" cy="197" r="5" fill-opacity="0.55"/>
+  </g>
+</svg>
