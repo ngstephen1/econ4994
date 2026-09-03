@@ -4,8 +4,8 @@
 
 <p align="center">
   <a href="https://www.python.org/downloads/"><img alt="Python 3.11+" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
-  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: Statistical recovery" src="https://img.shields.io/badge/phase-statistical_recovery-159A9C?style=flat-square"></a>
-  <a href="tests"><img alt="Tests: 50 passing" src="https://img.shields.io/badge/tests-50_passing-2E7D32?style=flat-square"></a>
+  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: ML benchmark" src="https://img.shields.io/badge/phase-ML_benchmark-159A9C?style=flat-square"></a>
+  <a href="tests"><img alt="Tests: 63 passing" src="https://img.shields.io/badge/tests-63_passing-2E7D32?style=flat-square"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-E87722?style=flat-square"></a>
 </p>
 
@@ -66,9 +66,14 @@ estimates of real-world discrimination.
 - Four nested statsmodels logit specifications matched to the known DGP.
 - Standardized adjusted probability contrasts and direct-effect recovery tables.
 - Three reproducible figures for the first 100,000-row statistical experiment.
+- Race-blind and race-aware ML regimes with leakage-safe sklearn pipelines.
+- Logistic, random-forest, and histogram-gradient-boosting benchmarks.
+- Held-out group audits, disparity-reproduction metrics, probability recovery,
+  calibration bins, and a non-trained synthetic oracle reference.
 
-Machine-learning classifiers, research fairness metrics, the Streamlit
-dashboard, and HMDA analysis are intentionally reserved for later phases.
+The Streamlit dashboard and HMDA analysis are intentionally reserved for later
+phases. Prediction-error metrics relative to lender decisions are not presented
+as proof of normative fairness.
 
 ## Quick start
 
@@ -126,6 +131,17 @@ This generates one 100,000-row, seed-4994 dataset per scenario, fits Models
 `results/`. See [Statistical recovery](docs/statistical_recovery.md) for the
 specifications, observed results, and interpretation cautions.
 
+Run the controlled machine-learning benchmark:
+
+```bash
+python3 experiments/run_ml_benchmark.py
+```
+
+This reuses the same scenario datasets, makes one stable 60/20/20 split, tunes
+three model families on validation log loss, and evaluates race-blind and
+race-aware sensitivity regimes on identical test records. See
+[ML benchmark](docs/ml_benchmark.md).
+
 ## How the generator works
 
 ```text
@@ -172,6 +188,7 @@ candidates, before/after distributions, and intercept provenance.
 | `configs/simulation/` | Baseline calibration, treatment library, and scenario switches |
 | `src/fair_lending/simulation/` | Generator, approval DGP, calibration, diagnostics, and validation |
 | `src/fair_lending/analysis/` | Descriptive estimands, statsmodels logits, and standardized contrasts |
+| `src/fair_lending/models/` | ML features, splitting, pipelines, evaluation, and race-group audit |
 | `experiments/` | Reproducible research and calibration entry points |
 | `data/synthetic/` | Generated Parquet datasets; ignored by Git |
 | `data/external/` | Future external inputs, including HMDA; ignored by Git |
@@ -208,6 +225,10 @@ candidates, before/after distributions, and intercept provenance.
 | [Generator design](docs/generator_design.md) | Architecture, random streams, DGP, and validation |
 | [DTI recalibration](docs/dti_recalibration.md) | Tail diagnosis, candidates, and selected revision |
 | [Statistical recovery](docs/statistical_recovery.md) | First descriptive and logistic recovery experiment |
+| [ML benchmark](docs/ml_benchmark.md) | Predictive performance, disparity reproduction, and true-probability recovery |
+| [Data and results preview](docs/data_and_results_preview.md) | Human-readable dataset and CSV excerpts for manual review |
+| [Dataset inventory](docs/dataset_inventory.md) | File sizes, schema completeness, categories, and validation identities |
+| [Dataset summary statistics](docs/dataset_summary_statistics.md) | Numeric distributions and group outcomes across all four scenarios |
 
 ## Roadmap
 
@@ -216,7 +237,7 @@ candidates, before/after distributions, and intercept provenance.
 - [x] Calibrated, validated synthetic generator
 - [x] DTI diagnosis and population recalibration
 - [x] Descriptive and statistical disparity analysis
-- [ ] Machine-learning evaluation
+- [x] Machine-learning evaluation
 - [ ] Research-relevant fairness analysis
 - [ ] Interactive Streamlit dashboard
 - [ ] Carefully scoped 2024 HMDA application

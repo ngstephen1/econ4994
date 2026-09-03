@@ -2,7 +2,7 @@
 
 ## Current phase
 
-Phase 4 — first statistical recovery experiment completed.
+Phase 5 — first machine-learning benchmark completed.
 
 ## Completed
 
@@ -35,6 +35,16 @@ Phase 4 — first statistical recovery experiment completed.
   ground truth implemented.
 - Statistical recovery tables, figures, diagnostics, and deterministic analysis
   tests completed.
+- Two controlled ML feature regimes implemented: race-blind primary and
+  race-aware sensitivity.
+- Deterministic 60/20/20 application-level splitting and validation-only
+  hyperparameter selection implemented.
+- Logistic regression, random forest, and histogram gradient boosting evaluated
+  across all four scenarios.
+- Overall prediction, race-group audit, disparity-reproduction, calibration,
+  true-probability recovery, and synthetic-oracle metrics completed.
+- Five ML benchmark figures and deterministic leakage/splitting/behavior tests
+  completed.
 
 ## Resolved calibration finding
 
@@ -51,9 +61,21 @@ configured -0.25 direct effect. The upstream-only coefficient moved from
 -0.373 unadjusted to approximately zero with the DGP controls. Full results and
 caveats are documented in `docs/statistical_recovery.md`.
 
+## Machine-learning benchmark finding
+
+Logistic regression was selected as the main ML model using mean validation log
+loss. In the direct scenario, its race-blind prediction gap was approximately
+zero while its race-aware gap was -2.747 percentage points. In the upstream
+scenario, its race-blind gap was already -6.205 points because the shifted
+financial features were available. In the mixed scenario, adding race changed
+the gap from -6.423 to -10.414 points. These are disparities reproduced from
+synthetic mechanisms, not claims about real lenders. Full results are in
+`docs/ml_benchmark.md`.
+
 ## Next
 
-- Define a machine-learning benchmark against this statistical reference.
-- Preserve the separation among raw disparity, adjusted disparity, and known
-  synthetic direct effects.
-- Defer Streamlit and HMDA work until the synthetic method is established.
+- Build an interactive dashboard on top of the validated simulation,
+  statistical, and ML APIs.
+- Preserve the distinction between label prediction, true-probability recovery,
+  disparity reproduction, and normative fairness.
+- Continue deferring HMDA work until the synthetic workflow is complete.
