@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import re
+import warnings
 from typing import Any
 
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
+from statsmodels.tools.sm_exceptions import ConvergenceWarning
 
 from fair_lending.simulation.config import approval_transform_parameters
 
@@ -158,13 +160,35 @@ def fit_logit_model(
     """Fit one statsmodels Logit model and return inference plus internals."""
     sample = prepare_regression_sample(data, config)
     matrix = build_design_matrix(sample, config, model_name)
+    outcome = sample["approved"].astype(float)
+    dropped_separation_columns = []
+    for column in matrix.columns:
+        if "__" not in column:
+            continue
+        present = matrix[column].eq(1.0)
+        if present.any() and outcome.loc[present].nunique() == 1:
+            dropped_separation_columns.append(column)
+    if dropped_separation_columns:
+        matrix = matrix.drop(columns=dropped_separation_columns)
     diagnostics = design_matrix_diagnostics(matrix)
     if not diagnostics["full_rank"] or not diagnostics["all_finite"]:
         raise ValueError(f"Invalid design matrix for {model_name}: {diagnostics}")
 
-    result = sm.Logit(sample["approved"].astype(float), matrix).fit(
-        method="newton", maxiter=100, disp=False
-    )
+    model = sm.Logit(outcome, matrix)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", ConvergenceWarning)
+        result = model.fit(method="newton", maxiter=100, disp=False)
+    optimizer = "newton"
+    optimizer_fallback_used = False
+    if not bool(result.mle_retvals.get("converged", False)):
+        # Rare loan-category cells can approach separation in the n=1,000
+        # study. BFGS reaches the same unpenalized likelihood without changing
+        # the specification or substituting regularized inference.
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", ConvergenceWarning)
+            result = model.fit(method="bfgs", maxiter=500, disp=False)
+        optimizer = "bfgs"
+        optimizer_fallback_used = True
     confidence = result.conf_int(alpha=0.05).loc["black"]
     coefficient = float(result.params["black"])
     standard_error = float(result.bse["black"])
@@ -182,6 +206,9 @@ def fit_logit_model(
         "black_odds_ratio_ci_low": float(np.exp(confidence.iloc[0])),
         "black_odds_ratio_ci_high": float(np.exp(confidence.iloc[1])),
         "converged": bool(result.mle_retvals.get("converged", False)),
+        "optimizer": optimizer,
+        "optimizer_fallback_used": optimizer_fallback_used,
+        "dropped_separation_columns": dropped_separation_columns,
         "iterations": int(result.mle_retvals.get("iterations", 0)),
         "log_likelihood": float(result.llf),
         "aic": float(result.aic),

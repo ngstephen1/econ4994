@@ -2,7 +2,7 @@
 
 ## Current phase
 
-Phase 6 — interactive synthetic fair-lending dashboard completed.
+Phase 7 — synthetic sensitivity and Monte Carlo experiments completed.
 
 ## Completed
 
@@ -45,7 +45,7 @@ Phase 6 — interactive synthetic fair-lending dashboard completed.
   true-probability recovery, and synthetic-oracle metrics completed.
 - Five ML benchmark figures and deterministic leakage/splitting/behavior tests
   completed.
-- Six-page Streamlit research dashboard implemented around the existing
+- Seven-page Streamlit research dashboard implemented around the existing
   simulation, statistical, and ML APIs.
 - In-memory scenario generation, bounded custom treatments, active-sample
   statsmodels analysis, and a fixed-seed direct-effect sensitivity curve added.
@@ -57,6 +57,18 @@ Phase 6 — interactive synthetic fair-lending dashboard completed.
   cross-page state implemented.
 - Dashboard support tests, Streamlit script execution checks, and local server
   route checks completed.
+- Resumable sensitivity framework implemented with stable SHA-256 run identities,
+  atomic per-run JSON, common-random-number seeds, and deterministic parallel
+  execution.
+- Direct-effect, upstream-strength, mixed-mechanism, sample-size, and detection
+  designs completed across 3,140 unique replication/settings.
+- All four statsmodels specifications and both validation-tuned logistic ML
+  regimes evaluated for every run; raw, adjusted, predicted, and synthetic-truth
+  quantities retained separately.
+- Monte Carlo bias, RMSE, empirical intervals, coverage, detection, sign recovery,
+  false positives, mechanism signatures, and result-derived thresholds completed.
+- Thirteen sensitivity figures, tidy result families, a paper-ready summary, and
+  a read-only seventh dashboard page completed.
 
 ## Resolved calibration finding
 
@@ -84,10 +96,19 @@ the gap from -6.423 to -10.414 points. These are disparities reproduced from
 synthetic mechanisms, not claims about real lenders. Full results are in
 `docs/ml_benchmark.md`.
 
+## Sensitivity and Monte Carlo finding
+
+Across 50 replications at 100,000 rows, Model 2 recovered the configured
+moderate direct effect of -0.25 at a mean of -0.249 log odds. Moderate upstream
+inequality generated a mean raw gap of -6.93 percentage points while the Model
+2 adjusted contrast remained approximately zero. The fair-baseline Model 2
+false-positive rate was 2%, with 98% interval coverage. The complete design,
+thresholds, signatures, numerical policy, and limits are documented in
+`docs/sensitivity_analysis.md`.
+
 ## Next
 
-- Design focused synthetic sensitivity experiments around direct-effect and
-  upstream-treatment strength.
+- Consolidate the synthetic findings into capstone-ready narrative and tables.
 - Preserve the distinction between label prediction, true-probability recovery,
   disparity reproduction, and normative fairness.
 - Continue deferring HMDA work until the planned synthetic workflow is complete.

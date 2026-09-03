@@ -40,6 +40,7 @@ pages = [
     ("pages/4_ML_Benchmark.py", "ML Benchmark", "Explore held-out benchmark and threshold results"),
     ("pages/5_Mechanism_Comparison.py", "Mechanism Comparison", "Compare mechanisms across methods"),
     ("pages/6_Methodology.py", "Methodology", "Study design, schema, and limitations"),
+    ("pages/7_Sensitivity_Experiments.py", "Sensitivity Experiments", "Explore precomputed Monte Carlo summaries"),
 ]
 for path, label, help_text in pages:
     left, right = st.columns([1, 4])

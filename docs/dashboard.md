@@ -53,6 +53,9 @@ Reusable dashboard services provide:
    four-scenario mechanism matrix and result-dependent interpretation.
 6. **Methodology** explains the DGP, frozen intercept, statistical and ML
    methods, limitations, future HMDA phase, and all 24 persisted fields.
+7. **Sensitivity Experiments** reads the precomputed Monte Carlo summaries,
+   figures, thresholds, and modal mechanism signatures. It never launches or
+   resumes simulation work from the web interface.
 
 ## Interactive simulations
 
@@ -147,6 +150,7 @@ mechanism pages expect the following after running the documented experiments:
 ```bash
 python3 experiments/run_statistical_recovery.py
 python3 experiments/run_ml_benchmark.py
+python3 experiments/run_sensitivity.py --experiment all --resume --workers 2
 ```
 
 The centralized loader supports:
@@ -162,6 +166,15 @@ The centralized loader supports:
 - `ml_group_calibration_bins.csv`
 - `statistical_ml_comparison.csv`
 - `ml_test_predictions.parquet`
+- `sensitivity_direct_summary.csv`
+- `sensitivity_upstream_summary.csv`
+- `sensitivity_mixed_summary.csv`
+- `sensitivity_sample_size_summary.csv`
+- `monte_carlo_detection.csv`
+- `monte_carlo_coverage.csv`
+- `mechanism_signatures.csv`
+- `detection_thresholds.csv`
+- `sensitivity_paper_summary.csv`
 
 When an artifact is absent, the relevant page gives the experiment command
 needed to recreate it rather than exposing a raw `FileNotFoundError`.

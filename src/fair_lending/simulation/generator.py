@@ -52,10 +52,37 @@ OUTPUT_COLUMNS = [
     "approved",
     "denial_reason",
 ]
+SYNTHETIC_SCHEMA_VERSION = "1.0-24-fields"
 
 
 def dataset_filename(scenario: str, effect_level: str, n_rows: int, seed: int) -> str:
     return f"synthetic_{scenario}_{effect_level}_n{n_rows}_seed{seed}.parquet"
+
+
+def generate_from_resolved_config(
+    config: dict[str, Any], intercept: float
+) -> tuple[pd.DataFrame, dict[str, Any]]:
+    """Generate one dataset from an already-resolved in-memory configuration.
+
+    This low-level entry point supports declared sensitivity experiments without
+    modifying YAML. It performs no calibration, persistence, or Git inspection.
+    """
+    n_rows = int(config["simulation"]["n_samples"])
+    seed = int(config["simulation"]["random_seed"])
+    streams, spawn_keys = create_random_streams(seed)
+    applications, population_diagnostics = generate_population(config, streams)
+    probabilities = approval_probabilities(applications, config, float(intercept))
+    applications["approval_probability_true"] = probabilities
+    applications["approved"] = (
+        streams["approval"].random(n_rows) < probabilities
+    ).astype(np.int8)
+    applications["denial_reason"] = pd.Series(
+        np.full(n_rows, None, dtype=object), dtype="object"
+    )
+    return applications.loc[:, OUTPUT_COLUMNS], {
+        "random_stream_spawn_keys": spawn_keys,
+        "population_diagnostics": population_diagnostics,
+    }
 
 
 def generate_synthetic_data(
@@ -69,9 +96,6 @@ def generate_synthetic_data(
 ) -> tuple[pd.DataFrame, dict[str, Any]]:
     """Generate a synthetic mortgage-application dataset and run metadata."""
     config = resolve_simulation_config(scenario, effect_level, n_rows, seed)
-    streams, spawn_keys = create_random_streams(seed)
-    applications, population_diagnostics = generate_population(config, streams)
-
     if intercept is None:
         calibration = calibrate_intercept(force=recalibrate_intercept)
         frozen_intercept = float(calibration["intercept"])
@@ -88,16 +112,7 @@ def generate_synthetic_data(
         }
         calibration_source = "explicit_argument"
 
-    probabilities = approval_probabilities(applications, config, frozen_intercept)
-    approved = (
-        streams["approval"].random(n_rows) < probabilities
-    ).astype(np.int8)
-    applications["approval_probability_true"] = probabilities
-    applications["approved"] = approved
-    applications["denial_reason"] = pd.Series(
-        np.full(n_rows, None, dtype=object), dtype="object"
-    )
-    applications = applications.loc[:, OUTPUT_COLUMNS]
+    applications, generation = generate_from_resolved_config(config, frozen_intercept)
 
     revision, dirty = git_revision()
     metadata = {
@@ -118,8 +133,8 @@ def generate_synthetic_data(
         "git_worktree_dirty": dirty,
         "config_fingerprint": stable_fingerprint(config),
         "random_stream_strategy": "NumPy SeedSequence child streams",
-        "random_stream_spawn_keys": spawn_keys,
-        "population_diagnostics": population_diagnostics,
+        "random_stream_spawn_keys": generation["random_stream_spawn_keys"],
+        "population_diagnostics": generation["population_diagnostics"],
         "output_file_path": None,
         "row_count": int(len(applications)),
         "schema_column_count": int(len(applications.columns)),

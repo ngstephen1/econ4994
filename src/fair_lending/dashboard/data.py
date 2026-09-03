@@ -22,6 +22,15 @@ TABLE_PATHS = {
     "ml_calibration_bins": "ml_calibration_bins.csv",
     "ml_group_calibration_bins": "ml_group_calibration_bins.csv",
     "statistical_ml_comparison": "statistical_ml_comparison.csv",
+    "sensitivity_direct_summary": "sensitivity_direct_summary.csv",
+    "sensitivity_upstream_summary": "sensitivity_upstream_summary.csv",
+    "sensitivity_mixed_summary": "sensitivity_mixed_summary.csv",
+    "sensitivity_sample_size_summary": "sensitivity_sample_size_summary.csv",
+    "monte_carlo_detection": "monte_carlo_detection.csv",
+    "monte_carlo_coverage": "monte_carlo_coverage.csv",
+    "mechanism_signatures": "mechanism_signatures.csv",
+    "detection_thresholds": "detection_thresholds.csv",
+    "sensitivity_paper_summary": "sensitivity_paper_summary.csv",
 }
 PREDICTION_FILENAME = "ml_test_predictions.parquet"
 METADATA_FILENAMES = {
@@ -46,11 +55,17 @@ def load_result_table(
         raise KeyError(f"Unknown dashboard result table: {name}")
     path = _root(project_root) / "results" / "tables" / TABLE_PATHS[name]
     if not path.exists():
-        experiment = (
-            "experiments/run_ml_benchmark.py"
-            if name.startswith("ml_") or name == "statistical_ml_comparison"
-            else "experiments/run_statistical_recovery.py"
-        )
+        if name.startswith("sensitivity_") or name in {
+            "monte_carlo_detection",
+            "monte_carlo_coverage",
+            "mechanism_signatures",
+            "detection_thresholds",
+        }:
+            experiment = "experiments/run_sensitivity.py --experiment all --resume"
+        elif name.startswith("ml_") or name == "statistical_ml_comparison":
+            experiment = "experiments/run_ml_benchmark.py"
+        else:
+            experiment = "experiments/run_statistical_recovery.py"
         raise DashboardArtifactError(
             f"Required result table '{path.name}' was not found. Run {experiment} first."
         )

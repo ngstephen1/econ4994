@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import copy
 import io
 import json
 from dataclasses import asdict, dataclass
@@ -15,7 +14,6 @@ import pandas as pd
 from fair_lending.analysis.descriptive import black_white_raw_gap, descriptive_outcomes
 from fair_lending.analysis.estimands import true_direct_effect
 from fair_lending.analysis.logit import prepare_regression_sample
-from fair_lending.simulation.approval import approval_probabilities
 from fair_lending.simulation.calibration import load_calibration_artifact
 from fair_lending.simulation.config import (
     git_revision,
@@ -23,8 +21,11 @@ from fair_lending.simulation.config import (
     resolve_simulation_config,
     stable_fingerprint,
 )
-from fair_lending.simulation.generator import OUTPUT_COLUMNS
-from fair_lending.simulation.population import create_random_streams, generate_population
+from fair_lending.simulation.generator import generate_from_resolved_config
+from fair_lending.simulation.treatments import (
+    apply_treatment_overrides,
+    configured_treatments,
+)
 
 
 @dataclass(frozen=True)
@@ -48,67 +49,28 @@ class SimulationRequest:
     custom_treatments: CustomTreatments | None = None
 
 
-def configured_treatments(config: dict[str, Any]) -> dict[str, Any]:
-    """Extract the focal Black treatments in presentation-friendly units."""
-    upstream = config["scenario_effects"]["upstream"]["treatments"]
-    direct = config["scenario_effects"]["direct"]
-    return {
-        "direct_enabled": bool(direct["enabled"]),
-        "direct_black_log_odds": float(direct["log_odds_by_race"]["Black"]),
-        "upstream_enabled": bool(config["scenario_effects"]["upstream"]["enabled"]),
-        "black_income_multiplier": float(
-            np.exp(upstream["annual_income"]["additive_shift_by_race"]["Black"])
-        ),
-        "black_credit_score_shift": float(
-            upstream["credit_score"]["additive_shift_by_race"]["Black"]
-        ),
-        "black_liquid_assets_multiplier": float(
-            np.exp(upstream["liquid_assets"]["additive_shift_by_race"]["Black"])
-        ),
-    }
-
-
 def resolve_dashboard_config(request: SimulationRequest) -> dict[str, Any]:
     """Resolve canonical YAML and apply custom parameters only to a deep copy."""
-    config = copy.deepcopy(
-        resolve_simulation_config(
-            request.scenario,
-            request.effect_level,
-            request.n_samples,
-            request.random_seed,
-        )
+    config = resolve_simulation_config(
+        request.scenario,
+        request.effect_level,
+        request.n_samples,
+        request.random_seed,
     )
     custom = request.custom_treatments
     if custom is None:
         return config
 
-    direct = config["scenario_effects"]["direct"]
-    direct["log_odds_by_race"]["Black"] = float(custom.direct_black_log_odds)
-    direct["enabled"] = custom.direct_black_log_odds != 0.0
-    direct["effect_level"] = "dashboard_custom"
-
-    treatments = config["scenario_effects"]["upstream"]["treatments"]
-    custom_values = {
-        "annual_income": float(np.log(custom.black_income_multiplier)),
-        "credit_score": float(custom.black_credit_score_shift),
-        "liquid_assets": float(np.log(custom.black_liquid_assets_multiplier)),
-    }
-    for field, shift in custom_values.items():
-        treatments[field]["additive_shift_by_race"]["Black"] = shift
-    treatments["annual_income"]["conditional_black_multiplier"] = float(
-        custom.black_income_multiplier
+    config = apply_treatment_overrides(
+        config,
+        direct_black_log_odds=custom.direct_black_log_odds,
+        black_income_log_shift=float(np.log(custom.black_income_multiplier)),
+        black_credit_score_shift=custom.black_credit_score_shift,
+        black_liquid_assets_log_shift=float(
+            np.log(custom.black_liquid_assets_multiplier)
+        ),
+        source_label="dashboard_custom",
     )
-    treatments["liquid_assets"]["conditional_black_multiplier"] = float(
-        custom.black_liquid_assets_multiplier
-    )
-    upstream_active = (
-        custom.black_income_multiplier != 1.0
-        or custom.black_credit_score_shift != 0.0
-        or custom.black_liquid_assets_multiplier != 1.0
-    )
-    upstream = config["scenario_effects"]["upstream"]
-    upstream["enabled"] = upstream_active
-    upstream["effect_level"] = "dashboard_custom"
     config["simulation"]["dashboard_custom_treatments"] = True
     return config
 
@@ -118,8 +80,6 @@ def generate_dashboard_simulation(
 ) -> tuple[pd.DataFrame, dict[str, Any]]:
     """Generate one in-memory sample without calibrating or persisting it."""
     config = resolve_dashboard_config(request)
-    streams, spawn_keys = create_random_streams(request.random_seed)
-    applications, population_diagnostics = generate_population(config, streams)
     if intercept is None:
         calibration = load_calibration_artifact()
         frozen_intercept = float(calibration["intercept"])
@@ -127,15 +87,7 @@ def generate_dashboard_simulation(
     else:
         frozen_intercept = float(intercept)
         calibration_fingerprint = None
-    probability = approval_probabilities(applications, config, frozen_intercept)
-    applications["approval_probability_true"] = probability
-    applications["approved"] = (
-        streams["approval"].random(request.n_samples) < probability
-    ).astype(np.int8)
-    applications["denial_reason"] = pd.Series(
-        np.full(request.n_samples, None, dtype=object), dtype="object"
-    )
-    data = applications.loc[:, OUTPUT_COLUMNS]
+    data, generation = generate_from_resolved_config(config, frozen_intercept)
     revision, dirty = git_revision()
     metadata = {
         "mode": "dashboard_in_memory",
@@ -155,8 +107,8 @@ def generate_dashboard_simulation(
         "config_fingerprint": stable_fingerprint(config),
         "resolved_configuration": config,
         "random_stream_strategy": "NumPy SeedSequence child streams",
-        "random_stream_spawn_keys": spawn_keys,
-        "population_diagnostics": population_diagnostics,
+        "random_stream_spawn_keys": generation["random_stream_spawn_keys"],
+        "population_diagnostics": generation["population_diagnostics"],
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "package_version": package_version(),
         "git_revision": revision,

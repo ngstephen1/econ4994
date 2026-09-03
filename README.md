@@ -4,8 +4,8 @@
 
 <p align="center">
   <a href="https://www.python.org/downloads/"><img alt="Python 3.11+" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
-  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: interactive dashboard" src="https://img.shields.io/badge/phase-interactive_dashboard-159A9C?style=flat-square"></a>
-  <a href="tests"><img alt="Tests: 76 passing" src="https://img.shields.io/badge/tests-76_passing-2E7D32?style=flat-square"></a>
+  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: sensitivity and Monte Carlo" src="https://img.shields.io/badge/phase-sensitivity_%26_Monte_Carlo-159A9C?style=flat-square"></a>
+  <a href="tests"><img alt="Tests: 110 passing" src="https://img.shields.io/badge/tests-110_passing-2E7D32?style=flat-square"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-E87722?style=flat-square"></a>
 </p>
 
@@ -90,10 +90,15 @@ estimates of real-world discrimination.
 - Logistic, random-forest, and histogram-gradient-boosting benchmarks.
 - Held-out group audits, disparity-reproduction metrics, probability recovery,
   calibration bins, and a non-trained synthetic oracle reference.
-- A six-page Streamlit research dashboard for in-memory simulation, active-sample
+- A seven-page Streamlit research dashboard for in-memory simulation, active-sample
   regression, saved ML benchmark exploration, and cross-mechanism comparison.
 - Bounded custom synthetic treatments, a fixed-seed sensitivity curve, dataset
   exports, and a no-retraining global-threshold explorer.
+- A resumable 3,140-run Monte Carlo framework spanning direct, upstream, mixed,
+  sample-size, and detection experiments with common-random-number seeds.
+- Monte Carlo bias, RMSE, coverage, detection, false-positive, mechanism-signature,
+  and result-derived threshold summaries with 13 research figures.
+- A read-only dashboard page for exploring precomputed sensitivity results.
 
 HMDA analysis remains reserved for a later phase. Prediction-error metrics
 relative to lender decisions are not presented as proof of normative fairness.
@@ -178,6 +183,18 @@ three model families on validation log loss, and evaluates race-blind and
 race-aware sensitivity regimes on identical test records. See
 [ML benchmark](docs/ml_benchmark.md).
 
+Run the full resumable sensitivity and Monte Carlo design:
+
+```bash
+python3 experiments/run_sensitivity.py --experiment all --resume --workers 2
+```
+
+The routine evaluates 3,140 unique replication/settings and writes each result
+atomically, so interrupted work can resume safely. Add `--quick` for a 16-run
+installation and pipeline check. See
+[Sensitivity analysis](docs/sensitivity_analysis.md) for the grids, estimands,
+observed results, and interpretation limits.
+
 ### Launch the interactive dashboard
 
 After generating the statistical and ML benchmark artifacts, run:
@@ -193,9 +210,10 @@ does not retrain models. See [Dashboard guide](docs/dashboard.md).
 
 The dashboard opens at `http://localhost:8501` by default. Start with
 **Research Overview** for the concepts or **Simulation Lab** to generate an
-interactive sample. Generated benchmark files are intentionally ignored by Git,
-so run both benchmark commands above before opening the ML and mechanism pages
-on a fresh clone.
+interactive sample. Generated benchmark files are intentionally ignored by Git.
+Run the statistical and ML commands before opening their result pages, and run
+the sensitivity command before opening **Sensitivity Experiments** on a fresh
+clone.
 
 ## How the generator works
 
@@ -245,8 +263,9 @@ candidates, before/after distributions, and intercept provenance.
 | `src/fair_lending/simulation/` | Generator, approval DGP, calibration, diagnostics, and validation |
 | `src/fair_lending/analysis/` | Descriptive estimands, statsmodels logits, and standardized contrasts |
 | `src/fair_lending/models/` | ML features, splitting, pipelines, evaluation, and race-group audit |
+| `src/fair_lending/sensitivity/` | Monte Carlo grids, seeds, evaluation, persistence, summaries, thresholds, and figures |
 | `src/fair_lending/dashboard/` | Reusable dashboard data, simulation, export, chart, and state services |
-| `experiments/` | Reproducible statistical and ML benchmark entry points |
+| `experiments/` | Reproducible statistical, ML, and sensitivity experiment entry points |
 | `dashboard/` | Multipage Streamlit research interface |
 | `data/synthetic/` | Generated Parquet datasets; ignored by Git |
 | `data/external/` | Future external inputs, including HMDA; ignored by Git |
@@ -262,6 +281,7 @@ candidates, before/after distributions, and intercept provenance.
 | Generate one synthetic dataset | `python3 -m fair_lending.simulation.generate --help` |
 | Run statistical recovery | `python3 experiments/run_statistical_recovery.py` |
 | Run the ML benchmark | `python3 experiments/run_ml_benchmark.py` |
+| Run the sensitivity design | `python3 experiments/run_sensitivity.py --experiment all --resume --workers 2` |
 | Launch the dashboard | `python3 -m streamlit run dashboard/app.py` |
 | Run all tests | `python3 -m pytest -q` |
 | Check current phase | [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) |
@@ -298,6 +318,7 @@ candidates, before/after distributions, and intercept provenance.
 | [Statistical recovery](docs/statistical_recovery.md) | First descriptive and logistic recovery experiment |
 | [ML benchmark](docs/ml_benchmark.md) | Predictive performance, disparity reproduction, and true-probability recovery |
 | [Dashboard guide](docs/dashboard.md) | Pages, controls, caching, artifacts, launch instructions, and cautions |
+| [Sensitivity analysis](docs/sensitivity_analysis.md) | Monte Carlo design, recovery, detection, thresholds, signatures, and limits |
 | [Data and results preview](docs/data_and_results_preview.md) | Human-readable dataset and CSV excerpts for manual review |
 | [Dataset inventory](docs/dataset_inventory.md) | File sizes, schema completeness, categories, and validation identities |
 | [Dataset summary statistics](docs/dataset_summary_statistics.md) | Numeric distributions and group outcomes across all four scenarios |
@@ -310,6 +331,7 @@ candidates, before/after distributions, and intercept provenance.
 - [x] DTI diagnosis and population recalibration
 - [x] Descriptive and statistical disparity analysis
 - [x] Machine-learning evaluation
+- [x] Synthetic sensitivity and Monte Carlo experiments
 - [ ] Research-relevant fairness analysis
 - [x] Interactive Streamlit dashboard
 - [ ] Carefully scoped 2024 HMDA application
