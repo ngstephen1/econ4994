@@ -2,7 +2,7 @@
 
 ## Current phase
 
-Phase 13 — direct discrimination through distorted repayment beliefs completed.
+Phase 14 — systemic discrimination through an upstream opportunity process completed.
 
 ## Completed
 
@@ -142,6 +142,22 @@ Phase 13 — direct discrimination through distorted repayment beliefs completed
   error at mild strengths, without making the discriminatory treatment benign.
 - Structural tests confirm that group does not enter baseline applicant
   characteristics, repayment truth, profit, or allocation.
+- A separate `systemic_opportunity_v1` family now models an explicit upstream
+  opportunity decision using only group and pre-treatment latent stability.
+- The neutral opportunity intercept was calibrated once to a 70% probability
+  target; strengths of 0.00, 0.10, 0.20, and 0.40 and modest employment,
+  income, and asset effects were frozen before lending evaluation.
+- Matched population residuals, opportunity uniforms, repayment uniforms,
+  cohorts, contracts, and absolute budgets support paired counterfactuals;
+  Group A applicant characteristics are exactly invariant.
+- Both additive and nonlinear true-risk functions remain group-blind, and each
+  systemic world refits the same group-blind traditional logit and HistGB model.
+- Seventy-two oracle/traditional/ML portfolios solved optimally with zero
+  reported MIP gap. Financial pathways, opportunity switchers, Group A
+  portfolio spillovers, allocation gaps, profit changes, and oracle regret are
+  reported separately.
+- The controlled funding audit explicitly flags 20 U1 specifications with
+  perfect or quasi-separation instead of interpreting divergent coefficients.
 
 ## Resolved calibration finding
 
@@ -181,10 +197,10 @@ thresholds, signatures, numerical policy, and limits are documented in
 
 ## Next
 
-- Design any upstream/systemic mechanism as a separate experiment rather than
-  combining it with the completed direct-belief treatment.
-- Introduce direct or systemic discrimination mechanisms only as explicitly
-  configured Version 2 experiments.
+- Keep direct-belief and upstream-opportunity mechanisms separate unless a
+  later prompt explicitly defines a combined experiment.
+- Decide whether Prompt 17 should add repeated-seed uncertainty, an alternative
+  upstream mechanism, or capstone synthesis before extending the DGP.
 - Consolidate the Version 1 synthetic findings into capstone-ready narrative
   and tables.
 - Preserve the distinction between label prediction, true-probability recovery,

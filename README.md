@@ -4,8 +4,8 @@
 
 <p align="center">
   <a href="https://www.python.org/downloads/"><img alt="Python 3.11+" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
-  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: Version 2 direct belief distortion" src="https://img.shields.io/badge/phase-v2_direct_belief_distortion-159A9C?style=flat-square"></a>
-  <a href="tests"><img alt="Tests: 210 passing" src="https://img.shields.io/badge/tests-210_passing-2E7D32?style=flat-square"></a>
+  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: Version 2 systemic opportunity" src="https://img.shields.io/badge/phase-v2_systemic_opportunity-159A9C?style=flat-square"></a>
+  <a href="tests"><img alt="Tests: 230 passing" src="https://img.shields.io/badge/tests-230_passing-2E7D32?style=flat-square"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-E87722?style=flat-square"></a>
 </p>
 
@@ -41,7 +41,7 @@
 | Version | Status | Main question | Entry point |
 |---|---|---|---|
 | Version 1 approval benchmark | Preserved at Git tag `v1-approval-benchmark` | How do approval disparities appear under direct, upstream, mixed, and fair synthetic mechanisms? | [Research design](docs/research_design.md) |
-| Version 2 economic lending model | Risk-estimation benchmark completed on branch `v2-economic-lending` | How do repayment risk, expected profit, and budget-constrained allocation shape lending? | [Economic lending spec](docs/economic_lending_spec.md) |
+| Version 2 economic lending model | Upstream systemic-opportunity experiment completed | How do repayment risk, expected profit, discrimination mechanisms, and budget-constrained allocation shape lending? | [Economic lending spec](docs/economic_lending_spec.md) · [Systemic experiment](docs/systemic_opportunity_discrimination.md) |
 
 ## The research question
 
@@ -130,6 +130,12 @@ estimates of real-world discrimination.
 - A matched direct-discrimination experiment that shifts Group B perceived
   repayment log odds after frozen model estimation while preserving true risk,
   outcomes, contracts, budgets, and neutral controls.
+- A separate matched systemic-opportunity experiment in which an upstream
+  group penalty changes opportunity access, employment, income, and assets
+  while the final traditional and ML lenders remain group-blind.
+- Additive and nonlinear true-risk comparisons, opportunity-switcher pathways,
+  fixed-budget oracle/fitted allocations, Group A portfolio spillovers, and a
+  controlled descriptive funding audit for the systemic experiment.
 
 HMDA analysis remains reserved for a later phase. Prediction-error metrics
 relative to lender decisions are not presented as proof of normative fairness.
@@ -218,6 +224,17 @@ python3 experiments/run_traditional_lender.py
 See [Traditional lender risk model](docs/traditional_lender_risk_model.md) for
 the information boundary, fitted coefficients, oracle comparison, and economic
 diagnostics.
+
+Run the frozen systemic-opportunity experiment after the Version 2 dependencies
+are installed:
+
+```bash
+python3 experiments/run_systemic_opportunity.py
+```
+
+See [Systemic opportunity discrimination](docs/systemic_opportunity_discrimination.md)
+for the upstream equation, matched-world design, pathway results, allocation
+effects, controlled-audit caveat, and limitations.
 
 Compare the frozen traditional lender with the flexible repayment-risk model:
 
@@ -391,6 +408,7 @@ candidates, before/after distributions, and intercept provenance.
 | Run the matched nonlinear-risk sensitivity | `python3 experiments/run_nonlinear_risk_benchmark.py` |
 | Run the V2 portfolio allocation benchmark | `python3 experiments/run_portfolio_allocation_benchmark.py` |
 | Run the direct belief-distortion experiment | `python3 experiments/run_direct_belief_distortion.py` |
+| Run the systemic-opportunity experiment | `python3 experiments/run_systemic_opportunity.py` |
 | Launch the dashboard | `python3 -m streamlit run dashboard/app.py` |
 | Run all tests | `python3 -m pytest -q` |
 | Check current phase | [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) |
@@ -435,6 +453,7 @@ candidates, before/after distributions, and intercept provenance.
 | [Nonlinear risk sensitivity](docs/nonlinear_risk_sensitivity.md) | Frozen nonlinear DGP, matched repayment streams, model recovery, and economic consequences |
 | [Portfolio allocation benchmark](docs/portfolio_allocation_benchmark.md) | Oracle/traditional/ML allocation, scarcity, regret, overlap, tails, and neutral group audit |
 | [Direct belief discrimination](docs/direct_belief_discrimination.md) | Log-odds treatment, matched group effects, spillovers, mechanism cost, and model interaction |
+| [Systemic opportunity discrimination](docs/systemic_opportunity_discrimination.md) | Explicit upstream opportunity, matched descendants, group-blind lending, switchers, spillovers, and portfolio effects |
 | [Data and results preview](docs/data_and_results_preview.md) | Human-readable dataset and CSV excerpts for manual review |
 | [Dataset inventory](docs/dataset_inventory.md) | File sizes, schema completeness, categories, and validation identities |
 | [Dataset summary statistics](docs/dataset_summary_statistics.md) | Numeric distributions and group outcomes across all four scenarios |

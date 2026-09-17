@@ -1,0 +1,51 @@
+version: v2-systemic-opportunity-0.1
+mechanism_id: systemic_opportunity_v1
+scientific_status: researcher-designed synthetic upstream-discrimination mechanism
+treated_group: B
+reference_group: A
+direct_belief_delta: 0.0
+systemic_strengths: [0.00, 0.10, 0.20, 0.40]
+
+opportunity_model:
+  interpretation: access to a prior stable economic/employment opportunity
+  probability_link: logistic
+  formula: alpha + beta_stability * financial_stability_latent - systemic_strength * I(group == B)
+  beta_stability: 0.50
+  neutral_access_target: 0.70
+  solved_intercept: 0.8971702496810331
+  calibration_rows: 100000
+  calibration_seed: 4994
+  tolerance: 1.0e-12
+
+downstream_effects:
+  employment_years_additive: 1.50
+  log_annual_income_additive: 0.06
+  log_liquid_assets_additive: 0.10
+  note: fixed researcher-declared effects; not calibrated to lending or profit gaps
+
+risk_worlds:
+  - additive_logistic_baseline
+  - nonlinear_v1
+model_families:
+  - traditional
+  - ml
+  - true_risk_reference
+
+budgets:
+  nonbinding_100pct: 583043937.080
+  moderate_40pct: 233217574.832
+  tight_20pct: 116608787.416
+
+randomness:
+  development_seed: 4994
+  repayment_uniform_seed: 1604994
+  opportunity_stream_name: opportunity_decision
+
+artifacts:
+  development_rows: 10000
+  data_directory: data/processed/economic_lending/v2_systemic_opportunity
+  policy_assessments: data/processed/economic_lending/v2_systemic_opportunity/policy_assessments.parquet
+  evaluator_reference_assessments: data/processed/economic_lending/v2_systemic_opportunity/evaluator_reference_assessments.parquet
+  decisions: data/processed/economic_lending/v2_systemic_opportunity/decisions.parquet
+  mechanism_reference: data/processed/economic_lending/v2_systemic_opportunity/mechanism_reference.parquet
+  metrics: results/metrics/v2_systemic_opportunity.json
