@@ -4,8 +4,8 @@
 
 <p align="center">
   <a href="https://www.python.org/downloads/"><img alt="Python 3.11+" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
-  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: sensitivity and Monte Carlo" src="https://img.shields.io/badge/phase-sensitivity_%26_Monte_Carlo-159A9C?style=flat-square"></a>
-  <a href="tests"><img alt="Tests: 110 passing" src="https://img.shields.io/badge/tests-110_passing-2E7D32?style=flat-square"></a>
+  <a href="docs/PROJECT_STATUS.md"><img alt="Phase: Version 2 direct belief distortion" src="https://img.shields.io/badge/phase-v2_direct_belief_distortion-159A9C?style=flat-square"></a>
+  <a href="tests"><img alt="Tests: 210 passing" src="https://img.shields.io/badge/tests-210_passing-2E7D32?style=flat-square"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-E87722?style=flat-square"></a>
 </p>
 
@@ -35,6 +35,13 @@
 | Reproduce the scientific results | Run the [statistical and ML benchmarks](#reproduce-the-research-benchmarks), then read their linked methodology documents. |
 | Understand or modify the implementation | Start with the [repository map](#repository-map), then read [generator design](docs/generator_design.md) and the tests beside each module. |
 | See what is finished and what comes next | Open [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) and the [roadmap](#roadmap). |
+
+## Version Guide
+
+| Version | Status | Main question | Entry point |
+|---|---|---|---|
+| Version 1 approval benchmark | Preserved at Git tag `v1-approval-benchmark` | How do approval disparities appear under direct, upstream, mixed, and fair synthetic mechanisms? | [Research design](docs/research_design.md) |
+| Version 2 economic lending model | Risk-estimation benchmark completed on branch `v2-economic-lending` | How do repayment risk, expected profit, and budget-constrained allocation shape lending? | [Economic lending spec](docs/economic_lending_spec.md) |
 
 ## The research question
 
@@ -99,6 +106,30 @@ estimates of real-world discrimination.
 - Monte Carlo bias, RMSE, coverage, detection, false-positive, mechanism-signature,
   and result-derived threshold summaries with 13 research figures.
 - A read-only dashboard page for exploring precomputed sensitivity results.
+- A separate Version 2 economic lending baseline package for conditional
+  per-period repayment truth, survival-weighted cash flows, expected profit,
+  and budget-constrained fixed-request allocation.
+- A calibrated Version 2 applicant population with group-invariant finances,
+  a declared logistic true-risk DGP, absorbing repayment histories, and
+  applicant-level train/validation/evaluation cohorts.
+- A traditional lender logit estimated from at-risk historical payment rows,
+  with truth recovery, oracle comparison, survival-selection diagnostics,
+  group auditing, and perceived expected-profit assessment.
+- One controlled histogram-gradient-boosting benchmark using the identical
+  observable information set, payment target, and applicant-level cohorts.
+- Validation-only ML selection, paired probability recovery, calibration,
+  group auditing, break-even disagreement, expected-profit error, and a
+  true-risk-oracle reference.
+- A separate nonlinear true-risk sensitivity on the identical applicants and
+  contracts, with frozen DTI curvature, credit-LTV interaction, asset-buffer
+  terms, paired repayment draws, and cross-world model comparison.
+- Exact population-scale binary portfolio allocation for oracle, traditional,
+  and ML policies under common nonbinding, moderate, and tight capital budgets.
+- True expected-profit regret, realized-profit illustration, overlap,
+  allocation disagreements, tail losses, and neutral group audits.
+- A matched direct-discrimination experiment that shifts Group B perceived
+  repayment log odds after frozen model estimation while preserving true risk,
+  outcomes, contracts, budgets, and neutral controls.
 
 HMDA analysis remains reserved for a later phase. Prediction-error metrics
 relative to lender decisions are not presented as proof of normative fairness.
@@ -158,6 +189,76 @@ intercept provenance, package version, timestamp, and dataset shape.
 > On a fresh clone, the first generation run creates the local one-million-row
 > calibration artifact automatically. Later runs reuse it;
 > `--recalibrate-intercept` deliberately rebuilds it.
+
+### Version 2 economic population
+
+Generate the deterministic 10,000-applicant Version 2 development population:
+
+```bash
+python3 experiments/run_economic_population_calibration.py
+```
+
+This writes separate applicant, loan-option, hidden-truth, and realized-outcome
+Parquet files under `data/synthetic/economic_lending/v2_baseline/`. The
+100,000-row calibration check can be rerun without saving raw calibration data:
+
+```bash
+python3 experiments/run_economic_population_calibration.py --calibration --no-save
+```
+
+See [Version 2 population calibration](docs/economic_population_calibration.md)
+for the dependency structure, exact true-risk formula, results, and limitations.
+
+Fit and evaluate the traditional lender model after generating the population:
+
+```bash
+python3 experiments/run_traditional_lender.py
+```
+
+See [Traditional lender risk model](docs/traditional_lender_risk_model.md) for
+the information boundary, fitted coefficients, oracle comparison, and economic
+diagnostics.
+
+Compare the frozen traditional lender with the flexible repayment-risk model:
+
+```bash
+python3 experiments/run_ml_repayment_benchmark.py
+```
+
+The benchmark searches eight predeclared HistGB settings on the historical
+validation cohort and reserves evaluation outcomes for final comparison. Under
+the current additive-logistic truth, the traditional model performs better,
+which is an expected and informative result. See the
+[V2 ML repayment-risk benchmark](docs/ml_repayment_risk_benchmark.md).
+
+Run the frozen nonlinear misspecification sensitivity:
+
+```bash
+python3 experiments/run_nonlinear_risk_benchmark.py
+```
+
+This does not overwrite the additive world. It writes separate nonlinear data,
+metrics, tables, models, and figures. See
+[Nonlinear risk sensitivity](docs/nonlinear_risk_sensitivity.md).
+
+Allocate the frozen evaluation policies under common capital constraints:
+
+```bash
+python3 experiments/run_portfolio_allocation_benchmark.py
+```
+
+The runner uses SciPy/HiGHS binary MILP and does not retrain either risk model.
+See [Portfolio allocation benchmark](docs/portfolio_allocation_benchmark.md).
+
+Run the direct belief-distortion experiment:
+
+```bash
+python3 experiments/run_direct_belief_distortion.py
+```
+
+This creates separate treatment artifacts and does not overwrite the neutral
+portfolio benchmark. See
+[Direct belief discrimination](docs/direct_belief_discrimination.md).
 
 ### Reproduce the research benchmarks
 
@@ -260,10 +361,12 @@ candidates, before/after distributions, and intercept provenance.
 |---|---|
 | `README.md` | Entry point, setup instructions, navigation, and project overview |
 | `configs/simulation/` | Baseline calibration, treatment library, and scenario switches |
+| `configs/economic_lending/` | Standalone Version 2 population, contract, risk, cohort, and randomness calibration |
 | `src/fair_lending/simulation/` | Generator, approval DGP, calibration, diagnostics, and validation |
 | `src/fair_lending/analysis/` | Descriptive estimands, statsmodels logits, and standardized contrasts |
 | `src/fair_lending/models/` | ML features, splitting, pipelines, evaluation, and race-group audit |
 | `src/fair_lending/sensitivity/` | Monte Carlo grids, seeds, evaluation, persistence, summaries, thresholds, and figures |
+| `src/fair_lending/economic_lending/` | Version 2 conditional repayment-risk, cash-flow, profit, and fixed-request allocation baseline |
 | `src/fair_lending/dashboard/` | Reusable dashboard data, simulation, export, chart, and state services |
 | `experiments/` | Reproducible statistical, ML, and sensitivity experiment entry points |
 | `dashboard/` | Multipage Streamlit research interface |
@@ -282,6 +385,12 @@ candidates, before/after distributions, and intercept provenance.
 | Run statistical recovery | `python3 experiments/run_statistical_recovery.py` |
 | Run the ML benchmark | `python3 experiments/run_ml_benchmark.py` |
 | Run the sensitivity design | `python3 experiments/run_sensitivity.py --experiment all --resume --workers 2` |
+| Generate the Version 2 population | `python3 experiments/run_economic_population_calibration.py` |
+| Fit the Version 2 traditional lender | `python3 experiments/run_traditional_lender.py` |
+| Compare traditional and flexible V2 risk estimates | `python3 experiments/run_ml_repayment_benchmark.py` |
+| Run the matched nonlinear-risk sensitivity | `python3 experiments/run_nonlinear_risk_benchmark.py` |
+| Run the V2 portfolio allocation benchmark | `python3 experiments/run_portfolio_allocation_benchmark.py` |
+| Run the direct belief-distortion experiment | `python3 experiments/run_direct_belief_distortion.py` |
 | Launch the dashboard | `python3 -m streamlit run dashboard/app.py` |
 | Run all tests | `python3 -m pytest -q` |
 | Check current phase | [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) |
@@ -319,6 +428,13 @@ candidates, before/after distributions, and intercept provenance.
 | [ML benchmark](docs/ml_benchmark.md) | Predictive performance, disparity reproduction, and true-probability recovery |
 | [Dashboard guide](docs/dashboard.md) | Pages, controls, caching, artifacts, launch instructions, and cautions |
 | [Sensitivity analysis](docs/sensitivity_analysis.md) | Monte Carlo design, recovery, detection, thresholds, signatures, and limits |
+| [Economic lending spec](docs/economic_lending_spec.md) | Version 2 repayment event, period survival, cash-flow, profit, schema, and allocation baseline |
+| [Economic population calibration](docs/economic_population_calibration.md) | Version 2 applicant dependencies, true-risk DGP, cohorts, realized outcomes, and validation results |
+| [Traditional lender risk model](docs/traditional_lender_risk_model.md) | At-risk histories, traditional logit, oracle comparison, survival selection, and perceived profit |
+| [V2 ML repayment-risk benchmark](docs/ml_repayment_risk_benchmark.md) | Identical-information traditional-versus-HistGB probability and profit comparison |
+| [Nonlinear risk sensitivity](docs/nonlinear_risk_sensitivity.md) | Frozen nonlinear DGP, matched repayment streams, model recovery, and economic consequences |
+| [Portfolio allocation benchmark](docs/portfolio_allocation_benchmark.md) | Oracle/traditional/ML allocation, scarcity, regret, overlap, tails, and neutral group audit |
+| [Direct belief discrimination](docs/direct_belief_discrimination.md) | Log-odds treatment, matched group effects, spillovers, mechanism cost, and model interaction |
 | [Data and results preview](docs/data_and_results_preview.md) | Human-readable dataset and CSV excerpts for manual review |
 | [Dataset inventory](docs/dataset_inventory.md) | File sizes, schema completeness, categories, and validation identities |
 | [Dataset summary statistics](docs/dataset_summary_statistics.md) | Numeric distributions and group outcomes across all four scenarios |
@@ -332,6 +448,14 @@ candidates, before/after distributions, and intercept provenance.
 - [x] Descriptive and statistical disparity analysis
 - [x] Machine-learning evaluation
 - [x] Synthetic sensitivity and Monte Carlo experiments
+- [x] Preserve Version 1 approval benchmark at `v1-approval-benchmark`
+- [x] Start Version 2 economic lending baseline
+- [x] Calibrate the Version 2 applicant population and true repayment DGP
+- [x] Estimate traditional lender repayment risk from historical payment data
+- [x] Compare traditional and flexible repayment-risk estimation
+- [x] Test both estimators in a separate nonlinear true-risk world
+- [x] Compare frozen policies under common budget-constrained allocation
+- [x] Isolate direct discrimination through post-model repayment-belief distortion
 - [ ] Research-relevant fairness analysis
 - [x] Interactive Streamlit dashboard
 - [ ] Carefully scoped 2024 HMDA application

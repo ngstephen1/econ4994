@@ -1,0 +1,89 @@
+{
+  "code_revision": {
+    "commit": "d044c65ff824b0ada42c25e96d86536715ee9931",
+    "dirty_worktree": true
+  },
+  "coefficients": {
+    "credit_score_50": 0.418397119433062,
+    "employment_years_10": 0.08482757382856461,
+    "first_period_dti_10pp": -0.30816327473182237,
+    "intercept": 5.485476961195102,
+    "log_annual_income": 0.23803398862921188,
+    "log_liquid_assets": 0.13379754599240803,
+    "requested_ltv_10pp": -0.16384451836278996
+  },
+  "config_fingerprint": "68869774a4c19e6b81fbd660c71e387b75d0d9a504d3aba9ac905c2a00ad55f2",
+  "evaluation_cohort_excluded_from_fit_and_selection": true,
+  "features": [
+    "log_annual_income",
+    "credit_score_50",
+    "employment_years_10",
+    "log_liquid_assets",
+    "first_period_dti_10pp",
+    "requested_ltv_10pp"
+  ],
+  "model_family": "logistic_regression",
+  "policy_id": "traditional_logit_v1",
+  "random_state": null,
+  "regularization": "none",
+  "schema_version": "v2-economic-lending-0.3",
+  "sensitivity_coefficients": {
+    "applicant_weighted_logit": {
+      "credit_score_50": 0.44627736621328673,
+      "employment_years_10": 0.06106555420637034,
+      "first_period_dti_10pp": -0.27439161217307084,
+      "intercept": 3.9400130255956585,
+      "log_annual_income": 0.21523470978028636,
+      "log_liquid_assets": 0.06636301125510453,
+      "requested_ltv_10pp": -0.12040701737963487
+    },
+    "linear_probability_model": {
+      "credit_score_50": 0.0020796833759749826,
+      "employment_years_10": 0.0003794066120899322,
+      "first_period_dti_10pp": -0.002005210541972809,
+      "intercept": 0.9951122859866683,
+      "log_annual_income": 0.001075558494195758,
+      "log_liquid_assets": 0.0009083310949427892,
+      "requested_ltv_10pp": -0.00019842249861942184
+    }
+  },
+  "settings": {
+    "link": "logit",
+    "period_index_used": false
+  },
+  "training_applicant_count": 6000,
+  "training_cohort": "historical_train",
+  "training_payment_row_count": 524756,
+  "transforms": {
+    "credit_score_50": {
+      "center": 700.0,
+      "coefficient": 0.45,
+      "scale": 50.0
+    },
+    "employment_years_10": {
+      "center": 10.0,
+      "coefficient": 0.08,
+      "scale": 10.0
+    },
+    "first_period_dti_10pp": {
+      "center": 0.45,
+      "coefficient": -0.3,
+      "scale": 0.1
+    },
+    "log_annual_income": {
+      "center": 90000.0,
+      "coefficient": 0.1
+    },
+    "log_liquid_assets": {
+      "center": 46000.0,
+      "coefficient": 0.15,
+      "offset": 1000.0
+    },
+    "requested_ltv_10pp": {
+      "center": 0.8,
+      "coefficient": -0.2,
+      "scale": 0.1
+    }
+  },
+  "validation_cohort": "historical_validation"
+}

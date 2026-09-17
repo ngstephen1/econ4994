@@ -1,0 +1,153 @@
+version: v2-economic-population-0.1
+calibration_classification: researcher-chosen plausible synthetic calibration; not an empirical estimate
+
+population:
+  group_shares:
+    A: 0.50
+    B: 0.50
+  age:
+    minimum: 21
+    maximum: 75
+    beta_alpha: 2.4
+    beta_beta: 2.2
+  latent_factors:
+    correlation: 0.35
+  annual_income:
+    reference_median: 90000.0
+    stability_coefficient: 0.22
+    employment_coefficient: 0.012
+    creditworthiness_coefficient: 0.08
+    log_residual_sd: 0.32
+    minimum: 25000.0
+    maximum: 300000.0
+  credit_score:
+    reference_mean: 705.0
+    creditworthiness_coefficient: 35.0
+    stability_coefficient: 10.0
+    residual_sd: 22.0
+    minimum: 500
+    maximum: 850
+  employment_years:
+    entry_age: 18
+    fraction_intercept: 0.58
+    stability_coefficient: 0.10
+    residual_sd: 0.15
+    minimum_fraction: 0.02
+    maximum_fraction: 1.00
+  liquid_assets:
+    reference_median: 45000.0
+    income_elasticity: 0.55
+    stability_coefficient: 0.35
+    age_coefficient: 0.012
+    log_residual_sd: 0.60
+    minimum: 500.0
+    maximum: 750000.0
+  existing_monthly_debt:
+    minimum_income_share: 0.02
+    maximum_income_share: 0.42
+    logit_intercept: -0.65
+    stability_coefficient: -0.35
+    creditworthiness_coefficient: -0.30
+    residual_sd: 0.60
+  property_value:
+    reference_median: 350000.0
+    income_elasticity: 0.75
+    stability_coefficient: 0.10
+    log_residual_sd: 0.22
+    minimum: 100000.0
+    maximum: 1500000.0
+  requested_ltv:
+    intercept: 0.82
+    asset_to_property_coefficient: -0.60
+    stability_coefficient: -0.03
+    creditworthiness_coefficient: -0.02
+    residual_sd: 0.06
+    minimum: 0.45
+    maximum: 0.95
+
+contract:
+  payment_rule_id: equal_payments_simple_interest_v1
+  periodic_interest_rate: 0.004
+  term_periods: 120
+  transaction_cost: 1500.0
+  description: stylized 120-period development contract, not literal mortgage amortization
+
+true_risk:
+  link: logistic
+  intercept: 5.45
+  predictors:
+    log_annual_income:
+      center: 90000.0
+      coefficient: 0.10
+    credit_score_50:
+      center: 700.0
+      scale: 50.0
+      coefficient: 0.45
+    employment_years_10:
+      center: 10.0
+      scale: 10.0
+      coefficient: 0.08
+    log_liquid_assets:
+      offset: 1000.0
+      center: 46000.0
+      coefficient: 0.15
+    first_period_dti_10pp:
+      center: 0.45
+      scale: 0.10
+      coefficient: -0.30
+    requested_ltv_10pp:
+      center: 0.80
+      scale: 0.10
+      coefficient: -0.20
+  linear_probability_sensitivity:
+    status: documented_not_default
+    formula: rho_true = alpha + beta_prime_X on a prevalidated admissible support
+    clipping_policy: reject calibration if widespread clipping would be required
+  calibration_targets:
+    mean_conditional_repayment_probability:
+      minimum: 0.990
+      maximum: 0.999
+    mean_full_repayment_probability:
+      minimum: 0.40
+      maximum: 0.90
+    realized_default_rate:
+      minimum: 0.10
+      maximum: 0.60
+    positive_expected_profit_share:
+      minimum: 0.10
+      maximum: 0.90
+
+traditional_lender:
+  policy_id: traditional_logit_v1
+  primary_model: unregularized_logistic_regression
+  applicant_weighted_sensitivity: true
+  linear_probability_sensitivity: true
+  calibration_bins: 10
+  selection_rule: no hyperparameter selection; fit on historical_train only
+
+cohorts:
+  shares:
+    historical_train: 0.60
+    historical_validation: 0.20
+    evaluation: 0.20
+
+randomness:
+  seed: 4994
+  stream_names:
+    - group
+    - demographics
+    - latent_factors
+    - financial_variables
+    - loan_requests
+    - cohorts
+    - repayment_outcomes
+
+artifacts:
+  development_rows: 10000
+  calibration_rows: 100000
+  data_directory: data/synthetic/economic_lending/v2_baseline
+  validation_report: results/metrics/economic_population_validation.json
+  group_diagnostics: results/tables/economic_population_group_diagnostics.csv
+  policy_assessments: data/synthetic/economic_lending/v2_baseline/policy_assessments.parquet
+  traditional_model: results/models/traditional_logit_v1.json
+  traditional_metrics: results/metrics/traditional_lender_risk_model.json

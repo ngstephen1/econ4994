@@ -52,6 +52,7 @@ results/figures/**
 !results/figures/.gitkeep
 results/tables/**
 !results/tables/.gitkeep
+results/models/*.joblib
 
 # Serialized model artifacts
 *.joblib

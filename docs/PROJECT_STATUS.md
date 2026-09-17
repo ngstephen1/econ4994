@@ -2,7 +2,7 @@
 
 ## Current phase
 
-Phase 7 — synthetic sensitivity and Monte Carlo experiments completed.
+Phase 13 — direct discrimination through distorted repayment beliefs completed.
 
 ## Completed
 
@@ -69,6 +69,79 @@ Phase 7 — synthetic sensitivity and Monte Carlo experiments completed.
   false positives, mechanism signatures, and result-derived thresholds completed.
 - Thirteen sensitivity figures, tidy result families, a paper-ready summary, and
   a read-only seventh dashboard page completed.
+- Version 1 approval-disparity benchmark preserved at Git tag
+  `v1-approval-benchmark`.
+- Version 2 economic lending package started separately under
+  `src/fair_lending/economic_lending/`.
+- Version 2 baseline schema, hidden conditional per-period repayment probability,
+  period survival, survival-weighted expected receipts, expected profit,
+  fixed-request allocation, and hand-checkable four-applicant fixture implemented.
+- Version 2 repayment and cash-flow accounting reconciled: `rho_true` now means
+  the probability of making the next payment conditional on no previous default,
+  with default absorbing and full repayment probability equal to `rho_true ** T`.
+- Version 2 applicant population and hidden true repayment DGP calibrated on a
+  deterministic 100,000-row diagnostic sample, then persisted as a 10,000-row
+  development dataset with train, validation, and evaluation cohorts.
+- Absorbing realized repayment histories, cohort-safe outputs, named random
+  streams, population/risk/economic validation, and group-invariance audits
+  implemented.
+- Traditional lender at-risk payment histories implemented without post-default
+  rows or applicant-level cohort leakage.
+- Unregularized logistic risk estimation fitted on `historical_train`, with
+  held-out validation/evaluation metrics, hidden-truth recovery, oracle
+  comparison, group audit, and perceived-profit diagnostics completed.
+- Applicant-weighted logit and linear-probability sensitivities documented;
+  the primary model remains the probability-valid unweighted logit.
+- Truth-free evaluation `policy_assessments.parquet` and transparent
+  coefficient-only model metadata generated for `traditional_logit_v1`.
+- A single histogram-gradient-boosting repayment-risk model was fit to the same
+  six substantive observables and at-risk payment target as the frozen
+  traditional lender.
+- Eight predeclared HistGB settings were compared using historical-validation
+  log loss only; evaluation data remained outside model selection.
+- Traditional, flexible-model, and true-risk-oracle probability recovery,
+  realized-label performance, calibration, group audits, and expected-profit
+  diagnostics were completed.
+- The traditional logit outperformed HistGB under the correctly specified
+  additive-logistic baseline, as anticipated by the research design.
+- Truth-free `policy_assessments.parquet` now contains separate
+  `traditional_logit_v1` and `ml_histgb_v1` evaluation rows.
+- A separate `nonlinear_v1` true-risk world was frozen without changing the
+  additive baseline, applicant population, contracts, information set, or group
+  neutrality.
+- The nonlinear intercept was calibrated on 100,000 applicants to the baseline
+  mean full-repayment probability before models were evaluated.
+- Matched common-uniform repayment histories, re-estimated traditional logit,
+  validation-selected HistGB, probability recovery, economic diagnostics, and
+  cross-world tables were completed.
+- HistGB was closer for 61.1% of nonlinear-world applicants and reduced profit
+  MAE by 9.6%, but had worse aggregate risk MAE/RMSE, profit RMSE, and wrong-sign
+  rate; the sensitivity therefore produced a mixed result rather than a general
+  ML advantage.
+- True-risk oracle, frozen traditional, and frozen HistGB assessments were
+  allocated across the same 2,000 evaluation requests using exact SciPy/HiGHS
+  binary MILP under common 100%, 40%, and 20% budgets.
+- All 18 primary portfolios solved with reported zero optimality gap; the 40%
+  and 20% constraints bound for every policy, while the 100% regime left funds
+  unused rather than funding nonpositive perceived-profit requests.
+- True expected portfolio value, economic regret, realized-profit illustration,
+  allocation overlap, disagreement consequences, tail losses, and neutral group
+  audits were completed across both risk worlds.
+- ML achieved lower regret than traditional only in the nonlinear 20% regime;
+  prediction improvements did not translate uniformly into allocation gains.
+- A separate direct-belief-distortion family now applies predeclared Group B
+  repayment-log-odds shifts of 0, 0.05, 0.10, and 0.20 after frozen traditional,
+  HistGB, or evaluator true-risk probabilities are formed.
+- True risk, applicant characteristics, contracts, repayment outcomes, base
+  predictions, and Prompt 14 budgets remain unchanged across treatments.
+- Twenty-four matched probability policies and 72 exact portfolios were
+  evaluated with difference-in-gap, group-level spillover, displaced/replacement
+  borrower, overlap, true-profit, and incremental-regret diagnostics.
+- The true-risk mechanism reference produced nonnegative economic cost in all
+  treatments; fitted-model interactions occasionally offset ordinary estimation
+  error at mild strengths, without making the discriminatory treatment benign.
+- Structural tests confirm that group does not enter baseline applicant
+  characteristics, repayment truth, profit, or allocation.
 
 ## Resolved calibration finding
 
@@ -108,7 +181,12 @@ thresholds, signatures, numerical policy, and limits are documented in
 
 ## Next
 
-- Consolidate the synthetic findings into capstone-ready narrative and tables.
+- Design any upstream/systemic mechanism as a separate experiment rather than
+  combining it with the completed direct-belief treatment.
+- Introduce direct or systemic discrimination mechanisms only as explicitly
+  configured Version 2 experiments.
+- Consolidate the Version 1 synthetic findings into capstone-ready narrative
+  and tables.
 - Preserve the distinction between label prediction, true-probability recovery,
   disparity reproduction, and normative fairness.
 - Continue deferring HMDA work until the planned synthetic workflow is complete.

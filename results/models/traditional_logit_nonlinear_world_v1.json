@@ -1,0 +1,28 @@
+{
+  "baseline_config_fingerprint": "68869774a4c19e6b81fbd660c71e387b75d0d9a504d3aba9ac905c2a00ad55f2",
+  "code_revision": {
+    "commit": "d044c65ff824b0ada42c25e96d86536715ee9931",
+    "dirty_worktree": true
+  },
+  "coefficients": {
+    "credit_score_50": 0.4740834494240002,
+    "employment_years_10": 0.0723660832809215,
+    "first_period_dti_10pp": -1.1004988898433667,
+    "intercept": 6.62307799688772,
+    "log_annual_income": -0.0003429228326979606,
+    "log_liquid_assets": 0.3467130220582061,
+    "requested_ltv_10pp": -0.13838820799113197
+  },
+  "features": [
+    "log_annual_income",
+    "credit_score_50",
+    "employment_years_10",
+    "log_liquid_assets",
+    "first_period_dti_10pp",
+    "requested_ltv_10pp"
+  ],
+  "model_family": "logistic_regression",
+  "nonlinear_config_fingerprint": "a7262c73762dc755f5c13d1aeb57a3d3b9589447285921c562769544d4a9449c",
+  "policy_id": "traditional_logit_nonlinear_world_v1",
+  "risk_world": "nonlinear_v1"
+}

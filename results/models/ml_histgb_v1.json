@@ -1,0 +1,37 @@
+{
+  "baseline_config_fingerprint": "68869774a4c19e6b81fbd660c71e387b75d0d9a504d3aba9ac905c2a00ad55f2",
+  "code_revision": {
+    "commit": "d044c65ff824b0ada42c25e96d86536715ee9931",
+    "dirty_worktree": true
+  },
+  "evaluation_cohort_excluded_from_selection": true,
+  "features": [
+    "annual_income",
+    "credit_score",
+    "employment_years",
+    "liquid_assets",
+    "first_period_dti",
+    "requested_ltv"
+  ],
+  "fixed_parameters": {
+    "early_stopping": false,
+    "l2_regularization": 1.0,
+    "loss": "log_loss",
+    "min_samples_leaf": 50
+  },
+  "ml_config_fingerprint": "15cc59e42ff718a248df21399b5a27e4b0cc2952da55de81245473c720a00a8b",
+  "model_family": "HistGradientBoostingClassifier",
+  "policy_id": "ml_histgb_v1",
+  "random_state": 4994,
+  "schema_version": "v2-economic-lending-0.3",
+  "selected_parameters": {
+    "learning_rate": 0.03,
+    "max_iter": 100,
+    "max_leaf_nodes": 15
+  },
+  "selection_metric": "validation_log_loss",
+  "training_cohort": "historical_train",
+  "training_payment_rows": 524756,
+  "validation_cohort": "historical_validation",
+  "validation_payment_rows": 170690
+}
