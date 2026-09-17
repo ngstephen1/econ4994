@@ -1,0 +1,37 @@
+version: v2-systemic-opportunity-mc-0.1
+experiment_id: systemic_opportunity_mc_v1
+scientific_status: repeated-seed uncertainty analysis of the frozen Prompt 16 design
+systemic_mechanism_id: systemic_opportunity_v1
+systemic_config_fingerprint: 59cf4f50249620c678e77ba8da55c1cc6ac9b8cad8950554bc6bb578558df64b
+
+design:
+  master_seed: 499417
+  pilot_replications: 5
+  target_successful_replications: 50
+  n_applicants: 10000
+  systemic_strengths: [0.00, 0.10, 0.20, 0.40]
+  risk_worlds: [additive_logistic_baseline, nonlinear_v1]
+  policies: [true_risk_reference, traditional, ml]
+  budget_fractions:
+    nonbinding_100pct: 1.00
+    moderate_40pct: 0.40
+    tight_20pct: 0.20
+
+failure_policy:
+  maximum_failure_fraction: 0.05
+  successful_status: success
+  retry_non_success_on_resume: true
+
+storage:
+  replication_directory: results/metrics/systemic_mc_recovery_runs
+  manifest: results/metrics/v2_systemic_mc_recovery_manifest.json
+  metrics: results/metrics/v2_systemic_mc_recovery.json
+  save_raw_replications: false
+
+outputs:
+  runs: results/tables/v2_systemic_mc_recovery_runs.csv
+  summary: results/tables/v2_systemic_mc_recovery_summary.csv
+  switchers: results/tables/v2_systemic_mc_recovery_switchers.csv
+  model_performance: results/tables/v2_systemic_mc_recovery_model_performance.csv
+  controlled_audit: results/tables/v2_systemic_mc_recovery_controlled_audit.csv
+  monotonicity: results/tables/v2_systemic_mc_recovery_monotonicity.csv

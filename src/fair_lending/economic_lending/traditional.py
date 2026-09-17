@@ -91,6 +91,8 @@ def _fit_model(
             family=sm.families.Binomial(),
             freq_weights=weights,
         ).fit(maxiter=100, disp=0)
+        if not fitted.converged:
+            raise RuntimeError("traditional logistic risk model did not converge")
     elif family == "linear_probability_model":
         fitted = sm.WLS(
             target,
@@ -100,6 +102,8 @@ def _fit_model(
     else:
         raise ValueError(f"unsupported family: {family}")
     coefficients = {name: float(value) for name, value in fitted.params.items()}
+    if not all(np.isfinite(value) for value in coefficients.values()):
+        raise RuntimeError("traditional risk model returned nonfinite coefficients")
     return FittedTraditionalModel(
         model_family=family,
         coefficients=coefficients,
