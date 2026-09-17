@@ -1,0 +1,24 @@
+{
+  "baseline_config_fingerprint": "68869774a4c19e6b81fbd660c71e387b75d0d9a504d3aba9ac905c2a00ad55f2",
+  "code_revision": {
+    "commit": "d044c65ff824b0ada42c25e96d86536715ee9931",
+    "dirty_worktree": true
+  },
+  "evaluation_excluded_from_selection": true,
+  "features": [
+    "annual_income",
+    "credit_score",
+    "employment_years",
+    "liquid_assets",
+    "first_period_dti",
+    "requested_ltv"
+  ],
+  "nonlinear_config_fingerprint": "a7262c73762dc755f5c13d1aeb57a3d3b9589447285921c562769544d4a9449c",
+  "policy_id": "ml_histgb_nonlinear_world_v1",
+  "risk_world": "nonlinear_v1",
+  "selected_parameters": {
+    "learning_rate": 0.03,
+    "max_iter": 200,
+    "max_leaf_nodes": 15
+  }
+}

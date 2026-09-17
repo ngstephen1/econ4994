@@ -1,0 +1,40 @@
+version: v2-nonlinear-risk-0.1
+risk_world: nonlinear_v1
+baseline_world: additive_logistic_baseline
+baseline_config_fingerprint: 68869774a4c19e6b81fbd660c71e387b75d0d9a504d3aba9ac905c2a00ad55f2
+scientific_status: researcher-designed functional-form misspecification sensitivity
+
+calibration:
+  rows: 100000
+  seed: 4994
+  target_mean_full_repayment_probability: 0.535548
+  solved_intercept: 5.960906435206298
+  tolerance: 1.0e-10
+
+nonlinear_terms:
+  high_dti_convex_penalty:
+    threshold_scaled_dti: 0.0
+    coefficient: -0.18
+    formula: coefficient * max(first_period_dti_10pp - threshold, 0)^2
+  weak_credit_high_ltv_interaction:
+    coefficient: -0.22
+    formula: coefficient * max(-credit_score_50, 0) * max(requested_ltv_10pp, 0)
+  bounded_asset_buffer:
+    coefficient: 0.18
+    formula: coefficient * tanh(log_liquid_assets)
+
+repayment_pairing:
+  method: common_uniform_matrix
+  seed: 1304994
+  description: identical applicant-period uniforms applied separately to additive and nonlinear rho
+
+policies:
+  traditional: traditional_logit_nonlinear_world_v1
+  ml: ml_histgb_nonlinear_world_v1
+
+artifacts:
+  data_directory: data/synthetic/economic_lending/v2_nonlinear
+  metrics: results/metrics/v2_nonlinear_risk_benchmark.json
+  traditional_model: results/models/traditional_logit_nonlinear_world_v1.json
+  ml_model: results/models/ml_histgb_nonlinear_world_v1.joblib
+  ml_metadata: results/models/ml_histgb_nonlinear_world_v1.json

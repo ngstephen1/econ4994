@@ -1,0 +1,33 @@
+version: v2-ml-repayment-benchmark-0.1
+policy_id: ml_histgb_v1
+model_family: HistGradientBoostingClassifier
+random_state: 4994
+features:
+  - annual_income
+  - credit_score
+  - employment_years
+  - liquid_assets
+  - first_period_dti
+  - requested_ltv
+fixed_parameters:
+  loss: log_loss
+  min_samples_leaf: 50
+  l2_regularization: 1.0
+  early_stopping: false
+grid:
+  learning_rate: [0.03, 0.05]
+  max_iter: [100, 200]
+  max_leaf_nodes: [15, 31]
+selection:
+  primary_metric: validation_log_loss
+  tie_breakers:
+    - validation_brier_score
+    - validation_roc_auc_descending
+permutation_importance:
+  enabled: true
+  n_repeats: 3
+  scoring: neg_log_loss
+artifacts:
+  model_joblib: results/models/ml_histgb_v1.joblib
+  model_metadata: results/models/ml_histgb_v1.json
+  metrics: results/metrics/v2_ml_repayment_benchmark.json
