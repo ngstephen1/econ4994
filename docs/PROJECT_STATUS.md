@@ -2,7 +2,29 @@
 
 ## Current phase
 
-Phase 14 — systemic discrimination through an upstream opportunity process completed.
+Phase 14 — deterministic systemic-opportunity experiment completed.
+Prompt 17B — corrected five-replication checkpoint completed; full study not complete.
+
+The legacy Monte Carlo directory contains 19 success records and one solver
+failure (replication 13), representing 1,368 saved portfolios. These records
+lack dirty-source fingerprints and are provisional. The interrupted retry was
+stopped during recovery. The target remains 50 successful replications; 20 is
+an interim checkpoint, not completion. No broader batch is authorized during
+recovery. Replication 13 has now completed separately under the corrected
+implementation: 72 feasible portfolios in 404.2 seconds, with provenance and
+integrity checks passed. Summary-only resumption launched zero new runs.
+The Prompt 17B focused suite passed 54 tests. The full suite passed 284 tests
+with 32 existing deprecation warnings.
+There are now five corrected validated replications, not 20 or 50.
+See [the recovery audit](systemic_monte_carlo_recovery.md).
+
+Prompt 17B added corrected replications 0, 1, 2, and 3 without selecting on
+legacy outcomes. Together with replication 13, all five corrected records share
+the same scientific, source-content, dependency, solver-setting, and schema
+fingerprints. All 360 required portfolios were optimal within numerical
+roundoff, with no time limits, failed portfolios, or budget violations. The
+checkpoint is classified `A. READY_FOR_FULL_50`, but the remaining 45 runs were
+not launched. Legacy records remain provisional and excluded from aggregation.
 
 ## Completed
 

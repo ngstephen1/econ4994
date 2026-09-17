@@ -15,6 +15,7 @@ dist/
 .ruff_cache/
 .coverage
 htmlcov/
+tmp/
 
 # Jupyter
 .ipynb_checkpoints/
@@ -53,6 +54,7 @@ results/figures/**
 results/tables/**
 !results/tables/.gitkeep
 results/models/*.joblib
+results/recovery/**
 
 # Serialized model artifacts
 *.joblib

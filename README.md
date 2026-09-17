@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://www.python.org/downloads/"><img alt="Python 3.11+" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
   <a href="docs/PROJECT_STATUS.md"><img alt="Phase: Version 2 systemic opportunity" src="https://img.shields.io/badge/phase-v2_systemic_opportunity-159A9C?style=flat-square"></a>
-  <a href="tests"><img alt="Tests: 230 passing" src="https://img.shields.io/badge/tests-230_passing-2E7D32?style=flat-square"></a>
+  <a href="tests"><img alt="Tests: 284 passing" src="https://img.shields.io/badge/tests-284_passing-2E7D32?style=flat-square"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-E87722?style=flat-square"></a>
 </p>
 
@@ -37,6 +37,15 @@
 | See what is finished and what comes next | Open [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) and the [roadmap](#roadmap). |
 
 ## Version Guide
+
+**Prompt 17B status: five-run recovery checkpoint validated; full study incomplete.** The repeated-seed
+systemic experiment has 19 legacy records marked successful and one failed
+record; those outputs are provisional, not a completed 50-replication study.
+Corrected replications 0, 1, 2, 3, and 13 provide 360 validated portfolios.
+The checkpoint is ready for a separately authorized full run; the remaining 45
+replications have not been launched.
+New recovery artifacts are kept separate. See the
+[recovery audit](docs/systemic_monte_carlo_recovery.md) before using these results.
 
 | Version | Status | Main question | Entry point |
 |---|---|---|---|
