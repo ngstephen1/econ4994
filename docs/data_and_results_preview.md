@@ -1,5 +1,10 @@
 # Synthetic Data and Results Preview
 
+**Version 1 approval-framework snapshot.** This document does not inventory
+the later V2 or professor-model datasets. For the current professor data,
+see the [data guide](professor_model_data_guide.md); for all research families,
+see the [documentation index](README.md). Historical tables are retained.
+
 This page provides small, human-readable excerpts from the generated Parquet
 datasets and CSV result tables. The full generated artifacts are intentionally
 excluded from Git because they can be reproduced from the committed code,

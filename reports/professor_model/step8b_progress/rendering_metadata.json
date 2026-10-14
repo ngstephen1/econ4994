@@ -1,0 +1,21 @@
+{
+  "font": "Helvetica Neue",
+  "slideCount": 8,
+  "pdfRenderer": "verified_final_PPTX_slide_renders_144dpi",
+  "nativeTablesOnSlides": [
+    3,
+    5
+  ],
+  "nativeChartsOnSlides": [
+    4
+  ],
+  "editableDiagramSlides": [
+    2,
+    5,
+    7
+  ],
+  "PDF_note": "Image-backed read-only PDF, 144 dpi. Native editable objects remain in the PPTX. All signs and layouts match the final deck renders.",
+  "chartRounding": {
+    "slide4NativeValues": "4 decimals in percentage points; labels 2 decimals; unrounded originals retained in evidence JSON"
+  }
+}

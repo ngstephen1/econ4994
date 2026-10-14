@@ -1,0 +1,29 @@
+# Step 5 only. The split is a researcher-chosen evaluation design.
+schema_version: professor-bank-regression-v1
+model_id: professor_bank_ols_v1
+input_directory: data/synthetic/professor_model/baseline
+expected_input_rows: 100000
+split:
+  train_rows: 80000
+  evaluation_rows: 20000
+  master_seed: 4994
+  spawn_key: [6]
+  bit_generator: PCG64
+  applicant_order: ascending_lexicographic_applicant_id
+model:
+  family: statsmodels_OLS
+  solver: pinv
+  intercept: true
+  predictors: [Y, D, C, B]
+  target: PN
+  regularization: null
+  target_transform: none
+  prediction_rescaling: none
+  bounding: clip_0_1_separate_column
+evaluation:
+  scaled_true_risk_reference: 0.8
+  preview_rows: 150
+outputs:
+  tables_directory: results/tables/professor_model
+  metrics_directory: results/metrics/professor_model
+  figures_directory: results/figures/professor_model

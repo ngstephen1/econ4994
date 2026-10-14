@@ -1,0 +1,1234 @@
+{
+  "scope": "Existing professor-model CSV datasets and results through Step 8B",
+  "csv_files": 57,
+  "metadata_json_files": 11,
+  "uncompressed_source_bytes": 72867403,
+  "no_data_regeneration_or_model_fitting": true,
+  "files": [
+    {
+      "path": "data/processed/professor_model/bank_expected_profit.csv",
+      "bytes": 1834110,
+      "sha256": "e9869ed31acdbe671fccaa22217eb9a1e45a5251f7510d7918fc6db2dce8a6fc",
+      "columns": [
+        "applicant_id",
+        "model_id",
+        "bank_PD_bounded",
+        "expected_receipts_bank",
+        "expected_profit_bank"
+      ],
+      "rows": 20000
+    },
+    {
+      "path": "data/processed/professor_model/bank_expected_profit_group_blind.csv",
+      "bytes": 2074710,
+      "sha256": "02166288e5e76e09ae3271bfcde5242ce7ef5ee3ebf81d32528b9699a9f6278a",
+      "columns": [
+        "applicant_id",
+        "model_id",
+        "bank_PD_group_blind_bounded",
+        "expected_receipts_bank",
+        "expected_profit_bank"
+      ],
+      "rows": 20000
+    },
+    {
+      "path": "data/processed/professor_model/lending_decisions.csv",
+      "bytes": 2599279,
+      "sha256": "fab742c702e65f5bf195013b4df202a7fee9cec5c81f8302fa3605760e66e43e",
+      "columns": [
+        "applicant_id",
+        "model_id",
+        "bank_PD_bounded",
+        "optimal_tau",
+        "approved",
+        "requested_principal",
+        "funded_principal",
+        "decision_status"
+      ],
+      "rows": 20000
+    },
+    {
+      "path": "data/processed/professor_model/lending_decisions_group_blind.csv",
+      "bytes": 2838382,
+      "sha256": "0d315f1e6c4ccd066e1d9e89de620f3463cd6895b4446f5d45a30a27654e075f",
+      "columns": [
+        "applicant_id",
+        "model_id",
+        "bank_PD_group_blind_bounded",
+        "optimal_tau",
+        "approved",
+        "requested_principal",
+        "funded_principal",
+        "decision_status"
+      ],
+      "rows": 20000
+    },
+    {
+      "path": "data/processed/professor_model/loan_contracts.csv",
+      "bytes": 2341134,
+      "sha256": "8879dcc9a7b0240bc71521a60ddd293441f347db27217acc603575e346bac18b",
+      "columns": [
+        "applicant_id",
+        "Y",
+        "ell_i",
+        "L_i",
+        "T",
+        "theta",
+        "r",
+        "payment_rule_id"
+      ],
+      "rows": 20000
+    },
+    {
+      "path": "data/processed/professor_model/loan_economics_preview_EVALUATOR_ONLY.csv",
+      "bytes": 43278,
+      "sha256": "b754af0c4ac5691f8de0a7b552d1fea658ea04a2a046001a212b9428ba2718b0",
+      "columns": [
+        "information_scope",
+        "applicant_id",
+        "B",
+        "Y",
+        "ell_i",
+        "L_i",
+        "model_id",
+        "bank_PD_raw",
+        "bank_PD_bounded",
+        "true_PD",
+        "expected_receipts_bank",
+        "expected_receipts_true",
+        "expected_profit_bank",
+        "expected_profit_true",
+        "profit_estimation_error"
+      ],
+      "rows": 150
+    },
+    {
+      "path": "data/processed/professor_model/oracle_lending_decisions.csv",
+      "bytes": 3068967,
+      "sha256": "f5d0cf481a99ddf9d743c99fb92e56395065600292af8196d8ff3c21d3914d82",
+      "columns": [
+        "information_scope",
+        "applicant_id",
+        "policy_id",
+        "true_PD",
+        "optimal_tau",
+        "approved",
+        "requested_principal",
+        "funded_principal",
+        "decision_status"
+      ],
+      "rows": 20000
+    },
+    {
+      "path": "data/processed/professor_model/true_expected_profit.csv",
+      "bytes": 1410425,
+      "sha256": "bdfd68b416d38b141f7fb09a9c98a355631e7cf4da5d1625c8eb4a21689327b5",
+      "columns": [
+        "applicant_id",
+        "true_PD",
+        "expected_receipts_true",
+        "expected_profit_true"
+      ],
+      "rows": 20000
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/applicant_splits.csv",
+      "bytes": 1900019,
+      "sha256": "27b0d6c43e14f504f3abb347fe1de6f81ae36526e5035466913d0a4c7f93c23a",
+      "columns": [
+        "applicant_id",
+        "split"
+      ],
+      "rows": 100000
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/applicants_audit_preview.csv",
+      "bytes": 25510,
+      "sha256": "03139569f06e80ab7dd12f7f6df981b4ba04044084298e21228c24594103f628",
+      "columns": [
+        "information_scope",
+        "applicant_id",
+        "Y",
+        "log_Y",
+        "D",
+        "B",
+        "epsilon",
+        "omega",
+        "C"
+      ],
+      "rows": 150
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/applicants_bank_view.csv",
+      "bytes": 7172586,
+      "sha256": "c3ee8669af9cf6232c7e1db92d9a72009406ccada008c5f93fff8c7359da8c3f",
+      "columns": [
+        "applicant_id",
+        "Y",
+        "D",
+        "B",
+        "C"
+      ],
+      "rows": 100000
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/applicants_simulator_private.csv",
+      "bytes": 7072031,
+      "sha256": "c96b84dbfef4ff9d61307a9c940cfc214d289669805d0d64eada399b93ab5a25",
+      "columns": [
+        "applicant_id",
+        "log_Y",
+        "epsilon",
+        "omega"
+      ],
+      "rows": 100000
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/bank_regression_audit_preview_EVALUATOR_ONLY.csv",
+      "bytes": 29343,
+      "sha256": "2d520efd91097685884c2674b712e5f3c7a58aca736054c18606ddb95230ec4f",
+      "columns": [
+        "information_scope",
+        "applicant_id",
+        "Y",
+        "D",
+        "C",
+        "B",
+        "PN",
+        "true_PD",
+        "bank_PD_raw",
+        "bank_PD_bounded"
+      ],
+      "rows": 150
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/bank_risk_estimates.csv",
+      "bytes": 8969009,
+      "sha256": "64afbf6af6d22cee66431ae72ef1d0bac9b05e3cec45003a7a7effd7ece3a7c9",
+      "columns": [
+        "applicant_id",
+        "split",
+        "model_id",
+        "bank_PD_raw",
+        "bank_PD_bounded",
+        "prediction_out_of_bounds"
+      ],
+      "rows": 100000
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/bank_risk_estimates_group_blind.csv",
+      "bytes": 10172718,
+      "sha256": "d60270d7a574f0f700b028c173a0dba0d3d0b3b94ed357138aaf4400769813cd",
+      "columns": [
+        "applicant_id",
+        "split",
+        "model_id",
+        "bank_PD_group_blind_raw",
+        "bank_PD_group_blind_bounded",
+        "prediction_out_of_bounds"
+      ],
+      "rows": 100000
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/noisy_signal_audit_preview_EVALUATOR_ONLY.csv",
+      "bytes": 26143,
+      "sha256": "d64a913bdf5739e26a283ba298ee929d879820a1144a078ae9ce780670fb59d5",
+      "columns": [
+        "information_scope",
+        "applicant_id",
+        "Y",
+        "D",
+        "B",
+        "C",
+        "true_PD",
+        "eta",
+        "PN"
+      ],
+      "rows": 150
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/risk_measurement_noise_private.csv",
+      "bytes": 3264077,
+      "sha256": "14f2631d4bd109377cb7a64fbbc7a077763f73752174a9f54335aa9abecb422b",
+      "columns": [
+        "applicant_id",
+        "eta"
+      ],
+      "rows": 100000
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/simulation_truth.csv",
+      "bytes": 7437610,
+      "sha256": "a3924b7badc4417a02ef0ad022108c79e24f29e5e33f03ed948bee8cffeb778c",
+      "columns": [
+        "applicant_id",
+        "P_income",
+        "P_other",
+        "true_PD"
+      ],
+      "rows": 100000
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/simulation_truth_audit_preview_EVALUATOR_ONLY.csv",
+      "bytes": 25936,
+      "sha256": "c1e8cae71bfd610290c49cefee245edba7bb70d129fff39dade9c9f8bae3b487",
+      "columns": [
+        "applicant_id",
+        "Y",
+        "log_Y",
+        "D",
+        "B",
+        "epsilon",
+        "C",
+        "P_income",
+        "P_other",
+        "true_PD"
+      ],
+      "rows": 150
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/training_signals.csv",
+      "bytes": 3264203,
+      "sha256": "88270c0f1e0f393909a83a5d6244b1f6c66f761899ae97f0fd619e0317709678",
+      "columns": [
+        "applicant_id",
+        "PN"
+      ],
+      "rows": 100000
+    },
+    {
+      "path": "results/tables/professor_model/bank_regression_coefficients.csv",
+      "bytes": 253,
+      "sha256": "83ead09da990d928a68946c70869ddd7e05847029c76f9427c3cd8b0adba06e6",
+      "columns": [
+        "term",
+        "coefficient",
+        "predictor_units"
+      ],
+      "rows": 5
+    },
+    {
+      "path": "results/tables/professor_model/bank_regression_evaluation_groups.csv",
+      "bytes": 327,
+      "sha256": "a6b8f32e2f457ed2c4922a4b25f111a6346074a0ecf6232646820bd75f8bb0dc",
+      "columns": [
+        "B",
+        "n_applicants",
+        "mean_true_PD",
+        "mean_bank_PD_raw",
+        "mean_bank_PD_bounded",
+        "raw_MAE",
+        "raw_mean_signed_error"
+      ],
+      "rows": 2
+    },
+    {
+      "path": "results/tables/professor_model/bank_regression_evaluation_metrics.csv",
+      "bytes": 898,
+      "sha256": "98e20d4ad075baaca57c710bc17911064165b9b3aaffafa6ff472b97b42094b8",
+      "columns": [
+        "reference",
+        "estimate",
+        "split",
+        "n",
+        "MAE",
+        "RMSE",
+        "mean_signed_error",
+        "R_squared",
+        "Pearson_correlation",
+        "correlation_status"
+      ],
+      "rows": 5
+    },
+    {
+      "path": "results/tables/professor_model/bank_regression_prediction_summary.csv",
+      "bytes": 431,
+      "sha256": "8d42430095d966dad3fd9e8aa652492ec5e3b3b2374f9d9140270f0712dc465f",
+      "columns": [
+        "split",
+        "n",
+        "mean",
+        "median",
+        "sample_SD",
+        "minimum",
+        "maximum",
+        "p01",
+        "p05",
+        "p50",
+        "p95",
+        "p99",
+        "below_zero_count",
+        "below_zero_share",
+        "above_one_count",
+        "above_one_share",
+        "bounded_zero_count",
+        "bounded_one_count"
+      ],
+      "rows": 1
+    },
+    {
+      "path": "results/tables/professor_model/bank_vs_oracle_disagreements.csv",
+      "bytes": 531,
+      "sha256": "8429a49bdad39e01b062f80739d4259890e65abdcb545b697dac6c60e4b6477c",
+      "columns": [
+        "information_scope",
+        "allocation_group",
+        "n_applicants",
+        "share_of_evaluation",
+        "total_requested_principal",
+        "total_true_expected_profit",
+        "mean_true_PD"
+      ],
+      "rows": 4
+    },
+    {
+      "path": "results/tables/professor_model/bank_vs_oracle_group_audit.csv",
+      "bytes": 593,
+      "sha256": "2b72f0b3bd0b38c8fb0ca075aeb8448269dfe24b9174493563621aba024c278a",
+      "columns": [
+        "information_scope",
+        "policy",
+        "B",
+        "n_applicants",
+        "number_approved",
+        "approval_rate",
+        "total_funded_principal",
+        "funded_principal_per_applicant",
+        "mean_true_PD_approved"
+      ],
+      "rows": 4
+    },
+    {
+      "path": "results/tables/professor_model/bank_vs_oracle_summary.csv",
+      "bytes": 912,
+      "sha256": "98260cced8234d38d73e5f854dab2f533e1a3d7c87b7adbb92b3b69de88723e7",
+      "columns": [
+        "information_scope",
+        "policy",
+        "cutoff_score",
+        "optimal_cutoff",
+        "n_applicants",
+        "number_approved",
+        "approval_rate",
+        "funded_principal",
+        "available_bank_capital",
+        "capital_utilization",
+        "unused_capital",
+        "true_expected_portfolio_profit",
+        "mean_true_PD_approved",
+        "average_true_profit_per_approved",
+        "economic_regret",
+        "economic_regret_pct_of_oracle",
+        "jaccard_overlap",
+        "bank_minus_oracle_group_gap_pp"
+      ],
+      "rows": 2
+    },
+    {
+      "path": "results/tables/professor_model/group_aware_vs_blind_allocation_overlap.csv",
+      "bytes": 1223,
+      "sha256": "6c8a803f1f3a0dcac2db631a3b96a25693a87ec5ebda44d2d4aba5a32bfaf210",
+      "columns": [
+        "information_scope",
+        "scope",
+        "allocation_group",
+        "n_applicants",
+        "mean_true_PD",
+        "mean_true_expected_profit",
+        "total_true_expected_profit"
+      ],
+      "rows": 12
+    },
+    {
+      "path": "results/tables/professor_model/group_aware_vs_blind_group_audit.csv",
+      "bytes": 681,
+      "sha256": "28feafc3ebae95e2d0c60068052c3e572ccd0903ddf20f1499c7a9333f5a575b",
+      "columns": [
+        "information_scope",
+        "policy",
+        "B",
+        "n_applicants",
+        "number_approved",
+        "approval_rate",
+        "funded_principal",
+        "funded_principal_per_applicant"
+      ],
+      "rows": 6
+    },
+    {
+      "path": "results/tables/professor_model/group_aware_vs_blind_portfolio.csv",
+      "bytes": 1133,
+      "sha256": "51eab31681f9a4ba309bfc4129a0184de0af941261674802db3c2860970b1269",
+      "columns": [
+        "information_scope",
+        "policy",
+        "cutoff_score",
+        "optimal_cutoff",
+        "n_applicants",
+        "number_approved",
+        "approval_rate",
+        "funded_principal",
+        "available_bank_capital",
+        "capital_utilization",
+        "perceived_portfolio_profit",
+        "true_expected_portfolio_profit",
+        "mean_true_PD_approved",
+        "signed_oracle_minus_policy_true_profit",
+        "signed_difference_pct_of_oracle",
+        "approval_gap_pp",
+        "funded_principal_gap_per_applicant_USD"
+      ],
+      "rows": 3
+    },
+    {
+      "path": "results/tables/professor_model/group_aware_vs_blind_prediction_changes.csv",
+      "bytes": 853,
+      "sha256": "aba4af18dcdb2ef246b0b0a44ec587d2870060db6a283beab9e8ebb621abc77f",
+      "columns": [
+        "scope",
+        "prediction",
+        "n",
+        "mean_blind_minus_aware",
+        "mean_absolute_change",
+        "RMSE_change",
+        "minimum_change",
+        "maximum_change"
+      ],
+      "rows": 6
+    },
+    {
+      "path": "results/tables/professor_model/group_aware_vs_blind_risk.csv",
+      "bytes": 1442,
+      "sha256": "2e22dc0c3d317a40565c98c7f37b5850e97a17a5286d3143583d7dfbe8497882",
+      "columns": [
+        "information_scope",
+        "policy",
+        "prediction",
+        "reference",
+        "n",
+        "MAE",
+        "RMSE",
+        "mean_signed_error",
+        "R_squared",
+        "Pearson_correlation",
+        "correlation_status"
+      ],
+      "rows": 8
+    },
+    {
+      "path": "results/tables/professor_model/group_aware_vs_blind_risk_group_audit.csv",
+      "bytes": 1585,
+      "sha256": "3f45fd0c5758952af85a235e82b29744dabbca788572fb820c30038e3445ad76",
+      "columns": [
+        "policy",
+        "prediction",
+        "B",
+        "n",
+        "mean_true_PD",
+        "mean_predicted_PD",
+        "MAE",
+        "RMSE",
+        "mean_signed_error",
+        "R_squared",
+        "Pearson_correlation",
+        "correlation_status"
+      ],
+      "rows": 8
+    },
+    {
+      "path": "results/tables/professor_model/group_blind_regression_coefficients.csv",
+      "bytes": 217,
+      "sha256": "bce1df0372db8579652202a39e418737f97db135ebdd87692904cd8aa88667a9",
+      "columns": [
+        "term",
+        "coefficient",
+        "predictor_units"
+      ],
+      "rows": 4
+    },
+    {
+      "path": "results/tables/professor_model/group_blind_threshold_candidates.csv",
+      "bytes": 1724210,
+      "sha256": "6679996fbf4d3437fb483f113e0430b2231831b94cb01b6fe15ae1b8fbc2d09a",
+      "columns": [
+        "candidate_id",
+        "candidate_type",
+        "tau",
+        "number_approved",
+        "funded_principal",
+        "budget_feasible",
+        "bank_expected_portfolio_profit",
+        "risk_group_size",
+        "selected"
+      ],
+      "rows": 19119
+    },
+    {
+      "path": "results/tables/professor_model/lending_evaluator_summary.csv",
+      "bytes": 469,
+      "sha256": "88bd71492cf64e8e0e59f73c1913a4c36e3c343067e60268835baa63658d6a78",
+      "columns": [
+        "information_scope",
+        "bank_expected_portfolio_profit",
+        "true_expected_portfolio_profit",
+        "profit_estimation_error",
+        "B1_minus_B0_approval_gap",
+        "B1_minus_B0_approval_gap_pp",
+        "B1_minus_B0_funded_principal_per_applicant_gap_USD",
+        "B1_minus_B0_total_funded_principal_gap_USD",
+        "raw_negative_predictions",
+        "raw_negative_predictions_approved"
+      ],
+      "rows": 1
+    },
+    {
+      "path": "results/tables/professor_model/lending_group_audit.csv",
+      "bytes": 440,
+      "sha256": "5a51820952e83833da47c1a95102277a03809c63aa97dd6844dc2e2f2816d743",
+      "columns": [
+        "B",
+        "n_applicants",
+        "number_approved",
+        "approval_rate",
+        "total_funded_principal",
+        "average_funded_principal_per_applicant",
+        "mean_bank_PD_approved",
+        "mean_true_PD_approved",
+        "total_true_expected_profit"
+      ],
+      "rows": 2
+    },
+    {
+      "path": "results/tables/professor_model/lending_portfolio_summary.csv",
+      "bytes": 1479,
+      "sha256": "9320f350014cdf7975ef3be4bd5f4b2e17d0bdcafce03034e5a9a6748e65dd1d",
+      "columns": [
+        "model_id",
+        "optimal_tau",
+        "selected_candidate_id",
+        "n_applicants",
+        "number_approved",
+        "number_rejected",
+        "approval_rate",
+        "total_requested_principal",
+        "available_bank_capital",
+        "total_funded_principal",
+        "budget_utilization",
+        "unused_capital",
+        "bank_expected_portfolio_profit",
+        "average_bank_profit_approved",
+        "exact_budget_exhausted",
+        "next_cutoff",
+        "next_cutoff_budget_feasible",
+        "next_cutoff_funded_principal",
+        "capital_limits_next_cutoff",
+        "largest_feasible_cutoff_selected",
+        "all_requests_bank_profitable",
+        "n_candidates_including_no_lending",
+        "n_feasible_candidates",
+        "n_tied_risk_groups",
+        "largest_tied_group_size",
+        "zero_risk_applicants",
+        "zero_risk_approved",
+        "selected_cutoff_group_size",
+        "approved_PD_n",
+        "approved_PD_mean",
+        "approved_PD_median",
+        "approved_PD_sample_SD",
+        "approved_PD_minimum",
+        "approved_PD_p05",
+        "approved_PD_p95",
+        "approved_PD_maximum",
+        "rejected_PD_n",
+        "rejected_PD_mean",
+        "rejected_PD_median",
+        "rejected_PD_sample_SD",
+        "rejected_PD_minimum",
+        "rejected_PD_p05",
+        "rejected_PD_p95",
+        "rejected_PD_maximum"
+      ],
+      "rows": 1
+    },
+    {
+      "path": "results/tables/professor_model/lending_threshold_candidates.csv",
+      "bytes": 1721147,
+      "sha256": "254e2923ae253a044e31625f5a992d5d2d6ecbb67f5577df079eefd6dbfba879",
+      "columns": [
+        "candidate_id",
+        "candidate_type",
+        "tau",
+        "number_approved",
+        "funded_principal",
+        "budget_feasible",
+        "bank_expected_portfolio_profit",
+        "risk_group_size",
+        "selected"
+      ],
+      "rows": 19079
+    },
+    {
+      "path": "results/tables/professor_model/loan_economics_distributions.csv",
+      "bytes": 6394,
+      "sha256": "8145e0fe920d1bc6a51dd8ae87d7a601e737a8785bbdc3b5e1f74c4156a0a7aa",
+      "columns": [
+        "scope",
+        "variable",
+        "unit",
+        "n",
+        "mean",
+        "median",
+        "sample_SD",
+        "minimum",
+        "maximum",
+        "p01",
+        "p05",
+        "p25",
+        "p50",
+        "p75",
+        "p95",
+        "p99"
+      ],
+      "rows": 24
+    },
+    {
+      "path": "results/tables/professor_model/loan_economics_summary.csv",
+      "bytes": 1196,
+      "sha256": "da7aaa41cc25295cf37b2e1e114092fb5f145b6f17599017ea884c31140ed403",
+      "columns": [
+        "scope",
+        "n_applicants",
+        "Y_mean",
+        "Y_median",
+        "ell_i_mean",
+        "ell_i_median",
+        "L_i_mean",
+        "L_i_median",
+        "total_requested_principal",
+        "expected_receipts_bank_mean",
+        "expected_receipts_true_mean",
+        "expected_profit_bank_mean",
+        "expected_profit_true_mean",
+        "fraction_profit_bank_positive",
+        "fraction_profit_true_positive",
+        "fraction_profit_sign_disagreement",
+        "mean_profit_estimation_error",
+        "profit_MAE",
+        "profit_RMSE"
+      ],
+      "rows": 3
+    },
+    {
+      "path": "results/tables/professor_model/noise_pilot_coefficients.csv",
+      "bytes": 2676,
+      "sha256": "f191bc8b2deae1e5ef0e6a6811527f75b43cbf89ea55aea200668e846bd75491",
+      "columns": [
+        "replication",
+        "policy",
+        "term",
+        "coefficient",
+        "units"
+      ],
+      "rows": 45
+    },
+    {
+      "path": "results/tables/professor_model/noise_pilot_group_approval.csv",
+      "bytes": 2076,
+      "sha256": "485a79fe8d474e32c76656efb39e35b75ee88e00c6ed0f2ed9622beb765f5454",
+      "columns": [
+        "replication",
+        "B",
+        "approval_rate",
+        "funded_principal",
+        "funded_principal_per_applicant",
+        "information_scope",
+        "n_applicants",
+        "number_approved",
+        "policy"
+      ],
+      "rows": 20
+    },
+    {
+      "path": "results/tables/professor_model/noise_pilot_replications.csv",
+      "bytes": 4896,
+      "sha256": "6f039b71755a52fcad68621998a9e4146d07309c092e771aa20a1f1501bd79f4",
+      "columns": [
+        "replication",
+        "beta_B_hat",
+        "runtime_seconds",
+        "gap_change_pp",
+        "true_profit_change",
+        "B0_blind_minus_aware_approval_rate_pp",
+        "B1_blind_minus_aware_approval_rate_pp",
+        "group_blind_minus_aware_approval_gap_pp",
+        "group_blind_minus_aware_funded_principal_gap_per_applicant_USD",
+        "group_blind_minus_aware_true_profit_USD",
+        "jaccard_overlap",
+        "overlap_approved_by_both",
+        "overlap_group_aware_only",
+        "overlap_group_blind_only",
+        "overlap_rejected_by_both",
+        "aware_optimal_tau",
+        "aware_B0_approval_rate",
+        "aware_B1_approval_rate",
+        "aware_signed_oracle_minus_policy_true_profit",
+        "aware_raw_PN_RMSE",
+        "aware_raw_true_PD_MAE",
+        "aware_raw_true_PD_RMSE",
+        "aware_bounded_true_PD_MAE",
+        "aware_bounded_true_PD_RMSE",
+        "aware_zero_block_principal_USD",
+        "aware_zero_block_feasible",
+        "aware_maximum_budget_violation_USD",
+        "aware_approval_gap_pp",
+        "aware_approved",
+        "aware_true_profit",
+        "aware_zero_predictions",
+        "blind_optimal_tau",
+        "blind_B0_approval_rate",
+        "blind_B1_approval_rate",
+        "blind_signed_oracle_minus_policy_true_profit",
+        "blind_raw_PN_RMSE",
+        "blind_raw_true_PD_MAE",
+        "blind_raw_true_PD_RMSE",
+        "blind_bounded_true_PD_MAE",
+        "blind_bounded_true_PD_RMSE",
+        "blind_zero_block_principal_USD",
+        "blind_zero_block_feasible",
+        "blind_maximum_budget_violation_USD",
+        "blind_approval_gap_pp",
+        "blind_approved",
+        "blind_true_profit",
+        "blind_zero_predictions"
+      ],
+      "rows": 5
+    },
+    {
+      "path": "results/tables/professor_model/noise_pilot_summary.csv",
+      "bytes": 5205,
+      "sha256": "459d531b7af7f72acfb46b946d69629b274756d20e9c35fdeabb8b17ceef4e41",
+      "columns": [
+        "metric",
+        "n_replications",
+        "n_defined",
+        "mean",
+        "median",
+        "minimum",
+        "maximum",
+        "sample_SD"
+      ],
+      "rows": 44
+    },
+    {
+      "path": "results/tables/professor_model/noise_robustness_full/noise_full_coefficient_summary.csv",
+      "bytes": 2681,
+      "sha256": "c9a4b02bb2437a0539b1a8ac62e8babdfde1baca9e51f680bb62dfbe6a4d56b4",
+      "columns": [
+        "policy",
+        "term",
+        "n_defined",
+        "mean",
+        "median",
+        "sample_SD",
+        "MCSE_mean",
+        "p2.5",
+        "p5",
+        "p25",
+        "p75",
+        "p95",
+        "p97.5",
+        "minimum",
+        "maximum"
+      ],
+      "rows": 9
+    },
+    {
+      "path": "results/tables/professor_model/noise_robustness_full/noise_full_group_outcome_summary.csv",
+      "bytes": 3306,
+      "sha256": "99645632f09182e6c8fa14f2a726c7106c79cafbec8e55b70eecc1d1979c3e9c",
+      "columns": [
+        "policy",
+        "B",
+        "metric",
+        "n_defined",
+        "mean",
+        "median",
+        "sample_SD",
+        "MCSE_mean",
+        "p2.5",
+        "p5",
+        "p25",
+        "p75",
+        "p95",
+        "p97.5",
+        "minimum",
+        "maximum"
+      ],
+      "rows": 16
+    },
+    {
+      "path": "results/tables/professor_model/noise_robustness_full/noise_full_results.csv",
+      "bytes": 867337,
+      "sha256": "3d94f4a4f267c023d7b87a5a516fd8447046caa9a52663ba35e6635783811adc",
+      "columns": [
+        "replication",
+        "beta_B_hat",
+        "aware_gap_pp",
+        "blind_gap_pp",
+        "gap_change_pp",
+        "aware_abs_gap_pp",
+        "blind_abs_gap_pp",
+        "abs_gap_change_pp",
+        "true_profit_change_USD",
+        "aware_true_expected_portfolio_profit",
+        "aware_signed_oracle_minus_policy_true_profit",
+        "aware_number_approved",
+        "aware_funded_principal",
+        "aware_capital_utilization",
+        "aware_B0_approval_rate",
+        "aware_B1_approval_rate",
+        "blind_true_expected_portfolio_profit",
+        "blind_signed_oracle_minus_policy_true_profit",
+        "blind_number_approved",
+        "blind_funded_principal",
+        "blind_capital_utilization",
+        "blind_B0_approval_rate",
+        "blind_B1_approval_rate",
+        "B0_approval_rate",
+        "B1_approval_rate",
+        "all_requests_bank_profitable",
+        "approval_gap_pp",
+        "approval_rate",
+        "approved_PD_maximum",
+        "approved_PD_mean",
+        "approved_PD_median",
+        "approved_PD_minimum",
+        "approved_PD_n",
+        "approved_PD_p05",
+        "approved_PD_p95",
+        "approved_PD_sample_SD",
+        "available_bank_capital",
+        "average_bank_profit_approved",
+        "bank_expected_portfolio_profit",
+        "bounded_PN_MAE",
+        "bounded_PN_Pearson_correlation",
+        "bounded_PN_RMSE",
+        "bounded_PN_R_squared",
+        "bounded_PN_correlation_status",
+        "bounded_PN_mean_signed_error",
+        "bounded_true_PD_MAE",
+        "bounded_true_PD_Pearson_correlation",
+        "bounded_true_PD_RMSE",
+        "bounded_true_PD_R_squared",
+        "bounded_true_PD_correlation_status",
+        "bounded_true_PD_mean_signed_error",
+        "bounded_zero_count",
+        "budget_utilization",
+        "capital_limits_next_cutoff",
+        "capital_utilization",
+        "cutoff_score",
+        "exact_budget_exhausted",
+        "feasible_cutoff_candidates_including_reject_all",
+        "funded_principal",
+        "funded_principal_gap_per_applicant_USD",
+        "independent_exact_enumeration_passed",
+        "information_scope",
+        "largest_feasible_cutoff_selected",
+        "largest_tied_group_size",
+        "maximum_budget_violation_USD",
+        "maximum_feasible_candidate_budget_residual_USD",
+        "mean_bounded_PD",
+        "mean_raw_PD",
+        "mean_true_PD_approved",
+        "model_id",
+        "n_applicants",
+        "n_candidates_including_no_lending",
+        "n_feasible_candidates",
+        "n_tied_risk_groups",
+        "n_tied_score_groups",
+        "negative_raw_count",
+        "negative_raw_share",
+        "next_cutoff",
+        "next_cutoff_budget_feasible",
+        "next_cutoff_funded_principal",
+        "number_approved",
+        "number_rejected",
+        "optimal_cutoff",
+        "optimal_tau",
+        "perceived_portfolio_profit",
+        "policy",
+        "raw_PN_MAE",
+        "raw_PN_Pearson_correlation",
+        "raw_PN_RMSE",
+        "raw_PN_R_squared",
+        "raw_PN_correlation_status",
+        "raw_PN_mean_signed_error",
+        "raw_above_one_count",
+        "raw_true_PD_MAE",
+        "raw_true_PD_Pearson_correlation",
+        "raw_true_PD_RMSE",
+        "raw_true_PD_R_squared",
+        "raw_true_PD_correlation_status",
+        "raw_true_PD_mean_signed_error",
+        "reject_all_selected",
+        "rejected_PD_maximum",
+        "rejected_PD_mean",
+        "rejected_PD_median",
+        "rejected_PD_minimum",
+        "rejected_PD_n",
+        "rejected_PD_p05",
+        "rejected_PD_p95",
+        "rejected_PD_sample_SD",
+        "remaining_capital_USD",
+        "selected_budget_residual_USD",
+        "selected_candidate_id",
+        "selected_cutoff",
+        "selected_cutoff_group_size",
+        "signed_difference_pct_of_oracle",
+        "signed_oracle_minus_policy_true_profit",
+        "tied_zero_applicants",
+        "total_funded_principal",
+        "total_requested_principal",
+        "true_expected_portfolio_profit",
+        "unused_capital",
+        "zero_block_feasible",
+        "zero_block_principal_USD",
+        "zero_risk_applicants",
+        "zero_risk_approved",
+        "runtime_seconds",
+        "origin",
+        "zero_block_budget_ratio",
+        "atol",
+        "beta_B_noise",
+        "beta_B_signal",
+        "beta_B_total",
+        "residual",
+        "rtol",
+        "valid",
+        "B0_blind_minus_aware_approval_rate_pp",
+        "B1_blind_minus_aware_approval_rate_pp",
+        "group_blind_minus_aware_approval_gap_pp",
+        "group_blind_minus_aware_funded_principal_gap_per_applicant_USD",
+        "group_blind_minus_aware_true_profit_USD",
+        "jaccard_overlap",
+        "overlap_approved_by_both",
+        "overlap_group_aware_only",
+        "overlap_group_blind_only",
+        "overlap_rejected_by_both"
+      ],
+      "rows": 400
+    },
+    {
+      "path": "results/tables/professor_model/noise_robustness_full/noise_full_summary.csv",
+      "bytes": 12672,
+      "sha256": "29cec3ab674c78527e913211a1b869174ae4c6402498280b5a96345fbfe0375e",
+      "columns": [
+        "metric",
+        "scope",
+        "n_successful",
+        "n_defined",
+        "mean",
+        "median",
+        "sample_SD",
+        "MCSE_mean",
+        "p2.5",
+        "p5",
+        "p25",
+        "p75",
+        "p95",
+        "p97.5",
+        "minimum",
+        "maximum"
+      ],
+      "rows": 46
+    },
+    {
+      "path": "results/tables/professor_model/noise_robustness_full/noise_full_tie_diagnostics.csv",
+      "bytes": 48226,
+      "sha256": "a83da285a4756ce43d30fb3d548c0d45ffc2862ead148f44afdb4b3e6a663b26",
+      "columns": [
+        "replication",
+        "policy",
+        "bounded_zero_count",
+        "zero_block_principal_USD",
+        "zero_block_feasible",
+        "number_approved",
+        "optimal_tau",
+        "feasible_cutoff_candidates_including_reject_all",
+        "unused_capital",
+        "reject_all_selected",
+        "maximum_budget_violation_USD",
+        "zero_block_budget_ratio"
+      ],
+      "rows": 400
+    },
+    {
+      "path": "results/tables/professor_model/noisy_signal_group_comparison.csv",
+      "bytes": 189,
+      "sha256": "9740fb76c4b3b2461b3d61876ec5c92f1be1d150bb8b94bb1cc4bd3305a42f93",
+      "columns": [
+        "B",
+        "n",
+        "mean_eta",
+        "mean_PN",
+        "mean_scaled_true_PD"
+      ],
+      "rows": 2
+    },
+    {
+      "path": "results/tables/professor_model/noisy_signal_summary.csv",
+      "bytes": 848,
+      "sha256": "356121916b63fc5a674057b6e3f1ba91d90908fb514f06c1fcfdca7d96208459",
+      "columns": [
+        "variable",
+        "mean",
+        "median",
+        "sd",
+        "minimum",
+        "maximum",
+        "p01",
+        "p05",
+        "p25",
+        "p50",
+        "p75",
+        "p95",
+        "p99"
+      ],
+      "rows": 3
+    },
+    {
+      "path": "results/tables/professor_model/oracle_threshold_candidates.csv",
+      "bytes": 2701323,
+      "sha256": "96199355354cba9c4f45d10bfd41b9dfb3ddc9ba0829213adaccab27ebec537c",
+      "columns": [
+        "information_scope",
+        "policy_id",
+        "candidate_id",
+        "candidate_type",
+        "tau",
+        "number_approved",
+        "funded_principal",
+        "budget_feasible",
+        "true_expected_portfolio_profit",
+        "risk_group_size",
+        "selected"
+      ],
+      "rows": 20001
+    },
+    {
+      "path": "results/tables/professor_model/population_group_comparison.csv",
+      "bytes": 234,
+      "sha256": "8028b16e5ac5f175ebed67d2622dbcbf0367b6d0496b1f4b25ee18b27c4c3a12",
+      "columns": [
+        "B",
+        "n",
+        "share",
+        "mean_Y",
+        "mean_D",
+        "mean_epsilon",
+        "mean_C"
+      ],
+      "rows": 2
+    },
+    {
+      "path": "results/tables/professor_model/true_risk_correlations.csv",
+      "bytes": 252,
+      "sha256": "41ca8df5e4e5194623936a63ab094f9ce1a0cc34c5fd78541116ccbffeaca065",
+      "columns": [
+        "variable",
+        "pearson",
+        "spearman"
+      ],
+      "rows": 5
+    },
+    {
+      "path": "results/tables/professor_model/true_risk_distribution.csv",
+      "bytes": 848,
+      "sha256": "4e4a4e4cc72979182a51197e25a903b2dbb2ea31ba4efb65d22c33deaba9317f",
+      "columns": [
+        "variable",
+        "mean",
+        "median",
+        "sd",
+        "minimum",
+        "maximum",
+        "p01",
+        "p05",
+        "p25",
+        "p50",
+        "p75",
+        "p95",
+        "p99"
+      ],
+      "rows": 3
+    },
+    {
+      "path": "results/tables/professor_model/true_risk_group_comparison.csv",
+      "bytes": 190,
+      "sha256": "7fc50706992d625652fbe5d0133687ddf2d31172ae58da984e08cf4b9449c3e6",
+      "columns": [
+        "B",
+        "n",
+        "mean_true_PD",
+        "median_true_PD",
+        "p95_true_PD"
+      ],
+      "rows": 2
+    },
+    {
+      "path": "data/processed/professor_model/group_blind_comparison_metadata.json",
+      "bytes": 26054,
+      "sha256": "615b4363175331bbea3decdcf72294454b48e60355e86651ce952e5be3c6febe"
+    },
+    {
+      "path": "data/processed/professor_model/lending_metadata.json",
+      "bytes": 16516,
+      "sha256": "002195f2ae0b704939a4406622764a3e1851dd1f7b78c57a7370f6c667389911"
+    },
+    {
+      "path": "data/processed/professor_model/loan_economics_metadata.json",
+      "bytes": 14838,
+      "sha256": "ff5321eeafbb3187a6a1115e3750df41496265b41115b66478bc9a8ec74daa5f"
+    },
+    {
+      "path": "data/processed/professor_model/oracle_comparison_metadata.json",
+      "bytes": 17519,
+      "sha256": "5687577610a3369aa5daf6c355cc87ea8f5002c016af08c34eb22991467c7f40"
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/bank_regression_metadata.json",
+      "bytes": 14007,
+      "sha256": "8a9c78f10a186ddaf5f76592eecc08f9856b8649b6a823bd8cfd855bfe9617c4"
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/noisy_signal_metadata.json",
+      "bytes": 13101,
+      "sha256": "23bd2d2b5bac2bc8eebeeeaee3f7e2028b6643ef8a4b6e86deeafd48edf4660e"
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/population_metadata.json",
+      "bytes": 4951,
+      "sha256": "6bf90e5525a7e5741e579e3049176ddd77dd721bddef4a6542a4abf7b8835583"
+    },
+    {
+      "path": "data/synthetic/professor_model/baseline/true_risk_metadata.json",
+      "bytes": 5935,
+      "sha256": "2ae2fc5b7b22dd2159cde5e9b09eb2339ac4da8e4c2a136c7234d1cdea5d950d"
+    },
+    {
+      "path": "results/metrics/professor_model/noise_robustness_full/manifest.json",
+      "bytes": 42214,
+      "sha256": "74107c9203a310d6bd2118268f28ca3f82ce560f6fb8bf804f0dccd176245f91"
+    },
+    {
+      "path": "results/metrics/professor_model/noise_robustness_full/latest_report.json",
+      "bytes": 22487,
+      "sha256": "64dfdf006e54760e679c612bc3d2725bbd3c31640608880700a26810583f13a1"
+    },
+    {
+      "path": "results/metrics/professor_model/noise_robustness_full/signal_reference_EVALUATOR_ONLY.json",
+      "bytes": 938,
+      "sha256": "67bd58eacf93bede4f24ad5321b5f48aa290e082359594284da19281e531a786"
+    }
+  ]
+}

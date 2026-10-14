@@ -1,0 +1,22 @@
+schema_version: professor-noisy-signal-v1
+expected_input_rows: 100000
+input_directory: data/synthetic/professor_model/baseline
+preview_rows: 150
+
+signal_scale: 0.8
+noise:
+  distribution: normal
+  mean: 0.0
+  sd: 0.1
+
+randomness:
+  master_seed: 4994
+  spawn_key: [5]
+  bit_generator: PCG64
+  applicant_order: ascending_lexicographic_applicant_id
+
+outputs:
+  validation_report: results/metrics/professor_model/noisy_signal_validation.json
+  summary: results/tables/professor_model/noisy_signal_summary.csv
+  group_comparison: results/tables/professor_model/noisy_signal_group_comparison.csv
+  figures_directory: results/figures/professor_model

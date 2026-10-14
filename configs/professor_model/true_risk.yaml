@@ -1,0 +1,19 @@
+schema_version: professor-true-risk-v1
+interpretation: supplied working transcription; default-event horizon unresolved
+expected_input_rows: 100000
+input_directory: data/synthetic/professor_model/baseline
+preview_rows: 150
+
+equation:
+  income_intercept: 0.52
+  log_income_coefficient: -0.65
+  other_intercept: 4.0
+  dti_coefficient: 0.06
+  # The hidden factor enters as +epsilon, exactly as supplied.
+
+outputs:
+  validation_report: results/metrics/professor_model/true_risk_validation.json
+  summary: results/tables/professor_model/true_risk_distribution.csv
+  group_comparison: results/tables/professor_model/true_risk_group_comparison.csv
+  correlations: results/tables/professor_model/true_risk_correlations.csv
+  figures_directory: results/figures/professor_model

@@ -1,0 +1,161 @@
+{
+  "slides": [
+    {
+      "slide": 1,
+      "metric": "Applicant count",
+      "source": "data/synthetic/professor_model/baseline/applicants_bank_view.csv",
+      "column": "applicant_id",
+      "computation": "unique IDs",
+      "rounding": "integer"
+    },
+    {
+      "slide": 1,
+      "metric": "200 draws / 91.5%",
+      "source": "results/tables/professor_model/noise_robustness_full/noise_full_results.csv",
+      "column": "replication, aware_gap_pp, blind_gap_pp",
+      "computation": "200 unique pairs, 183 abs(blind)<abs(aware)",
+      "rounding": "1 decimal percent"
+    },
+    {
+      "slide": 2,
+      "metric": "Risk and accounting pipeline",
+      "source": "docs/professor_loan_economics.md; docs/professor_bank_regression.md",
+      "column": "equations",
+      "computation": "retain exact working definitions",
+      "rounding": "coefficients unchanged"
+    },
+    {
+      "slide": 3,
+      "metric": "Data design and signal/noise",
+      "source": "configs/professor_model/baseline.yaml; data/synthetic/professor_model/baseline/simulation_truth.csv; risk_measurement_noise_private.csv",
+      "column": "true_PD, eta",
+      "computation": "100*mean(PD), SD(eta)/SD(.8PD)",
+      "rounding": "4 decimals percent, nearest integer ratio"
+    },
+    {
+      "slide": 3,
+      "metric": "Evaluator preview",
+      "source": "data/synthetic/professor_model/baseline/applicants_bank_view.csv; data/synthetic/professor_model/baseline/simulation_truth.csv; data/synthetic/professor_model/baseline/training_signals.csv",
+      "column": "applicant_id,B,Y,D,C,true_PD,PN",
+      "computation": "1:1 ID join, first five lexicographic IDs",
+      "rounding": "Y whole dollars, D/C 3 decimals, PD% 4 decimals, raw PN 4 decimals"
+    },
+    {
+      "slide": 4,
+      "metric": "Canonical gaps and true profits",
+      "source": "results/tables/professor_model/group_aware_vs_blind_portfolio.csv; group_aware_vs_blind_group_audit.csv",
+      "column": "approval_gap_pp,true_expected_portfolio_profit,approval_rate",
+      "computation": "cross-check gaps from B1-B0 group rates",
+      "rounding": "gaps 2 decimals pp, profits 4 decimals billions"
+    },
+    {
+      "slide": 5,
+      "metric": "Completion and first-three excerpt",
+      "source": "results/tables/professor_model/noise_robustness_full/noise_full_results.csv; results/metrics/professor_model/noise_robustness_full/replications/",
+      "column": "replication,policy,aware_gap_pp,blind_gap_pp,gap_change_pp,origin",
+      "computation": "pair completeness; indices 0,1,2 only",
+      "rounding": "3 decimals pp, integer counts"
+    },
+    {
+      "slide": 6,
+      "metric": "Gap and coefficient plots/statistics",
+      "source": "results/tables/professor_model/noise_robustness_full/noise_full_results.csv; replication_000.json through replication_199.json",
+      "column": "beta_B_hat,aware_gap_pp,blind_gap_pp",
+      "computation": "independent record aggregation, ddof=1, SD/sqrt(200), linear quantiles",
+      "rounding": "3 decimals pp, 8 decimals coefficient, 1 decimal frequencies"
+    },
+    {
+      "slide": 6,
+      "metric": "Noiseless B projection",
+      "source": "results/metrics/professor_model/noise_robustness_full/signal_reference_EVALUATOR_ONLY.json",
+      "column": "reference.beta_B_signal",
+      "computation": "read evaluator-only saved reference",
+      "rounding": "12 decimals"
+    },
+    {
+      "slide": 7,
+      "metric": "Profit distribution and reject-all",
+      "source": "results/tables/professor_model/noise_robustness_full/noise_full_results.csv",
+      "column": "true_profit_change_USD,number_approved,reject_all_selected,zero_block_principal_USD,available_bank_capital",
+      "computation": "200 paired differences, extrema retained; per-policy denominators 200",
+      "rounding": "mean 3 decimals M, median nearest USD, counts integer"
+    },
+    {
+      "slide": 8,
+      "metric": "Takeaways and repository status",
+      "source": "results/tables/professor_model/noise_robustness_full/noise_full_results.csv; docs/PROJECT_STATUS.md",
+      "column": "paired metrics, latest documented suite",
+      "computation": "reuse audited findings, no fresh test run",
+      "rounding": "documented 624 passed / 4 failures / 32 warnings"
+    }
+  ],
+  "snippet_applicant_ids": [
+    "prof_000001",
+    "prof_000002",
+    "prof_000003",
+    "prof_000004",
+    "prof_000005"
+  ],
+  "scientific_audit": {
+    "successful_replications": 200,
+    "unique_indices": 200,
+    "policy_rows": 400,
+    "pilot_reuses": 5,
+    "new_replications": 195,
+    "all_paired": true,
+    "duplicate_cells": 0,
+    "budget_violations": 0,
+    "zero_groups_split": 0,
+    "canonical_separate_from_MC": true,
+    "fixed_original_hashes_verified": 285
+  },
+  "discrepancies": [
+    "Step 8A heading states Step 8B not started as historical pilot status. Full manifest, records and current PROJECT_STATUS confirm complete.",
+    "Step 1 annual-rate suggestion is historical. Implemented contract uses r=.05 per period. Slides use the implemented convention."
+  ],
+  "experiment_fingerprint": "99b52586da3cee55addb0a72c47bac7fc3cb7b7cd66f94707d2e7164f88d7f36",
+  "documented_tests": {
+    "passed": 624,
+    "failed": 4,
+    "warnings": 32,
+    "fresh_tests_run_for_deck": false
+  },
+  "source_hashes": {
+    "configs/professor_model/baseline.yaml": "6ed83497b2a93024e957f4fcfb8e80985161fb59a579418af8e90a3cfb3b821b",
+    "data/synthetic/professor_model/baseline/applicant_splits.csv": "27b0d6c43e14f504f3abb347fe1de6f81ae36526e5035466913d0a4c7f93c23a",
+    "data/synthetic/professor_model/baseline/applicants_bank_view.csv": "c3ee8669af9cf6232c7e1db92d9a72009406ccada008c5f93fff8c7359da8c3f",
+    "data/synthetic/professor_model/baseline/risk_measurement_noise_private.csv": "14f2631d4bd109377cb7a64fbbc7a077763f73752174a9f54335aa9abecb422b",
+    "data/synthetic/professor_model/baseline/simulation_truth.csv": "a3924b7badc4417a02ef0ad022108c79e24f29e5e33f03ed948bee8cffeb778c",
+    "data/synthetic/professor_model/baseline/training_signals.csv": "88270c0f1e0f393909a83a5d6244b1f6c66f761899ae97f0fd619e0317709678",
+    "docs/PROJECT_STATUS.md": "12a572b5e9d97045b4b2dbcdea24d07bb656d7411be91f585cccf2923b6387db",
+    "docs/professor_bank_regression.md": "48291ceb9f7d10081814dcf8af79f6fece6beb01971663d80a8d0c266ae17ecf",
+    "docs/professor_loan_economics.md": "ba03193600c543bb8a39fa18fdd595f62a7e29be18950af0bf31b3ce653bafe6",
+    "docs/professor_noise_robustness_full.md": "3b51d9bdc98befa5c02407cfc1c80d5d144677542abf500e1375bc842ea4efbd",
+    "docs/professor_whiteboard_model.md": "7efe2482272a29c806b1fb36386a1060d0df62f8353cf677221cbe5495fa5f8d",
+    "results/metrics/professor_model/noise_robustness_full/latest_report.json": "64dfdf006e54760e679c612bc3d2725bbd3c31640608880700a26810583f13a1",
+    "results/metrics/professor_model/noise_robustness_full/manifest.json": "74107c9203a310d6bd2118268f28ca3f82ce560f6fb8bf804f0dccd176245f91",
+    "results/metrics/professor_model/noise_robustness_full/signal_reference_EVALUATOR_ONLY.json": "67bd58eacf93bede4f24ad5321b5f48aa290e082359594284da19281e531a786",
+    "results/tables/professor_model/bank_vs_oracle_group_audit.csv": "2b72f0b3bd0b38c8fb0ca075aeb8448269dfe24b9174493563621aba024c278a",
+    "results/tables/professor_model/bank_vs_oracle_summary.csv": "98260cced8234d38d73e5f854dab2f533e1a3d7c87b7adbb92b3b69de88723e7",
+    "results/tables/professor_model/group_aware_vs_blind_group_audit.csv": "28feafc3ebae95e2d0c60068052c3e572ccd0903ddf20f1499c7a9333f5a575b",
+    "results/tables/professor_model/group_aware_vs_blind_portfolio.csv": "51eab31681f9a4ba309bfc4129a0184de0af941261674802db3c2860970b1269",
+    "results/tables/professor_model/group_aware_vs_blind_risk.csv": "2e22dc0c3d317a40565c98c7f37b5850e97a17a5286d3143583d7dfbe8497882",
+    "results/tables/professor_model/noise_robustness_full/noise_full_coefficient_summary.csv": "c9a4b02bb2437a0539b1a8ac62e8babdfde1baca9e51f680bb62dfbe6a4d56b4",
+    "results/tables/professor_model/noise_robustness_full/noise_full_group_outcome_summary.csv": "99645632f09182e6c8fa14f2a726c7106c79cafbec8e55b70eecc1d1979c3e9c",
+    "results/tables/professor_model/noise_robustness_full/noise_full_results.csv": "3d94f4a4f267c023d7b87a5a516fd8447046caa9a52663ba35e6635783811adc",
+    "results/tables/professor_model/noise_robustness_full/noise_full_summary.csv": "29cec3ab674c78527e913211a1b869174ae4c6402498280b5a96345fbfe0375e",
+    "results/tables/professor_model/noise_robustness_full/noise_full_tie_diagnostics.csv": "a83da285a4756ce43d30fb3d548c0d45ffc2862ead148f44afdb4b3e6a663b26"
+  },
+  "replication_hashes_manifest": "results/metrics/professor_model/noise_robustness_full/latest_report.json: replication_result_hashes",
+  "native_chart_rounding": "Slide4 workbook data rounded to4 decimals pp for Excel portability; labels2 decimals. Full values remain in verified_evidence.json.",
+  "final_output_hashes": {
+    "professor_model_progress_8_slides.pptx": "bb0f7545f767d63e7128f7d7d1d9e1f332438e3217354b88aa74402fc2990996",
+    "professor_model_progress_8_slides.pdf": "f7d485ae4983ff825f44fc86708f294a78581ece9c4c04fe590bb97b5bfec4a1",
+    "contact_sheet.png": "1cce04059aab787a3a22de2286d5b74682595e3d137696475ef444724130ac55"
+  },
+  "preservation_check": {
+    "files_checked": 953,
+    "changed": [],
+    "scope": "all scientific source/config/test/docs and professor-model datasets/results"
+  }
+}

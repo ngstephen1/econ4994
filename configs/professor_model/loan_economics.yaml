@@ -1,0 +1,30 @@
+# Step 6A working assumptions, not a conventional mortgage contract.
+schema_version: professor-loan-economics-v1
+input_directory: data/synthetic/professor_model/baseline
+expected_input_rows: 100000
+evaluation_rows: 20000
+model_id: professor_bank_ols_v1
+contract:
+  T: 30
+  theta: 0.10
+  r: 0.05
+  rate_basis: per_period
+  payment_rule_id: professor_income_compound_schedule_v1
+  schedule: ell_times_one_plus_r_power_t
+  principal: T_times_ell
+risk:
+  interpretation: constant_conditional_per_period_default
+  default_absorbing: true
+  bank_probability: bank_PD_bounded
+  evaluator_probability: true_PD
+accounting:
+  transaction_cost: 0
+  discounting: false
+  prepayment: false
+  recovery: 0
+preview_rows: 150
+outputs:
+  data_directory: data/processed/professor_model
+  summary: results/tables/professor_model/loan_economics_summary.csv
+  distributions: results/tables/professor_model/loan_economics_distributions.csv
+  validation: results/metrics/professor_model/loan_economics_validation.json
