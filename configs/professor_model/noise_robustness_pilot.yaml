@@ -1,0 +1,15 @@
+# Step 8A only: exactly five new noise streams, no new populations/splits.
+schema_version: professor-noise-pilot-v1
+master_seed: 499408
+replications: 5
+population_rows: 100000
+training_rows: 80000
+evaluation_rows: 20000
+signal_scale: 0.8
+noise:
+  mean: 0.0
+  sd: 0.1
+bit_generator: PCG64
+applicant_order: ascending_lexicographic_applicant_id
+budget_source: results/metrics/professor_model/lending_selection.json
+budget_field: selection.available_bank_capital

@@ -1,0 +1,19 @@
+schema_version: professor-group-blind-comparison-v1
+model_id: professor_bank_ols_group_blind_v1
+expected_population_rows: 100000
+training_rows: 80000
+evaluation_rows: 20000
+model:
+  family: statsmodels_OLS
+  solver: pinv
+  predictors: [Y, D, C]
+  intercept: true
+  target: PN
+  regularization: null
+  target_transform: none
+  prediction_rescaling: none
+  bounding: clip_0_1_separate_column
+split_source: data/synthetic/professor_model/baseline/applicant_splits.csv
+budget_source: results/metrics/professor_model/lending_selection.json
+budget_field: selection.available_bank_capital
+# Existing equations, contracts, split and budget are read, never regenerated.

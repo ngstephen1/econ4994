@@ -1,0 +1,36 @@
+schema_version: professor-population-v1
+
+simulation:
+  n_samples: 100000
+  random_seed: 4994
+  audit_preview_rows: 150
+
+population:
+  independent_primitives: true
+  log_Y:
+    distribution: normal
+    mean: 11.0
+    sd: 0.7
+  D:
+    distribution: normal
+    mean: 0.35
+    sd: 0.16
+  B:
+    distribution: bernoulli
+    probability: 0.15
+  epsilon:
+    distribution: normal
+    mean: 0.0
+    sd: 1.0
+  omega:
+    distribution: normal
+    mean: 0.0
+    sd: 0.2
+
+credit_signal:
+  epsilon_coefficient: 0.4
+
+outputs:
+  data_directory: data/synthetic/professor_model/baseline
+  validation_report: results/metrics/professor_model/population_validation.json
+  group_comparison: results/tables/professor_model/population_group_comparison.csv

@@ -1,0 +1,18 @@
+schema_version: professor-lending-threshold-v1
+model_id: professor_bank_ols_v1
+input_directory: data/processed/professor_model
+synthetic_directory: data/synthetic/professor_model/baseline
+expected_population_rows: 100000
+evaluation_rows: 20000
+policy:
+  risk_column: bank_PD_bounded
+  budget_fraction: 0.40
+  tied_risks: fund_all_or_none
+  no_lending: explicit_null_cutoff
+  profit_tie_break: lowest_cutoff_reject_all_first
+  summation: exact_binary_float_integer_prefixes
+outputs:
+  data_directory: data/processed/professor_model
+  tables_directory: results/tables/professor_model
+  metrics_directory: results/metrics/professor_model
+  figure: results/figures/professor_model/lending_profit_vs_cutoff.png

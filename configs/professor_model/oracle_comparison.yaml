@@ -1,0 +1,15 @@
+schema_version: professor-oracle-comparison-v1
+policy_id: professor_true_risk_oracle_v1
+input_directory: data/processed/professor_model
+evaluation_rows: 20000
+budget_source: results/metrics/professor_model/lending_selection.json
+budget_field: selection.available_bank_capital
+oracle_score: true_PD
+oracle_objective: expected_profit_true
+tie_policy: lowest_cutoff_reject_all_first
+information_scope: EVALUATOR_ONLY
+outputs:
+  data_directory: data/processed/professor_model
+  tables_directory: results/tables/professor_model
+  metrics_directory: results/metrics/professor_model
+  figures_directory: results/figures/professor_model
