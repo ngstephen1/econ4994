@@ -1,0 +1,47 @@
+Professor-model progress report: exactly eight slides
+
+Evidence and charts (read-only scientific inputs):
+  python3 reports/professor_model/step8b_progress/audit_and_charts.py
+
+Presentation authoring requires the existing Codex primary runtime with
+@oai/artifact-tool, plus its bundled Python. Set these runtime variables to
+the appropriate installed locations:
+  RUNTIME_NODE
+  RUNTIME_NODE_MODULES
+  RUNTIME_BIN_DIR
+  RUNTIME_PYTHON
+
+The source uses the verified local runtime paths from this task. For a new
+machine, adjust those authoring/runtime paths, not scientific configurations.
+The local node_modules symlink points to the bundled runtime packages.
+
+Use a new filename when rebuilding because finalization refuses overwrites:
+  PROGRESS_DECK_STEM=professor_model_progress_8_slides_newrevision \
+    "$RUNTIME_NODE" reports/professor_model/step8b_progress/build_slides.mjs
+
+The builder saves native editable PPTX objects, eight rendered previews,
+a contact sheet, and an appearance-matched PDF. It runs neither experiments
+nor model fitting. export_matching_pdf.py creates the eight PDF pages from
+the verified final-deck PNGs at 144 dpi. That PDF is image-backed and read-only.
+
+Why this PDF route:
+  Direct artifact PDF export lacks an internal standard-font module in this
+  runtime. Bundled LibreOffice substituted fonts and moved native chart labels.
+  Neither dependency installation nor scientific changes were required.
+  The delivered PDF preserves the reviewed PPTX appearance instead.
+
+Evidence:
+  evidence_manifest.json maps slide claims to sources and computations.
+  verified_evidence.json preserves unrounded values and actual preview rows.
+  assets/ contains the three chart PNG/SVG pairs and the five-row preview.
+  rendering_metadata.json records native object types and the PDF export route.
+  delivery_validation.json records counts, preservation, and final output hashes.
+
+No numerical source discrepancy was found. Historical notes differ in stage:
+  Step 8A's heading precedes the complete Step 8B study.
+  Step 1's annual-rate suggestion precedes the implemented per-period contract.
+  The slides use the current validated artifacts and implemented accounting.
+
+No scientific files, configurations, or pre-existing results were changed.
+The latest full test counts are documented results, not a fresh test run for
+this presentation: 624 passed, 4 unrelated V2 failures, 32 warnings.

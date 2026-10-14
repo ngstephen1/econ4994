@@ -1,0 +1,85 @@
+{
+  "pptx_slides": 8,
+  "pdf_pages": 8,
+  "slide_size": "16:9, 1280\u00d7720 authoring pixels",
+  "native_objects": [
+    {
+      "slide": 1,
+      "editable_text_shapes": 12,
+      "native_tables": 0,
+      "connectors": 0
+    },
+    {
+      "slide": 2,
+      "editable_text_shapes": 15,
+      "native_tables": 0,
+      "connectors": 9
+    },
+    {
+      "slide": 3,
+      "editable_text_shapes": 12,
+      "native_tables": 1,
+      "connectors": 0
+    },
+    {
+      "slide": 4,
+      "editable_text_shapes": 15,
+      "native_tables": 0,
+      "connectors": 0
+    },
+    {
+      "slide": 5,
+      "editable_text_shapes": 18,
+      "native_tables": 1,
+      "connectors": 4
+    },
+    {
+      "slide": 6,
+      "editable_text_shapes": 9,
+      "native_tables": 0,
+      "connectors": 0
+    },
+    {
+      "slide": 7,
+      "editable_text_shapes": 17,
+      "native_tables": 0,
+      "connectors": 4
+    },
+    {
+      "slide": 8,
+      "editable_text_shapes": 22,
+      "native_tables": 0,
+      "connectors": 0
+    }
+  ],
+  "native_chart_count": 1,
+  "embedded_chart_workbook": true,
+  "speaker_note_pages": 8,
+  "all_slides_visually_reviewed": true,
+  "PDF_embedded_pixels_match_preview_slides": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "outliers_visible": [
+    8,
+    92
+  ],
+  "preserved_scientific_files": 953,
+  "changed_scientific_files": [],
+  "no_experiments_or_fits_run": true,
+  "fresh_test_suite_run": false,
+  "no_commit_or_push": true,
+  "PDF_export": "144-dpi reviewed slide renders, image-backed read-only companion",
+  "output_hashes": {
+    "professor_model_progress_8_slides.pptx": "bb0f7545f767d63e7128f7d7d1d9e1f332438e3217354b88aa74402fc2990996",
+    "professor_model_progress_8_slides.pdf": "f7d485ae4983ff825f44fc86708f294a78581ece9c4c04fe590bb97b5bfec4a1",
+    "contact_sheet.png": "1cce04059aab787a3a22de2286d5b74682595e3d137696475ef444724130ac55"
+  },
+  "private_finalization_receipt": "/Users/macbook/Hack/econ4994/reports/professor_model/.step8b_progress_build/finalization_professor_model_progress_8_slides_v5.validation.json"
+}

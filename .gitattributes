@@ -1,0 +1,7 @@
+# Presentation/PDF artifacts must not be treated as text or newline-normalized.
+*.pdf binary
+*.pptx binary
+
+# Preserve generated Matplotlib SVG bytes and their evidence checksums.
+# Path-command continuation spaces are exporter formatting, not prose errors.
+reports/professor_model/step8b_progress/assets/*.svg -whitespace

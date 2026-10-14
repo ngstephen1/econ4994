@@ -1,5 +1,10 @@
 # Synthetic Dataset Inventory
 
+**Version 1 approval-framework snapshot.** This document does not inventory
+the later V2 or professor-model datasets. For the current professor data,
+see the [data guide](professor_model_data_guide.md); for all research families,
+see the [documentation index](README.md). Historical tables are retained.
+
 ## Generated files
 
 | Scenario | Parquet file | Rows | Columns | Approx. in-memory size | Unique IDs |

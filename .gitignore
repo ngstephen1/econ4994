@@ -60,3 +60,13 @@ results/recovery/**
 *.joblib
 *.pkl
 *.pickle
+
+# Local presentation/runtime build products (curated final reports stay tracked)
+node_modules
+reports/**/_build/
+reports/**/.step8b_progress_build/
+reports/**/.chart-data-*/
+reports/**/lo_profile*/
+
+# Large CSV-sharing archives stay local; preserve instructions and generators
+reports/professor_model/drive_upload/*.zip

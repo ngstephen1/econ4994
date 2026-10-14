@@ -1,5 +1,10 @@
 # Synthetic Dataset Summary Statistics
 
+**Version 1 approval-framework snapshot.** This document does not inventory
+the later V2 or professor-model datasets. For the current professor data,
+see the [data guide](professor_model_data_guide.md); for all research families,
+see the [documentation index](README.md). Historical tables are retained.
+
 All statistics on this page were calculated from the four persisted
 100,000-row, seed-4994, moderate-effect datasets. Monetary values are nominal
 synthetic U.S. dollars. DTI, LTV, rates, shares, and probabilities are stored as

@@ -1,5 +1,10 @@
 # Version 2 Economic Lending Specification
 
+Preserved V2 research family. This is not the later
+[professor imperfect-information model](professor_whiteboard_model.md).
+See [current status](PROJECT_STATUS.md) for completed work and open validation
+issues; early phase-specific assumptions below remain labeled as such.
+
 ## Purpose
 
 Version 2 starts a separate economic lending model while preserving the
@@ -89,7 +94,8 @@ The logical tables are:
 
 Prompt 10B persists `applicants`, `loan_options`, `simulation_truth`, and
 `loan_outcomes`. Prompt 11 adds evaluation-cohort `policy_assessments`. Payment
-schedules remain lazily generated, and lending decisions remain deferred.
+schedules remain lazily generated. Lending decisions were deferred at Prompt 11
+and subsequently implemented in the Prompt 14 population-scale portfolio study.
 Schema contracts are implemented in `src/fair_lending/economic_lending/schema.py`.
 
 ## Traditional Lender Information Set
@@ -147,6 +153,22 @@ recomputed from the distorted probability before the complete portfolio is
 re-optimized. A separate evaluator-only true-risk reference isolates the pure
 mechanism from ordinary estimation error. Design, matched gap changes,
 spillovers, and economic costs are in `docs/direct_belief_discrimination.md`.
+
+## Systemic Opportunity and Repeated-Seed Checkpoint
+
+Prompt 16 introduces an explicit upstream opportunity process with matched
+counterfactual populations. Income, assets, and employment change through that
+process; both repayment-risk functions remain group-blind. The deterministic
+study and its financial pathways are documented in
+[systemic opportunity](systemic_opportunity_discrimination.md).
+
+The corrected repeated-seed checkpoint has five validated replications and
+360 portfolios. Its full 50-replication target remains incomplete, and legacy
+successes are provisional and excluded. The existing revision-dependent
+checkpoint lookup tests need a separate repair. See the
+[recovery audit](systemic_monte_carlo_recovery.md) and
+[current status](PROJECT_STATUS.md); do not confuse this study with the
+professor model's completed 200-draw noise-only experiment.
 
 ## Applicant Characteristics
 
@@ -277,9 +299,11 @@ subject to  sum_i x_i * requested_principal_i <= K
             x_i in {0, 1}
 ```
 
-For now, the implementation enumerates all subsets. This is transparent for
-small development fixtures and is verified against exhaustive enumeration in
-tests. A later large-scale prompt can replace it with a scalable optimizer.
+The tiny-fixture implementation in `allocation.py` enumerates all subsets and
+is verified against exhaustive enumeration in tests. Population-scale allocation
+was added separately in `portfolio.py` using SciPy/HiGHS binary MILP; see the
+[portfolio benchmark](portfolio_allocation_benchmark.md). Neither implementation
+is the later professor model's restricted common-cutoff search.
 
 ## Tiny Hand-Checkable Fixture
 
