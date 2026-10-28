@@ -1,0 +1,24 @@
+# Step 9A replays saved fits only. No training, generation, or lending search.
+schema_version: professor-revised-scenarios-v1
+population_rows: 100000
+training_rows: 80000
+evaluation_rows: 20000
+preview_applicants_per_group: 8
+direct_adjustment_per_B: -0.1
+adjustment_scale: additive_raw_probability_before_clipping
+bounding: clip_0_1_separate_column
+budget_source: results/metrics/professor_model/lending_selection.json
+exact_saved_budget_USD: 1826087220.7466326
+scenarios:
+  - scenario_id: professor_no_direct_group_aware
+    base_model_id: professor_bank_ols_v1
+    manual_adjustment: false
+    role: professor_branch
+  - scenario_id: professor_direct_minus_0p1_B
+    base_model_id: professor_bank_ols_group_blind_v1
+    manual_adjustment: true
+    role: professor_branch
+  - scenario_id: group_blind_no_adjustment_reference
+    base_model_id: professor_bank_ols_group_blind_v1
+    manual_adjustment: false
+    role: analytical_control

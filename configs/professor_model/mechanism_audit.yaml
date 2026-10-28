@@ -1,0 +1,16 @@
+# Predeclared before any Step 9C floor calculation or outcome comparison.
+schema_version: professor-mechanism-audit-v1
+evaluation_rows: 20000
+expected_capital_USD: 1826087220.7466326
+source_step9b_config: configs/professor_model/revised_lending.yaml
+direct_adjustment_per_B: -0.1
+positive_floor:
+  source: frozen_blind_control_strictly_positive_bounded_evaluation_scores
+  quantile: 0.01
+  method: linear
+  replace: exact_zeros_of_frozen_direct_bounded_scores_only
+  outcome_tuning: false
+diagnostic_C_upper_bound: report_above_one_without_upper_clipping_never_lend
+policy_variants: [A_frozen_direct, D_positive_floor_sensitivity, E_frozen_blind_control]
+diagnostic_variants: [B_unclipped_direct_diagnostic, C_zero_floor_diagnostic]
+policy_rule: unchanged_common_cutoff_exact_ties_and_capital
