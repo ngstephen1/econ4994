@@ -1,0 +1,17 @@
+schema_version: professor-revised-lending-v1
+evaluation_rows: 20000
+scenario_metadata: data/processed/professor_model/revised_scenarios/scenario_risk_metadata.json
+budget_source: results/metrics/professor_model/lending_selection.json
+expected_capital_USD: 1826087220.7466326
+scenarios:
+  - professor_no_direct_group_aware
+  - professor_direct_minus_0p1_B
+  - group_blind_no_adjustment_reference
+policy:
+  score: estimated_PD_bounded
+  comparison: less_than_or_equal
+  tied_scores: indivisible_exact_blocks
+  objective: existing_bank_expected_profit
+  tie_break: lowest_cutoff_reject_all_first
+  summation: existing_exact_binary_float_prefixes
+  independent_verification: existing_Fraction_enumeration
