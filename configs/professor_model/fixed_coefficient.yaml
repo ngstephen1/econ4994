@@ -1,0 +1,17 @@
+schema_version: professor-fixed-coefficient-v1
+population_rows: 100000
+training_rows: 80000
+evaluation_rows: 20000
+saved_noise_replications: 200
+intervention: subtract_saved_aware_B_contribution_before_clipping
+raw_replay_absolute_tolerance: 1.0e-15
+bounding: clip_0_1_separate_column
+positive_floor: null
+noise_reconstruction: false
+canonical_PN_diagnostics: saved_targets_after_freeze
+noise_PN_diagnostics: unavailable_no_noise_replay
+budget_source: results/metrics/professor_model/lending_selection.json
+expected_capital_USD: 1826087220.7466326
+policy_rule: exact_common_cutoff_indivisible_ties_reject_all
+original_reference_policies_reoptimized: false
+execution: sequential
