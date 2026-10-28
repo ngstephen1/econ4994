@@ -1,0 +1,19 @@
+schema_version: professor-raw-ordering-v1
+study: selected_mechanism_diagnostics_not_random_uncertainty_sample
+cases: [canonical, noise_008, noise_064, noise_089, noise_092, noise_154]
+source_experiment: cd7f3ee268cfc4d04ab906f0dbb6caab0de730aa21fdd96743c7eae815efebc7
+source_policies: [frozen_aware, aware_B_zero, frozen_blind]
+ordering_score: frozen_raw_score
+accounting_PD: unchanged_clip_raw_0_1
+capital_USD: 1826087220.7466326
+full_requests: true
+exact_raw_ties: indivisible
+reject_all: separate_action
+objective: unchanged_perceived_expected_profit
+objective_tie_rule: reject_all_first_then_lowest_raw_cutoff
+independent_audit: Fraction_every_raw_endpoint
+refit: false
+new_noise: false
+baseline_reoptimization: false
+persist_applicant_rows: canonical_new_policies_only
+full_200_draw_extension: false
