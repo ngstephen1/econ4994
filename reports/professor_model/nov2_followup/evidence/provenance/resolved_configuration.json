@@ -1,0 +1,66 @@
+{
+  "budget": 1826087220.7466326,
+  "credit_epsilon_coefficient": 0.4,
+  "direct_penalty": 0.01,
+  "epsilon_shift": 1.0,
+  "evaluation_rows": 20000,
+  "inner_split": {
+    "bit_generator": "PCG64",
+    "fit_rows": 64000,
+    "master_seed": 4994,
+    "spawn_key": [
+      1102,
+      0
+    ],
+    "validation_rows": 16000
+  },
+  "ml": {
+    "early_stopping": false,
+    "exact_tie_rule": "fewer_leaves_then_fewer_iterations",
+    "l2_regularization": 10.0,
+    "learning_rate": 0.05,
+    "loss": "squared_error",
+    "max_iter": [
+      25,
+      75
+    ],
+    "max_leaf_nodes": [
+      3,
+      7
+    ],
+    "min_samples_leaf": 1000,
+    "random_state": 4994,
+    "selection": "validation_PN_MSE"
+  },
+  "policy": {
+    "exact_ties": "indivisible",
+    "full_requests": true,
+    "objective": "perceived_expected_profit",
+    "optimality_check": "independent_Fraction_enumeration",
+    "ordering": "bounded_PD",
+    "probabilities": "unchanged_clip_raw_0_1",
+    "reject_all": "separate_action"
+  },
+  "population_rows": 100000,
+  "reporting": {
+    "additional_profit": "true_profit_per_eligible_group_applicant",
+    "noise_realizations": 1,
+    "primary_profit": "total_true_expected_profit_from_funded_loans_by_group"
+  },
+  "scenario_features": {
+    "scenario_1_no_systemic": [
+      "Y",
+      "D",
+      "C"
+    ],
+    "scenario_2_systemic": [
+      "Y",
+      "D",
+      "C",
+      "B"
+    ]
+  },
+  "schema_version": "professor-nov2-followup-v1",
+  "signal_scale": 0.8,
+  "training_rows": 80000
+}

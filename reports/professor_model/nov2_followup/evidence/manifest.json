@@ -1,0 +1,111 @@
+{
+  "schema_version": "professor-nov2-publication-snapshot-v1",
+  "purpose": "Compact immutable copies for GitHub inspection; no scientific computation",
+  "source_run_manifest": "results/metrics/professor_model/nov2_followup/run_manifest.json",
+  "source_run_manifest_sha256": "e1b8146f6082a89251bf64afa51c9b83f50eabe7c0ae1f4e6a1fdff20ddd574f",
+  "source_run_status": "complete_two_scenario_single_realization",
+  "source_run_completed_at_utc": "2026-11-02T21:25:10.356180+00:00",
+  "source_run_git_revision": "4db547fe913dec1f78e76e6da345c51567b06e0a",
+  "source_run_dirty": true,
+  "source_configuration_fingerprint": "74c483b7506e06ae0cfbdfc29a0f398ab9a7b69d6dd840c47abe4d8f548647fd",
+  "replication_scope": "One original noise realization; two matched worlds on the same 100,000 applicant IDs, with 80,000 training and 20,000 evaluation applicants",
+  "excluded": "Full generated datasets, fitted models, cutoff candidate table and private build files remain local",
+  "artifacts": [
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/tables/group_results.csv",
+      "original_path": "results/tables/professor_model/nov2_followup/group_results.csv",
+      "sha256": "17ad62db3dd24f4a2f7c4086e73c1829b5af5aaeff868ae52dc3a4e105c322b7",
+      "bytes": 2769
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/tables/portfolio_results.csv",
+      "original_path": "results/tables/professor_model/nov2_followup/portfolio_results.csv",
+      "sha256": "4d6d3a00d4530cd424904c4f3a7e733f5b1aa8357b7991b668fd24157687aa14",
+      "bytes": 2025
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/tables/penalty_comparisons.csv",
+      "original_path": "results/tables/professor_model/nov2_followup/penalty_comparisons.csv",
+      "sha256": "81866065a93dcb2eca3ced679a89dc477f1c73ef0605a88653fd91ee0de95212",
+      "bytes": 995
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/tables/systemic_risk_audit.csv",
+      "original_path": "results/tables/professor_model/nov2_followup/systemic_risk_audit.csv",
+      "sha256": "c517f89cef371031909461115cf8ec73f5a8156479a6de4e2483f22fe38a3860",
+      "bytes": 524
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/tables/ml_validation.csv",
+      "original_path": "results/tables/professor_model/nov2_followup/ml_validation.csv",
+      "sha256": "a9d80bbc31c9ec64dc7f5948d455108ffcc64c5439afe2e5f3870959eb7def44",
+      "bytes": 603
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/tables/risk_diagnostics.csv",
+      "original_path": "results/tables/professor_model/nov2_followup/risk_diagnostics.csv",
+      "sha256": "c39ba17c16f2af186b17b9868bb58d168d77191a18513d2323954810db6a5aaf",
+      "bytes": 3901
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/figures/scenario_1_no_systemic_approval_rates.pdf",
+      "original_path": "results/figures/professor_model/nov2_followup/scenario_1_no_systemic_approval_rates.pdf",
+      "sha256": "90562bbcc4ccbb05628194b932901771b6f40503bb5a918ce910005d9c2eb75c",
+      "bytes": 25405
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/figures/scenario_1_no_systemic_approval_rates.png",
+      "original_path": "results/figures/professor_model/nov2_followup/scenario_1_no_systemic_approval_rates.png",
+      "sha256": "e5c1dc2b31822f2c369ff27d185babf55346824c470415f893a745ec331d2cea",
+      "bytes": 72578
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/figures/scenario_1_no_systemic_true_profit.pdf",
+      "original_path": "results/figures/professor_model/nov2_followup/scenario_1_no_systemic_true_profit.pdf",
+      "sha256": "cf969f3389d9fd31cbc129df7f1dc27628dcf568fe926ff6866917e2c3da4750",
+      "bytes": 26131
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/figures/scenario_1_no_systemic_true_profit.png",
+      "original_path": "results/figures/professor_model/nov2_followup/scenario_1_no_systemic_true_profit.png",
+      "sha256": "7fc3e613fbe5a29b8572ad965f51f01bc6c5a4a103d4f9738dd81d97211807a8",
+      "bytes": 85773
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/figures/scenario_2_systemic_approval_rates.pdf",
+      "original_path": "results/figures/professor_model/nov2_followup/scenario_2_systemic_approval_rates.pdf",
+      "sha256": "d72a5360063c7ba6984cf057024220a38fd154685762cf9f833bd2312f833f3f",
+      "bytes": 25291
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/figures/scenario_2_systemic_approval_rates.png",
+      "original_path": "results/figures/professor_model/nov2_followup/scenario_2_systemic_approval_rates.png",
+      "sha256": "7ff9ee5cb05d3f6a4e88118ebcdc53f96f623c6de6570eb68a2dfcbe89104df9",
+      "bytes": 73480
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/figures/scenario_2_systemic_true_profit.pdf",
+      "original_path": "results/figures/professor_model/nov2_followup/scenario_2_systemic_true_profit.pdf",
+      "sha256": "75662b6dfd30edacd5fcda97b60812d5676cea54b58aed0ede9b94a41f0645f0",
+      "bytes": 26284
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/figures/scenario_2_systemic_true_profit.png",
+      "original_path": "results/figures/professor_model/nov2_followup/scenario_2_systemic_true_profit.png",
+      "sha256": "4f822d22e44f1fe938a33cc1021926a38947d6fe58090621084f8377df8791b7",
+      "bytes": 85426
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/provenance/resolved_configuration.json",
+      "original_path": "results/metrics/professor_model/nov2_followup/resolved_configuration.json",
+      "sha256": "0c795d0e8e064bd667e7eef88db3087bcf231baeea095a5a7abaad3ba3593278",
+      "bytes": 1506
+    },
+    {
+      "published_path": "reports/professor_model/nov2_followup/evidence/provenance/validation.json",
+      "original_path": "results/metrics/professor_model/nov2_followup/validation.json",
+      "sha256": "687dd51fd61d8e4272993467e279a9a45351345c6a17983d6a2589f949cbee4b",
+      "bytes": 944
+    }
+  ]
+}

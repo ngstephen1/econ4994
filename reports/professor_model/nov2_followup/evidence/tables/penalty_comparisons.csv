@@ -1,0 +1,7 @@
+scenario_id,scope,comparison,n_applicants,lost_approvals,gained_approvals,net_approval_change,true_profit_lost_USD,true_profit_gained_USD,true_profit_change_USD,approval_rate_change_pp
+scenario_1_no_systemic,overall,ols_penalty_minus_ols_control,20000,580,1051,471,373249290.07230663,369428173.0374469,-3821117.034859717,2.355
+scenario_1_no_systemic,B=0,ols_penalty_minus_ols_control,16970,0,1051,1051,0.0,369428173.0374469,369428173.0374469,6.193282262816735
+scenario_1_no_systemic,B=1,ols_penalty_minus_ols_control,3030,580,0,-580,373249290.07230663,0.0,-373249290.07230663,-19.141914191419144
+scenario_2_systemic,overall,ols_penalty_minus_ols_control,20000,217,586,369,201686195.7547909,198507033.60992816,-3179162.144862741,1.845
+scenario_2_systemic,B=0,ols_penalty_minus_ols_control,16970,0,586,586,0.0,198507033.60992816,198507033.60992816,3.4531526222746023
+scenario_2_systemic,B=1,ols_penalty_minus_ols_control,3030,217,0,-217,201686195.7547909,0.0,-201686195.7547909,-7.161716171617162

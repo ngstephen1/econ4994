@@ -1,0 +1,33 @@
+{
+  "all_six_exact_cutoffs_verified": true,
+  "allowed_documentation_edits": [
+    "docs/CURRENT_RESEARCH.md",
+    "docs/PROJECT_STATUS.md"
+  ],
+  "bank_freeze_verified": true,
+  "desired_outcome_signs_enforced": false,
+  "group_rows": 12,
+  "new_noise_draws": 0,
+  "portfolio_rows": 6,
+  "prior_files_in_inventory": 1846,
+  "prior_files_verified_unchanged": 1844,
+  "scenario_count": 2,
+  "simulation_checks": {
+    "scenario_1_no_systemic": {
+      "B0_exactly_invariant": true,
+      "IDs_income_D_B_omega_unchanged": true,
+      "baseline_structural_equations_verified": true,
+      "epsilon_shift": 0.0,
+      "saved_eta_reused": true
+    },
+    "scenario_2_systemic": {
+      "B0_exactly_invariant": true,
+      "IDs_income_D_B_omega_unchanged": true,
+      "baseline_structural_equations_verified": true,
+      "epsilon_shift": 1.0,
+      "saved_eta_reused": true
+    }
+  },
+  "single_noise_realization": true,
+  "status": "validated"
+}

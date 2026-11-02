@@ -1,12 +1,38 @@
 # Project Status
 
-Updated **2026-10-28**. Start with the
+Updated **2026-11-02**. Start with the
 [current research guide](CURRENT_RESEARCH.md) for reading order, result files,
-policy definitions and next decisions. This page reflects completed work;
-the documentation refresh did not run experiments or tests. A subsequent
-pre-merge check ran the professor-model tests, as recorded below.
+policy definitions and next decisions. This page records the completed
+November 2 study and its validation. Earlier checkpoints and test results
+below retain their original scope. This publication refresh runs no new
+scientific experiment.
 
 ## Current research: professor's lending model
+
+**November 2 follow-up completed:** the corrected **+0.01B** treatment and
+two-scenario OLS/gradient-boosting comparison now have one matched validated
+run, six policies and twelve group rows. Scenario 2 shifts B=1 epsilon by
++1 SD, updates the credit signal, and includes B in OLS/ML; all earlier
+scientific work is preserved. See the [new study and results](professor_nov2_followup.md).
+
+The penalty funds zero B=1 applicants in both scenarios and reduces true
+portfolio profit versus each control by **$3.821M/$3.179M**. Gradient boosting
+funds more applicants but has lower true profit and **72.4%/87.2%** capital
+utilization because its next indivisible score block exceeds the fixed budget.
+B=1 mean true PD increases modestly, from **0.142285% to 0.144759%**, under
+the unchanged near-saturated true-risk function. No outcome sign or ML win was
+imposed. The fresh professor-model suite passes **584 tests with no warnings**.
+The scientific run added no 200-draw extension, independent population or HMDA
+analysis. Git publication is a separate repository operation.
+
+The [November delivery folder](../reports/professor_model/nov2_followup/README.md)
+contains the editable 14-slide deck, PDF handout, and a compact Git-tracked
+snapshot of six result tables and four plots (PNG and vector PDF). The full
+generated datasets, fitted models, cutoff candidates and build files remain
+local under existing ignore rules. Published copies are checked against the
+completed run's artifact hashes; they do not replace or modify the originals.
+
+### Preserved October checkpoint
 
 **Complete through Step 10B, the post-10B review, and the six-case raw-ordering
 sensitivity.** The original 200-draw noise study and the 200-draw
@@ -76,6 +102,7 @@ extension was not run. All earlier baselines and reports remain preserved.
 | 10B | Canonical plus 200 saved-draw coefficient-removal comparison, with frozen aware/blind references | [Fixed-coefficient comparison](professor_fixed_coefficient_comparison.md) |
 | Post-10B review | Saved-output explanation of profitable prefixes, reject-all tails and blind-refit level shifts; follow-up design only | [Review and next study](professor_post10b_review.md) |
 | Raw-ordering sensitivity | Six selected diagnostic cases, unchanged probability accounting, exact raw prefixes and frozen bounded references | [Results and reproduction](professor_raw_ordering_sensitivity.md) |
+| November 2 follow-up | Corrected +0.01B; two matched risk worlds; same-feature OLS/HistGB within each world; four six-bar figures and updated 14-slide presentation | [Protocol, results and validation](professor_nov2_followup.md) |
 
 ### Design and interpretation
 
@@ -192,7 +219,21 @@ and [eight-slide progress report](../reports/professor_model/step8b_progress/REA
 
 ## Validation status
 
-Latest recorded pre-merge professor-model check:
+Fresh November 2 professor-model check:
+
+- `python3 -m pytest -q tests/test_professor_*.py`: **584 passed, no warnings**,
+  in 25.91 seconds. Fifty new tests cover the November study.
+- Focused new/dependency checks: **234 passed, no warnings**, in 7.88 seconds.
+  New study alone: **50 passed, no warnings**, in 3.55 seconds.
+- Six policy cutoffs and all 76,743 candidates independently verified with
+  rational arithmetic; original Scenario 1 control decisions replay exactly.
+- Reloaded ML models reproduce predictions exactly; independent OLS replay
+  error is below 3.47e-18. Summary-only changes no saved bytes or mtimes.
+- Original 1,846-file inventory is preserved except the explicitly allowed
+  current guide/status edits; private truth/noise and bank artifacts are sealed
+  before evaluator release. Source and supplied PDF remain unchanged.
+
+Historical pre-merge professor-model check:
 
 - `python3 -m pytest -q tests/test_professor_*.py`: **534 passed, no warnings**,
   in 20.82 seconds. This covers the professor-model test family, not the
@@ -234,7 +275,7 @@ is not represented as fully green.
 |---|---|---|
 | V1 approval disparities | Four-world generator; statistical recovery; ML; seven-page Streamlit dashboard; 3,140 sensitivity runs | Capstone synthesis; preserved tag `v1-approval-benchmark` |
 | V2 economic lending | Conditional repayment accounting; calibrated population; traditional/HistGB estimates; nonlinear world; MILP portfolios; direct belief and systemic opportunity mechanisms | Full systemic repeated-seed study remains incomplete |
-| Professor model | Steps 1–10B, evidence review and six selected raw-ordering diagnostics | Professor review of ranking versus accounting PD, stylized economics and noise; any 200-draw raw-ordering extension remains unrun |
+| Professor model | Steps 1–10B, evidence review, six selected raw-ordering diagnostics, and November two-scenario OLS/penalty/ML comparison | Review November figures with professor and settle final scope; any new repeated-noise or raw-ordering extension remains unrun |
 
 ### V2 systemic checkpoint is not the professor noise study
 
@@ -250,17 +291,19 @@ repair; adding more replications does not resolve record identity.
 
 ## Next decisions
 
-1. Review the noise scale, growing-payment contract, per-period interest
-   interpretation, and clipped-zero tie behavior with the professor.
-2. Review the completed six-case raw-ordering diagnostic with the professor.
+1. Review the completed November two-scenario figures and modest systemic risk
+   shift with the professor, including ML's tied scores and unused capital.
+   Decide whether the present result package completes the requested slides.
+2. Review the earlier six-case raw-ordering diagnostic separately.
    Decide whether raw scores may rank requests while bounded PD determines
    cash flows, or whether this remains a policy-class sensitivity only. Do not
    infer Monte Carlo frequencies from selected diagnostic cases or launch the
    200-draw extension automatically. Keep coefficient removal, blind refitting
    and the separate manual −0.1B treatment distinct. More lending or a smaller
    group gap does not by itself establish fairness.
-3. If requested, design separate noise-scale or independent-population
-   robustness experiments; do not silently retune the frozen study.
+3. If requested, predeclare additional noise-scale or independent-population
+   checks. The November comparison uses one matched realization, not 200 new
+   replications. Begin final capstone synthesis once the scope is settled.
 4. Repair V2 checkpoint identity/resume tests separately before any authorized
    extension of its corrected 50-replication study.
 5. Continue deferring HMDA until the synthetic workflow and interpretation

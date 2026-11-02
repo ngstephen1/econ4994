@@ -1,0 +1,42 @@
+# New November 2 study; historical configurations and results remain unchanged.
+schema_version: professor-nov2-followup-v1
+population_rows: 100000
+training_rows: 80000
+evaluation_rows: 20000
+direct_penalty: 0.01
+epsilon_shift: 1.0
+signal_scale: 0.8
+credit_epsilon_coefficient: 0.4
+budget: 1826087220.7466326
+scenario_features:
+  scenario_1_no_systemic: [Y, D, C]
+  scenario_2_systemic: [Y, D, C, B]
+inner_split:
+  fit_rows: 64000
+  validation_rows: 16000
+  master_seed: 4994
+  spawn_key: [1102, 0]
+  bit_generator: PCG64
+ml:
+  loss: squared_error
+  learning_rate: 0.05
+  min_samples_leaf: 1000
+  l2_regularization: 10.0
+  early_stopping: false
+  random_state: 4994
+  max_leaf_nodes: [3, 7]
+  max_iter: [25, 75]
+  selection: validation_PN_MSE
+  exact_tie_rule: fewer_leaves_then_fewer_iterations
+policy:
+  ordering: bounded_PD
+  probabilities: unchanged_clip_raw_0_1
+  full_requests: true
+  exact_ties: indivisible
+  reject_all: separate_action
+  objective: perceived_expected_profit
+  optimality_check: independent_Fraction_enumeration
+reporting:
+  primary_profit: total_true_expected_profit_from_funded_loans_by_group
+  additional_profit: true_profit_per_eligible_group_applicant
+  noise_realizations: 1
