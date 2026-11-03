@@ -1,0 +1,211 @@
+{
+  "attempted_candidates": [
+    0.005,
+    0.0025,
+    0.00125,
+    0.000625,
+    0.0003125
+  ],
+  "delivery_files": {
+    "reports/professor_model/five_percent_penalty/delivery/professor_five_percent_penalty.pdf": {
+      "bytes": 3185493,
+      "sha256": "09dbf6d4dff0c834cd099f83e781d6ce1b076a10d899cb4f89f940be594dde7c"
+    },
+    "reports/professor_model/five_percent_penalty/delivery/professor_five_percent_penalty.pptx": {
+      "bytes": 1027017,
+      "sha256": "49bae1c32a309dcd258585b8724718631fb3b4b7f30ebe022d6191a0c7eb105d"
+    }
+  },
+  "files": [
+    {
+      "bytes": 3484,
+      "copy": "tables/group_results.csv",
+      "sha256": "0c797699f906f49ddbc74eb75791b27de640c7d167908bea61d34e39123b1def",
+      "source": "results/tables/professor_model/five_percent_penalty/group_results.csv"
+    },
+    {
+      "bytes": 2291,
+      "copy": "tables/portfolio_results.csv",
+      "sha256": "03f75fd93a3090fa42e6fdde029402c8bcbeecee1dd01e4e8eb6be5d05fd4b16",
+      "source": "results/tables/professor_model/five_percent_penalty/portfolio_results.csv"
+    },
+    {
+      "bytes": 4907,
+      "copy": "tables/risk_diagnostics.csv",
+      "sha256": "84077b982840a3ec9d6099532a3179ba2751b57feadc027c27e5ae22b14a3afb",
+      "source": "results/tables/professor_model/five_percent_penalty/risk_diagnostics.csv"
+    },
+    {
+      "bytes": 1276,
+      "copy": "tables/penalty_comparisons.csv",
+      "sha256": "39ed19c6b2db402efbc524b673319b85572c9c9e1e962235c556be88414d5b3c",
+      "source": "results/tables/professor_model/five_percent_penalty/penalty_comparisons.csv"
+    },
+    {
+      "bytes": 2522,
+      "copy": "tables/penalty_search.csv",
+      "sha256": "55777303e2d01bd9e6e7bd80f4dce43b9579837c8016899651790501ee36df4d",
+      "source": "results/tables/professor_model/five_percent_penalty/penalty_search.csv"
+    },
+    {
+      "bytes": 683,
+      "copy": "tables/split_audit.csv",
+      "sha256": "9d45a8442fa09a1673ac776cd2db2291e8c040dd096b904b106e59bf2ae55773",
+      "source": "results/tables/professor_model/five_percent_penalty/split_audit.csv"
+    },
+    {
+      "bytes": 603,
+      "copy": "tables/ml_validation.csv",
+      "sha256": "a9d80bbc31c9ec64dc7f5948d455108ffcc64c5439afe2e5f3870959eb7def44",
+      "source": "results/tables/professor_model/five_percent_penalty/ml_validation.csv"
+    },
+    {
+      "bytes": 524,
+      "copy": "tables/systemic_risk_audit.csv",
+      "sha256": "c517f89cef371031909461115cf8ec73f5a8156479a6de4e2483f22fe38a3860",
+      "source": "results/tables/professor_model/five_percent_penalty/systemic_risk_audit.csv"
+    },
+    {
+      "bytes": 1539,
+      "copy": "tables/method_comparisons.csv",
+      "sha256": "67d077a5649efe29b95b7a3f6f17af66f0f0bf2c45d15d2528315c09cdf19878",
+      "source": "results/tables/professor_model/five_percent_penalty/method_comparisons.csv"
+    },
+    {
+      "bytes": 1222,
+      "copy": "tables/previous_penalty_comparisons.csv",
+      "sha256": "95176cd6ee7e4a1804f70c748cdb14eb850d4f653404bd833e0528a1aa4712dd",
+      "source": "results/tables/professor_model/five_percent_penalty/previous_penalty_comparisons.csv"
+    },
+    {
+      "bytes": 106442,
+      "copy": "figures/scenario_1_no_systemic_approval_rates.png",
+      "sha256": "0a3269aca9ed3bea488256a467a8d9762ff40d42cbbb893bd8be19c51a0fbaa5",
+      "source": "results/figures/professor_model/five_percent_penalty/scenario_1_no_systemic_approval_rates.png"
+    },
+    {
+      "bytes": 26833,
+      "copy": "figures/scenario_1_no_systemic_approval_rates.pdf",
+      "sha256": "0c53def5b4e378200e0b38a76795ca601331c54c073c8d5a27ad9fe1e5e873ed",
+      "source": "results/figures/professor_model/five_percent_penalty/scenario_1_no_systemic_approval_rates.pdf"
+    },
+    {
+      "bytes": 102093,
+      "copy": "figures/scenario_1_no_systemic_true_profit.png",
+      "sha256": "bb444857b6522bdf1d50ef731b0cb5c547f0ca2ea33e511384516dea055ad801",
+      "source": "results/figures/professor_model/five_percent_penalty/scenario_1_no_systemic_true_profit.png"
+    },
+    {
+      "bytes": 27341,
+      "copy": "figures/scenario_1_no_systemic_true_profit.pdf",
+      "sha256": "51b54b3e7cc3911201bd9b15774bfa6d9797ce4082a27c45eff82c79cba93cbe",
+      "source": "results/figures/professor_model/five_percent_penalty/scenario_1_no_systemic_true_profit.pdf"
+    },
+    {
+      "bytes": 105281,
+      "copy": "figures/scenario_2_systemic_approval_rates.png",
+      "sha256": "2c826a59aadf48d6114c3a750d25e3e54371bfd4aa73fc0f054a786c55c71770",
+      "source": "results/figures/professor_model/five_percent_penalty/scenario_2_systemic_approval_rates.png"
+    },
+    {
+      "bytes": 26524,
+      "copy": "figures/scenario_2_systemic_approval_rates.pdf",
+      "sha256": "a628241ed35fdbce60d5686fbfb91f5256da0c1e04ccdcee9d71c04bbd180766",
+      "source": "results/figures/professor_model/five_percent_penalty/scenario_2_systemic_approval_rates.pdf"
+    },
+    {
+      "bytes": 101415,
+      "copy": "figures/scenario_2_systemic_true_profit.png",
+      "sha256": "c303aa47fef8d38bd5d6bef775e259869c5612052292c15b909fd026b2841596",
+      "source": "results/figures/professor_model/five_percent_penalty/scenario_2_systemic_true_profit.png"
+    },
+    {
+      "bytes": 27466,
+      "copy": "figures/scenario_2_systemic_true_profit.pdf",
+      "sha256": "3947a1436477d78d56d838d7537d11694870f58e6e23415adf6656d1f8026493",
+      "source": "results/figures/professor_model/five_percent_penalty/scenario_2_systemic_true_profit.pdf"
+    },
+    {
+      "bytes": 851,
+      "copy": "provenance/resolved_configuration.json",
+      "sha256": "23c2ad78e4679bf49fda69736c91c174332017b98f70b1f3d425431776c066d7",
+      "source": "results/metrics/professor_model/five_percent_penalty/resolved_configuration.json"
+    },
+    {
+      "bytes": 478,
+      "copy": "provenance/selection.json",
+      "sha256": "cc54cc7486c41984a3bc33815f5e3b2320b9a940fec7023b62b25f2f8ed9f7fd",
+      "source": "results/metrics/professor_model/five_percent_penalty/selection.json"
+    },
+    {
+      "bytes": 618,
+      "copy": "provenance/validation.json",
+      "sha256": "1c5f39fb0eaaf55a63872e8debcbe65865ff14e7a12d49cfcd19cde6fe7ea7e6",
+      "source": "results/metrics/professor_model/five_percent_penalty/validation.json"
+    },
+    {
+      "bytes": 10610,
+      "copy": "provenance/model_reuse.json",
+      "sha256": "a277e2de528aa2e1162991bef0f7d92a15c0e52a7a832c5a8e3cfad296ca8904",
+      "source": "results/metrics/professor_model/five_percent_penalty/model_reuse.json"
+    },
+    {
+      "bytes": 45736,
+      "copy": "provenance/run_manifest.json",
+      "sha256": "fb89615c558e0eab61318a2b0ce65844bcfe70ddc0480a6b792902f7ddf11b83",
+      "source": "results/metrics/professor_model/five_percent_penalty/run_manifest.json"
+    },
+    {
+      "bytes": 3137,
+      "copy": "provenance/delivery_validation.json",
+      "sha256": "e061659c70a8f546ac4330e3ef4881e6f33c9f886b15b940a5d94c0a1e05eb77",
+      "source": "reports/professor_model/five_percent_penalty/_build/delivery_validation.json"
+    },
+    {
+      "bytes": 9325,
+      "copy": "provenance/professor_five_percent_penalty_01.validation.json",
+      "sha256": "eeb79d590ef8812f0da7d5d3d63ea2db70284353041d2dfef431064423b20f05",
+      "source": "reports/professor_model/five_percent_penalty/_build/professor_five_percent_penalty_01.validation.json"
+    },
+    {
+      "bytes": 43007,
+      "copy": "provenance/professor_five_percent_penalty_01.evidence.json",
+      "sha256": "d502377c75de85165445b53b8c91607fdc314e648e4d855678db52904be59f76",
+      "source": "reports/professor_model/five_percent_penalty/_build/professor_five_percent_penalty_01.evidence.json"
+    },
+    {
+      "bytes": 16993,
+      "copy": "provenance/professor_five_percent_penalty_01.speaker_notes.json",
+      "sha256": "2f3b119bbae193985b2b5baab386d876c3c8aec35ec4d24baa977c822ee6fdf6",
+      "source": "reports/professor_model/five_percent_penalty/_build/professor_five_percent_penalty_01.speaker_notes.json"
+    },
+    {
+      "bytes": 757,
+      "copy": "provenance/independent_saved_audit.json",
+      "sha256": "37cc76490af37a50f319d2181616724766acaffa7945e66d50bd92720e101706",
+      "source": "tmp/five_percent_penalty/independent_saved_audit.json"
+    }
+  ],
+  "new_fits": 0,
+  "new_noise_draws": 0,
+  "new_populations": 0,
+  "prediction_applicants": 20000,
+  "profit_cohort": "prediction_only",
+  "scenarios": 2,
+  "scope": "Compact publication snapshot; verified copies, not another experiment",
+  "selected_delta": 0.0003125,
+  "selection_disclosure": "Illustrative approval calibration on prediction cohort, not an untouched confirmatory evaluation",
+  "selection_rule": "first descending candidate with 20*approved_B >= n_B and approved_B*n_A < approved_A*n_B in both scenarios",
+  "source_manifest": "results/metrics/professor_model/five_percent_penalty/run_manifest.json",
+  "source_manifest_sha256": "fb89615c558e0eab61318a2b0ce65844bcfe70ddc0480a6b792902f7ddf11b83",
+  "status": "complete_five_percent_penalty_prediction_only",
+  "tests": {
+    "focused_and_dependencies_passed": 269,
+    "historical_unresolved_V2_lookup_failures": 4,
+    "new_passed": 73,
+    "professor_model_passed": 720,
+    "unrelated_full_suite_rerun": false,
+    "warnings": 0
+  },
+  "training_applicants": 80000
+}

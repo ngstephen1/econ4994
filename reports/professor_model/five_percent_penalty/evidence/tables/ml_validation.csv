@@ -1,0 +1,9 @@
+scenario_id,max_leaf_nodes,max_iter,validation_PN_MSE,n_fit,n_validation,selected
+scenario_1_no_systemic,3,25,0.010148747708965573,64000,16000,True
+scenario_1_no_systemic,3,75,0.010151365316253293,64000,16000,False
+scenario_1_no_systemic,7,25,0.010152442906554796,64000,16000,False
+scenario_1_no_systemic,7,75,0.01015775892462287,64000,16000,False
+scenario_2_systemic,3,25,0.010148872674717983,64000,16000,True
+scenario_2_systemic,3,75,0.010151483394546247,64000,16000,False
+scenario_2_systemic,7,25,0.010153015039726508,64000,16000,False
+scenario_2_systemic,7,75,0.010156696740685062,64000,16000,False

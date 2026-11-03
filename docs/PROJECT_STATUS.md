@@ -1,13 +1,63 @@
 # Project Status
 
-Updated **2026-11-02**. Start with the
+Updated **2026-11-03**. Start with the
 [current research guide](CURRENT_RESEARCH.md) for reading order, result files,
 policy definitions and next decisions. This page records the completed
-November 2 study and its validation. Earlier checkpoints and test results
-below retain their original scope. This publication refresh runs no new
-scientific experiment.
+minimum-5% successor and its validation. Earlier checkpoints and test results
+below retain their original scope.
+
+The current publication package contains both smaller-penalty successor
+implementations, frozen configurations, tests, reports, editable slide decks,
+PDFs and compact hash-verified CSV/figure snapshots. Full generated applicant
+data, model binaries and build intermediates remain local and ignored. Use the
+current research guide for the latest links; older checksum-bound documentation
+remains preserved. Repository publication does not rerun scientific experiments.
 
 ## Current research: professor's lending model
+
+**Minimum 5% Group B approval update completed, November 3:** the fifth common
+candidate, **+0.0003125B**, gives **383/3,030 approvals (12.64%)** in Scenario 1
+and **154/3,030 (5.08%)** in Scenario 2, below Group A's **20.33%/22.46%**.
+Four earlier candidates fail the common criterion; the sixth was not tried.
+True expected profit falls versus control by **$23,312.55/$354,515.28**, and
+increases versus the preserved +0.005B policy by **$3.710M/$2.629M**.
+
+The original models, split, four control/ML policies, contracts and capital are
+unchanged. No new fits, noise or populations were generated. The inclusive 5%
+criterion uses bank approval counts, with all final bank policies frozen before truth
+evaluation. The prediction-cohort calibration remains illustrative. The new
+method comparison separates approval parity from fairness and shows ML's
+**28.1%/13.3%** profit reductions alongside unused capital.
+
+Tests: **73 new**, **269 focused/dependency**, **720 professor-model**, all
+passing without warnings. Independent rational enumeration reproduces both
+selected cutoffs. All 2,012 pre-existing files are preserved except the two
+permitted current documentation edits. See the
+[minimum-5% report](professor_five_percent_penalty.md) and
+[new 14-slide delivery](../reports/professor_model/five_percent_penalty/README.md).
+The unrelated full suite and its four known V2 failures were not rerun or changed.
+
+### Preserved +0.005B checkpoint
+
+**Final smaller-penalty update completed, November 3:** +0.005B was the first
+common candidate and satisfies positive minority approval below Group A in
+both scenarios. Group B receives **3/3,030 loans (0.10%)** in Scenario 1 and
+**1/3,030 (0.03%)** in Scenario 2. No further coefficient was tried.
+True expected portfolio profit falls versus control by **$3.733M/$2.983M**.
+All four control/Gradient Boosting policies remain exactly frozen. Training
+uses **80,000 applicants**, and loans/profits use only the **20,000 prediction
+applicants**. No new fitting, ML selection, noise or population was generated.
+
+This is an explicitly approval-calibrated illustrative choice on the prediction
+cohort, not a claim of untouched confirmatory policy evaluation. The updated
+14-slide deck defines Group A and minority Group B and reports tiny positive
+rates with exact counts. New tests: **63 passed**; focused/dependency tests:
+**297 passed**; professor-model suite: **647 passed**; all without warnings.
+See [the final study](professor_small_penalty.md) and
+[new delivery](../reports/professor_model/small_penalty/README.md). No automatic
+commit, push, email or additional scientific extension was performed.
+
+### Preserved November 2 checkpoint
 
 **November 2 follow-up completed:** the corrected **+0.01B** treatment and
 two-scenario OLS/gradient-boosting comparison now have one matched validated
@@ -103,6 +153,8 @@ extension was not run. All earlier baselines and reports remain preserved.
 | Post-10B review | Saved-output explanation of profitable prefixes, reject-all tails and blind-refit level shifts; follow-up design only | [Review and next study](professor_post10b_review.md) |
 | Raw-ordering sensitivity | Six selected diagnostic cases, unchanged probability accounting, exact raw prefixes and frozen bounded references | [Results and reproduction](professor_raw_ordering_sensitivity.md) |
 | November 2 follow-up | Corrected +0.01B; two matched risk worlds; same-feature OLS/HistGB within each world; four six-bar figures and updated 14-slide presentation | [Protocol, results and validation](professor_nov2_followup.md) |
+| Final smaller-penalty update | Common +0.005B gives positive but lower minority approval in both worlds; frozen models; prediction-only profit audit; four plots and new 14-slide presentation | [Final protocol, results and validation](professor_small_penalty.md) |
+| Minimum 5% update | Fifth common candidate +0.0003125B meets the new 5% minimum in both worlds; frozen controls/ML; exact search audit, method comparison and new 14-slide delivery | [Latest protocol, results and validation](professor_five_percent_penalty.md) |
 
 ### Design and interpretation
 
@@ -219,7 +271,37 @@ and [eight-slide progress report](../reports/professor_model/step8b_progress/REA
 
 ## Validation status
 
-Fresh November 2 professor-model check:
+Latest minimum-5% professor-model check, November 3:
+
+- `python3 -m pytest -q tests/test_professor_*.py`: **720 passed, no warnings**,
+  in 25.51 seconds; includes 73 new tests.
+- New/reused dependency check: **269 passed, no warnings**, in 6.30 seconds.
+- Independent saved-file audit reproduces both selected cutoffs with rational
+  arithmetic and confirms frozen control/ML policies and prediction-only profit.
+- The unrelated full suite was not rerun; its four historical V2 lookup failures
+  remain untouched.
+
+Pre-publication verification for the combined successor package repeated the
+professor-model suite: **720 passed, no warnings**, in 31.38 seconds. All **52
+published evidence copies** and **four PPTX/PDF delivery files** match their
+recorded hashes; current documentation links resolve. No scientific experiment
+was rerun for publication.
+
+Preserved earlier November 3 +0.005B check:
+
+- `python3 -m pytest -q tests/test_professor_*.py`: **647 passed, no warnings**,
+  in 21.57 seconds, including 63 new smaller-penalty tests.
+- Focused new/dependency tests: **297 passed, no warnings**, in 7.14 seconds.
+  New test file alone: **63 passed**, no warnings, in 3.59 seconds.
+- One candidate tested in both scenarios; exact positive-but-lower group
+  approval criterion passed in both without evaluating smaller candidates.
+- Independent audits reproduce four frozen control/ML score/decision frames
+  and both prediction-only true-profit files exactly. No new fits occurred.
+- Parent artifacts and all existing scientific files are unchanged. The
+  1,933-file preservation inventory allows only the current guide/status edits.
+- Summary-only replay starts no computations and changes no saved bytes/mtimes.
+
+Historical November 2 professor-model check:
 
 - `python3 -m pytest -q tests/test_professor_*.py`: **584 passed, no warnings**,
   in 25.91 seconds. Fifty new tests cover the November study.
@@ -275,7 +357,7 @@ is not represented as fully green.
 |---|---|---|
 | V1 approval disparities | Four-world generator; statistical recovery; ML; seven-page Streamlit dashboard; 3,140 sensitivity runs | Capstone synthesis; preserved tag `v1-approval-benchmark` |
 | V2 economic lending | Conditional repayment accounting; calibrated population; traditional/HistGB estimates; nonlinear world; MILP portfolios; direct belief and systemic opportunity mechanisms | Full systemic repeated-seed study remains incomplete |
-| Professor model | Steps 1–10B, evidence review, six selected raw-ordering diagnostics, and November two-scenario OLS/penalty/ML comparison | Review November figures with professor and settle final scope; any new repeated-noise or raw-ordering extension remains unrun |
+| Professor model | Steps 1–10B, six raw-ordering diagnostics, November OLS/penalty/ML comparison, preserved +0.005B and new minimum-5% successor with prediction-only profits | Review minimum-5% slides with Sergio and settle final scope; further robustness work remains unrun |
 
 ### V2 systemic checkpoint is not the professor noise study
 
@@ -291,9 +373,11 @@ repair; adding more replications does not resolve record identity.
 
 ## Next decisions
 
-1. Review the completed November two-scenario figures and modest systemic risk
-   shift with the professor, including ML's tied scores and unused capital.
-   Decide whether the present result package completes the requested slides.
+1. Review the minimum-5% figures and explicit training/prediction separation
+   with Sergio. The new common coefficient gives 383 and 154 Group B approvals;
+   report method-specific parity and profit comparisons accurately. Settle
+   whether the package completes the final slides, then proceed with capstone
+   synthesis.
 2. Review the earlier six-case raw-ordering diagnostic separately.
    Decide whether raw scores may rank requests while bounded PD determines
    cash flows, or whether this remains a policy-class sensitivity only. Do not

@@ -1,0 +1,7 @@
+experiment_id,scenario_id,scope,comparison,n_applicants,lost_approvals,gained_approvals,net_approval_change,true_profit_lost_USD,true_profit_gained_USD,true_profit_change_USD,approval_rate_change_pp,penalty_delta
+professor-small-penalty-v1,scenario_1_no_systemic,overall,ols_penalty_minus_ols_control,20000,577,1029,452,365839075.9198913,362105708.7147892,-3733367.205102086,2.26,0.005
+professor-small-penalty-v1,scenario_1_no_systemic,B=0,ols_penalty_minus_ols_control,16970,0,1029,1029,0.0,362105708.7147892,362105708.7147892,6.0636417206835596,0.005
+professor-small-penalty-v1,scenario_1_no_systemic,B=1,ols_penalty_minus_ols_control,3030,577,0,-577,365839075.9198913,0.0,-365839075.9198913,-19.042904290429043,0.005
+professor-small-penalty-v1,scenario_2_systemic,overall,ols_penalty_minus_ols_control,20000,216,578,362,198789395.41844454,195806139.7062728,-2983255.7121717334,1.81,0.005
+professor-small-penalty-v1,scenario_2_systemic,B=0,ols_penalty_minus_ols_control,16970,0,578,578,0.0,195806139.7062728,195806139.7062728,3.4060106069534473,0.005
+professor-small-penalty-v1,scenario_2_systemic,B=1,ols_penalty_minus_ols_control,3030,216,0,-216,198789395.41844454,0.0,-198789395.41844454,-7.128712871287129,0.005

@@ -1,0 +1,188 @@
+{
+  "attempted_candidates": [
+    0.005
+  ],
+  "delivery_files": {
+    "reports/professor_model/small_penalty/delivery/professor_small_penalty.pdf": {
+      "bytes": 3156068,
+      "sha256": "8765cb9ee0a9af2f0b796ea40b84ad0495c322d4e2b6f99e742e01d039431cd9"
+    },
+    "reports/professor_model/small_penalty/delivery/professor_small_penalty.pptx": {
+      "bytes": 1026292,
+      "sha256": "0b2474f7ec1799d70d8427b9b9c27d70e4946f5a73f0bb6e467d4510c40e13d2"
+    }
+  },
+  "excluded_large_local_artifacts": [
+    "applicant-level CSV/Parquet data",
+    "cutoff_candidates.csv",
+    "private build files"
+  ],
+  "files": [
+    {
+      "bytes": 3376,
+      "copy": "tables/group_results.csv",
+      "sha256": "18a387be8f21e99bbe7866601f9c5400af29cb9e3363f92037933e889bba9c4e",
+      "source": "results/tables/professor_model/small_penalty/group_results.csv"
+    },
+    {
+      "bytes": 2236,
+      "copy": "tables/portfolio_results.csv",
+      "sha256": "5453cad8605707ef24bcf6a418af217859d4e5ead2ed22ee465b5bb9bb97624a",
+      "source": "results/tables/professor_model/small_penalty/portfolio_results.csv"
+    },
+    {
+      "bytes": 4696,
+      "copy": "tables/risk_diagnostics.csv",
+      "sha256": "8e5fe1312f2875241896b24d774786d8421ced46b8ba9a5baf4e6954ec1aa11d",
+      "source": "results/tables/professor_model/small_penalty/risk_diagnostics.csv"
+    },
+    {
+      "bytes": 1218,
+      "copy": "tables/penalty_comparisons.csv",
+      "sha256": "18a7f7fd03947bd67f8033a90803ec108be3bfcc4f57526eea75aea9a390e685",
+      "source": "results/tables/professor_model/small_penalty/penalty_comparisons.csv"
+    },
+    {
+      "bytes": 504,
+      "copy": "tables/penalty_search.csv",
+      "sha256": "172d7763d6f4d3ceec01012807aef4f48e30003881524367ab356bd482d737b2",
+      "source": "results/tables/professor_model/small_penalty/penalty_search.csv"
+    },
+    {
+      "bytes": 683,
+      "copy": "tables/split_audit.csv",
+      "sha256": "9d45a8442fa09a1673ac776cd2db2291e8c040dd096b904b106e59bf2ae55773",
+      "source": "results/tables/professor_model/small_penalty/split_audit.csv"
+    },
+    {
+      "bytes": 603,
+      "copy": "tables/ml_validation.csv",
+      "sha256": "a9d80bbc31c9ec64dc7f5948d455108ffcc64c5439afe2e5f3870959eb7def44",
+      "source": "results/tables/professor_model/small_penalty/ml_validation.csv"
+    },
+    {
+      "bytes": 524,
+      "copy": "tables/systemic_risk_audit.csv",
+      "sha256": "c517f89cef371031909461115cf8ec73f5a8156479a6de4e2483f22fe38a3860",
+      "source": "results/tables/professor_model/small_penalty/systemic_risk_audit.csv"
+    },
+    {
+      "bytes": 97491,
+      "copy": "figures/scenario_1_no_systemic_approval_rates.png",
+      "sha256": "87d9f4ddaedf08e4fd5d709b2ee8bbf3b408d629cfd9f49d62b485da9267b049",
+      "source": "results/figures/professor_model/small_penalty/scenario_1_no_systemic_approval_rates.png"
+    },
+    {
+      "bytes": 26555,
+      "copy": "figures/scenario_1_no_systemic_approval_rates.pdf",
+      "sha256": "ae684f8791ad198259547bf2852950bf80c6a7160d257c7e57c5f501e905a44d",
+      "source": "results/figures/professor_model/small_penalty/scenario_1_no_systemic_approval_rates.pdf"
+    },
+    {
+      "bytes": 100461,
+      "copy": "figures/scenario_1_no_systemic_true_profit.png",
+      "sha256": "2c283eadf29c7af12c0352d0046a1b16647d897b6f4cfa4ee5c12236f9382763",
+      "source": "results/figures/professor_model/small_penalty/scenario_1_no_systemic_true_profit.png"
+    },
+    {
+      "bytes": 27325,
+      "copy": "figures/scenario_1_no_systemic_true_profit.pdf",
+      "sha256": "fc78c7132c27772fa0e00d519ff8abbde41e05c393835c4486754b678b5d511e",
+      "source": "results/figures/professor_model/small_penalty/scenario_1_no_systemic_true_profit.pdf"
+    },
+    {
+      "bytes": 96978,
+      "copy": "figures/scenario_2_systemic_approval_rates.png",
+      "sha256": "2792ba0d785d9413c7fe44e5f3f50675ade6b00a34270807742b88828bc0a4c2",
+      "source": "results/figures/professor_model/small_penalty/scenario_2_systemic_approval_rates.png"
+    },
+    {
+      "bytes": 26240,
+      "copy": "figures/scenario_2_systemic_approval_rates.pdf",
+      "sha256": "a14ebe96f3299720c658d34e950cab6e7aedf32d2d50e746cbb1d1194e3cdb6c",
+      "source": "results/figures/professor_model/small_penalty/scenario_2_systemic_approval_rates.pdf"
+    },
+    {
+      "bytes": 100588,
+      "copy": "figures/scenario_2_systemic_true_profit.png",
+      "sha256": "d49074f6ad724d126f22e2f5c6afce90b168dfab3a10a2ef3393f326faad2a8c",
+      "source": "results/figures/professor_model/small_penalty/scenario_2_systemic_true_profit.png"
+    },
+    {
+      "bytes": 27453,
+      "copy": "figures/scenario_2_systemic_true_profit.pdf",
+      "sha256": "c2b21846474df2b7644f5c0a3769b5df5151477ca0f267a50470dd9e025d4d87",
+      "source": "results/figures/professor_model/small_penalty/scenario_2_systemic_true_profit.pdf"
+    },
+    {
+      "bytes": 798,
+      "copy": "provenance/resolved_configuration.json",
+      "sha256": "00b7058acedab8590e8a944880d9567ec8bb0b7eb10d5a8a5b63b5ec4ef686b7",
+      "source": "results/metrics/professor_model/small_penalty/resolved_configuration.json"
+    },
+    {
+      "bytes": 413,
+      "copy": "provenance/selection.json",
+      "sha256": "de267296d187492fb68e278f8df718ca0ab74fde2d7dc5709043cf92ee3240b0",
+      "source": "results/metrics/professor_model/small_penalty/selection.json"
+    },
+    {
+      "bytes": 614,
+      "copy": "provenance/validation.json",
+      "sha256": "8216c7e8c232bbf07d57df7524d72e609a941b4a062a01ad41ce4fabd2253fb5",
+      "source": "results/metrics/professor_model/small_penalty/validation.json"
+    },
+    {
+      "bytes": 10610,
+      "copy": "provenance/model_reuse.json",
+      "sha256": "a277e2de528aa2e1162991bef0f7d92a15c0e52a7a832c5a8e3cfad296ca8904",
+      "source": "results/metrics/professor_model/small_penalty/model_reuse.json"
+    },
+    {
+      "bytes": 3805,
+      "copy": "provenance/delivery_validation.json",
+      "sha256": "c8dec40ad6f9e0ea574726957c8f665ef4fb61ac35250d36a530902601c5b3db",
+      "source": "reports/professor_model/small_penalty/_build/delivery_validation.json"
+    },
+    {
+      "bytes": 9325,
+      "copy": "provenance/professor_small_penalty_03.validation.json",
+      "sha256": "e9c540afd210bae7ac2ac6a30f40a4391cfa7766ab61676a444b16e0eb6da696",
+      "source": "reports/professor_model/small_penalty/_build/professor_small_penalty_03.validation.json"
+    },
+    {
+      "bytes": 34689,
+      "copy": "provenance/professor_small_penalty_03.evidence.json",
+      "sha256": "b32a940f5c261f1b68403db039cd84a094abe06a27ca7d3da5fb20c951d46685",
+      "source": "reports/professor_model/small_penalty/_build/professor_small_penalty_03.evidence.json"
+    },
+    {
+      "bytes": 15749,
+      "copy": "provenance/professor_small_penalty_03.speaker_notes.json",
+      "sha256": "81cc3581d5888be27d345343dd7d34143fe2ef47aefea08e4254edca1d0a32e2",
+      "source": "reports/professor_model/small_penalty/_build/professor_small_penalty_03.speaker_notes.json"
+    }
+  ],
+  "fixed_population_applicants": 100000,
+  "new_fits": 0,
+  "new_noise_draws": 0,
+  "new_populations": 0,
+  "prediction_applicants": 20000,
+  "profit_cohort": "prediction_only",
+  "scenarios": 2,
+  "scope": "Compact publication snapshot; copies of validated evidence, not a new experiment",
+  "selected_delta": 0.005,
+  "selection_disclosure": "Illustrative approval-based calibration on the prediction cohort; no truth or true-profit selection",
+  "source_manifest": "results/metrics/professor_model/small_penalty/run_manifest.json",
+  "source_manifest_sha256": "5f858d3ed7c62c5b6f81ea3870e62c1a778c8eea1a6066ee8f0978098515ff4b",
+  "status": "complete_small_penalty_prediction_only",
+  "test_scope": {
+    "focused_and_dependencies_passed": 297,
+    "known_prior_V2_lookup_failures": 4,
+    "new_tests_passed": 63,
+    "professor_model_passed": 647,
+    "unrelated_full_suite_rerun": false,
+    "warnings": 0
+  },
+  "training_applicants": 80000
+}

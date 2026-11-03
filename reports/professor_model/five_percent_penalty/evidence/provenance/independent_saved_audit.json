@@ -1,0 +1,25 @@
+{
+  "independent_rational_checks": [
+    {
+      "scenario": "scenario_1_no_systemic",
+      "candidate_prefixes_including_reject_all": 19161,
+      "rational_optimum_matches": true,
+      "A_approved": 3450,
+      "B_approved": 383
+    },
+    {
+      "scenario": "scenario_2_systemic",
+      "candidate_prefixes_including_reject_all": 19100,
+      "rational_optimum_matches": true,
+      "A_approved": 3811,
+      "B_approved": 154
+    }
+  ],
+  "four_control_ML_policies_exact": true,
+  "prediction_only_data_and_profits": true,
+  "contracts_splits_noise_models_preserved": true,
+  "exact_treatment_and_clipping": true,
+  "first_common_candidate_and_both_criteria": true,
+  "protected_files": 2012,
+  "read_only_summary_bytes_and_mtimes_unchanged": true
+}

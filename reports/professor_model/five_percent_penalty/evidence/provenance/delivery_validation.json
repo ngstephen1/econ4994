@@ -1,0 +1,146 @@
+{
+  "status": "validated_delivery",
+  "revision": "01",
+  "files": {
+    "reports/professor_model/five_percent_penalty/delivery/professor_five_percent_penalty.pptx": {
+      "bytes": 1027017,
+      "sha256": "49bae1c32a309dcd258585b8724718631fb3b4b7f30ebe022d6191a0c7eb105d"
+    },
+    "reports/professor_model/five_percent_penalty/delivery/professor_five_percent_penalty.pdf": {
+      "bytes": 3185493,
+      "sha256": "09dbf6d4dff0c834cd099f83e781d6ce1b076a10d899cb4f89f940be594dde7c"
+    }
+  },
+  "pptx_slide_count": 14,
+  "pdf_page_count": 14,
+  "native_chart_count": 4,
+  "embedded_workbook_count": 4,
+  "native_method_tables": 2,
+  "speaker_notes_count": 14,
+  "chart_source_checks": [
+    {
+      "chart": 1,
+      "B": 0,
+      "metric": "approval_rate",
+      "values": [
+        0.189864,
+        0.2033,
+        0.234001
+      ],
+      "rounding_decimals": 6
+    },
+    {
+      "chart": 1,
+      "B": 1,
+      "metric": "approval_rate",
+      "values": [
+        0.191419,
+        0.126403,
+        0.241254
+      ],
+      "rounding_decimals": 6
+    },
+    {
+      "chart": 2,
+      "B": 0,
+      "metric": "true_expected_portfolio_profit_USD",
+      "values": [
+        1.99335,
+        2.076461,
+        1.423693
+      ],
+      "rounding_decimals": 6
+    },
+    {
+      "chart": 2,
+      "B": 1,
+      "metric": "true_expected_portfolio_profit_USD",
+      "values": [
+        0.373249,
+        0.290116,
+        0.27753
+      ],
+      "rounding_decimals": 6
+    },
+    {
+      "chart": 3,
+      "B": 0,
+      "metric": "approval_rate",
+      "values": [
+        0.217266,
+        0.224573,
+        0.27584
+      ],
+      "rounding_decimals": 6
+    },
+    {
+      "chart": 3,
+      "B": 1,
+      "metric": "approval_rate",
+      "values": [
+        0.071617,
+        0.050825,
+        0.276568
+      ],
+      "rounding_decimals": 6
+    },
+    {
+      "chart": 4,
+      "B": 0,
+      "metric": "true_expected_portfolio_profit_USD",
+      "values": [
+        2.164167,
+        2.206356,
+        1.742327
+      ],
+      "rounding_decimals": 6
+    },
+    {
+      "chart": 4,
+      "B": 1,
+      "metric": "true_expected_portfolio_profit_USD",
+      "values": [
+        0.201686,
+        0.159143,
+        0.307818
+      ],
+      "rounding_decimals": 6
+    }
+  ],
+  "all_24_chart_values_match": true,
+  "visual_review": {
+    "slides_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "historical_appendix_slides": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "all_pdf_page_pixels_equal_slide_renders": true,
+    "clipping_or_overflow_observed": false
+  },
+  "claim_boundaries": [
+    "PDF is an image-backed appearance-matched handout. Edit native new content in PowerPoint.",
+    "Historical appendix pages are preserved source images.",
+    "Chart workbooks hold six-decimal snapshots, not full scientific datasets.",
+    "Native Microsoft PowerPoint application opening was not performed."
+  ],
+  "first_party_presentation_finalizer_receipt": "professor_five_percent_penalty_01.validation.json"
+}

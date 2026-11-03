@@ -1,0 +1,7 @@
+experiment_id,scenario_id,scope,comparison,n_applicants,lost_approvals,gained_approvals,net_approval_change,true_profit_lost_USD,true_profit_gained_USD,true_profit_change_USD,approval_rate_change_pp,penalty_delta
+professor-five-percent-penalty-v1,scenario_1_no_systemic,overall,ols_penalty_minus_ols_control,20000,197,228,31,83133526.28315319,83110213.72937171,-23312.553781479597,0.155,0.0003125
+professor-five-percent-penalty-v1,scenario_1_no_systemic,B=0,ols_penalty_minus_ols_control,16970,0,228,228,0.0,83110213.72937171,83110213.72937171,1.343547436652917,0.0003125
+professor-five-percent-penalty-v1,scenario_1_no_systemic,B=1,ols_penalty_minus_ols_control,3030,197,0,-197,83133526.28315319,0.0,-83133526.28315319,-6.5016501650165015,0.0003125
+professor-five-percent-penalty-v1,scenario_2_systemic,overall,ols_penalty_minus_ols_control,20000,63,124,61,42543433.02029694,42188917.73757044,-354515.28272649646,0.305,0.0003125
+professor-five-percent-penalty-v1,scenario_2_systemic,B=0,ols_penalty_minus_ols_control,16970,0,124,124,0.0,42188917.73757044,42188917.73757044,0.7307012374779022,0.0003125
+professor-five-percent-penalty-v1,scenario_2_systemic,B=1,ols_penalty_minus_ols_control,3030,63,0,-63,42543433.02029694,0.0,-42543433.02029694,-2.0792079207920793,0.0003125

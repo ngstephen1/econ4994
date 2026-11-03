@@ -1,0 +1,7 @@
+scenario_id,scope,comparison,n_applicants,current_approved,previous_approved,approval_rate_difference_pp,gained_approvals,lost_approvals,true_profit_gained_USD,true_profit_lost_USD,true_profit_difference_USD,previous_delta,selected_delta
+scenario_1_no_systemic,overall,selected_penalty_minus_previous_0.005B,20000,3833,4254,-2.105,380,801,282705549.63673806,278995494.9854175,3710054.6513205767,0.005,0.0003125
+scenario_1_no_systemic,B=0,selected_penalty_minus_previous_0.005B,16970,3450,4251,-4.720094284030642,0,801,0.0,278995494.9854175,-278995494.9854175,0.005,0.0003125
+scenario_1_no_systemic,B=1,selected_penalty_minus_previous_0.005B,3030,383,3,12.541254125412541,380,0,282705549.63673806,0.0,282705549.63673806,0.005,0.0003125
+scenario_2_systemic,overall,selected_penalty_minus_previous_0.005B,20000,3965,4266,-1.505,153,454,156245962.3981476,153617221.96870238,2628740.429445237,0.005,0.0003125
+scenario_2_systemic,B=0,selected_penalty_minus_previous_0.005B,16970,3811,4265,-2.675309369475545,0,454,0.0,153617221.96870238,-153617221.96870238,0.005,0.0003125
+scenario_2_systemic,B=1,selected_penalty_minus_previous_0.005B,3030,154,1,5.0495049504950495,153,0,156245962.3981476,0.0,156245962.3981476,0.005,0.0003125

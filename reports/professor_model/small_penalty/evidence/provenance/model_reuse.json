@@ -1,0 +1,294 @@
+{
+  "new_ML_selection": false,
+  "new_fits": 0,
+  "original_model_metadata": {
+    "scenario_1_no_systemic": {
+      "ml": {
+        "ML": {
+          "family": "HistGradientBoostingRegressor",
+          "final_refit_rows": 80000,
+          "fit_rows": 64000,
+          "selected_validation_MSE": 0.010148747708965573,
+          "selection_metric": "validation_PN_MSE",
+          "settings": {
+            "categorical_features": null,
+            "early_stopping": false,
+            "interaction_cst": null,
+            "l2_regularization": 10.0,
+            "learning_rate": 0.05,
+            "loss": "squared_error",
+            "max_bins": 255,
+            "max_depth": null,
+            "max_iter": 25,
+            "max_leaf_nodes": 3,
+            "min_samples_leaf": 1000,
+            "monotonic_cst": null,
+            "n_iter_no_change": 10,
+            "quantile": null,
+            "random_state": 4994,
+            "scoring": "loss",
+            "tol": 1e-07,
+            "validation_fraction": 0.1,
+            "verbose": 0,
+            "warm_start": false
+          },
+          "thread_limit": 1,
+          "validation_mean_reference_MSE": 0.010147936536987782,
+          "validation_rows": 16000
+        },
+        "OLS": {
+          "bounding": "clip_0_1_separate_column",
+          "coefficients": {
+            "C": -0.0004049883329481245,
+            "D": -0.0023182617012250323,
+            "Y": -1.0915403719340988e-08,
+            "const": 0.003128176268420078
+          },
+          "configuration_fingerprint": "99860a1efa103f3406a0179d315403929fa8020613f00d9da451727704c7d8d5",
+          "design_condition_number": 650874.3518188902,
+          "design_order": [
+            "const",
+            "Y",
+            "D",
+            "C"
+          ],
+          "design_rank": 4,
+          "evaluation_ID_fingerprint": "454e526e12d96a9a779a850c537fb6f4b181775468e2fa508d61f7c878c2ef72",
+          "family": "statsmodels_OLS",
+          "feature_order": [
+            "Y",
+            "D",
+            "C"
+          ],
+          "frozen_before_evaluator_truth": true,
+          "intercept": true,
+          "model_id": "nov2_scenario_1_no_systemic_ols_control",
+          "prediction_rescaling": "none",
+          "regularization": null,
+          "schema_version": "professor-group-blind-model-v1",
+          "solver": "pinv",
+          "source_api_model_id": "professor_bank_ols_group_blind_v1",
+          "target": "PN",
+          "target_transform": "none",
+          "training_ID_fingerprint": "244ee8e6a074836e654451ea423de0dbe317aaa7ec721b793eb17bbb77d44c95",
+          "training_count": 80000,
+          "training_mean_PN": 0.0014797010616993192,
+          "training_target_fingerprint": "f9f7a2e307cd9dcb75fbf06598233512ecf7bc8f30b4784c630e40792504267c",
+          "units": {
+            "C": "original continuous signal",
+            "D": "DTI ratio",
+            "Y": "annual synthetic USD, levels",
+            "const": "raw PN units"
+          }
+        },
+        "evaluation_ID_fingerprint": "454e526e12d96a9a779a850c537fb6f4b181775468e2fa508d61f7c878c2ef72",
+        "evaluation_count": 20000,
+        "features": [
+          "Y",
+          "D",
+          "C"
+        ],
+        "fit_ID_fingerprint": "b9bd662f7c8c34deb35bc6d9a5e9f962ffbfbfde2ee843867d1d441e3bc082db",
+        "ols_frozen_replay": true,
+        "scenario_id": "scenario_1_no_systemic",
+        "target": "raw_PN",
+        "training_ID_fingerprint": "244ee8e6a074836e654451ea423de0dbe317aaa7ec721b793eb17bbb77d44c95",
+        "training_count": 80000,
+        "training_mean_PN": 0.0014797010616993192,
+        "validation_ID_fingerprint": "d61c3d8eba549458241bf7ddac2273f6cc4c95a84bba2e8662b77be70a63f605"
+      },
+      "ols_model": {
+        "bounding": "clip_0_1_separate_column",
+        "coefficients": {
+          "C": -0.0004049883329481245,
+          "D": -0.0023182617012250323,
+          "Y": -1.0915403719340988e-08,
+          "const": 0.003128176268420078
+        },
+        "configuration_fingerprint": "99860a1efa103f3406a0179d315403929fa8020613f00d9da451727704c7d8d5",
+        "design_condition_number": 650874.3518188902,
+        "design_order": [
+          "const",
+          "Y",
+          "D",
+          "C"
+        ],
+        "design_rank": 4,
+        "evaluation_ID_fingerprint": "454e526e12d96a9a779a850c537fb6f4b181775468e2fa508d61f7c878c2ef72",
+        "family": "statsmodels_OLS",
+        "feature_order": [
+          "Y",
+          "D",
+          "C"
+        ],
+        "frozen_before_evaluator_truth": true,
+        "intercept": true,
+        "model_id": "nov2_scenario_1_no_systemic_ols_control",
+        "prediction_rescaling": "none",
+        "regularization": null,
+        "schema_version": "professor-group-blind-model-v1",
+        "solver": "pinv",
+        "source_api_model_id": "professor_bank_ols_group_blind_v1",
+        "target": "PN",
+        "target_transform": "none",
+        "training_ID_fingerprint": "244ee8e6a074836e654451ea423de0dbe317aaa7ec721b793eb17bbb77d44c95",
+        "training_count": 80000,
+        "training_mean_PN": 0.0014797010616993192,
+        "training_target_fingerprint": "f9f7a2e307cd9dcb75fbf06598233512ecf7bc8f30b4784c630e40792504267c",
+        "units": {
+          "C": "original continuous signal",
+          "D": "DTI ratio",
+          "Y": "annual synthetic USD, levels",
+          "const": "raw PN units"
+        }
+      }
+    },
+    "scenario_2_systemic": {
+      "ml": {
+        "ML": {
+          "family": "HistGradientBoostingRegressor",
+          "final_refit_rows": 80000,
+          "fit_rows": 64000,
+          "selected_validation_MSE": 0.010148872674717983,
+          "selection_metric": "validation_PN_MSE",
+          "settings": {
+            "categorical_features": null,
+            "early_stopping": false,
+            "interaction_cst": null,
+            "l2_regularization": 10.0,
+            "learning_rate": 0.05,
+            "loss": "squared_error",
+            "max_bins": 255,
+            "max_depth": null,
+            "max_iter": 25,
+            "max_leaf_nodes": 3,
+            "min_samples_leaf": 1000,
+            "monotonic_cst": null,
+            "n_iter_no_change": 10,
+            "quantile": null,
+            "random_state": 4994,
+            "scoring": "loss",
+            "tol": 1e-07,
+            "validation_fraction": 0.1,
+            "verbose": 0,
+            "warm_start": false
+          },
+          "thread_limit": 1,
+          "validation_mean_reference_MSE": 0.01014793962701,
+          "validation_rows": 16000
+        },
+        "OLS": {
+          "bounding": "clip_0_1_separate_column",
+          "coefficients": {
+            "B": 0.0008949665344748952,
+            "C": -0.0004112937415351432,
+            "D": -0.0023147573872015588,
+            "Y": -1.0930786375996051e-08,
+            "const": 0.003021197338280435
+          },
+          "design_condition_number": 651103.7094710303,
+          "design_order": [
+            "const",
+            "Y",
+            "D",
+            "C",
+            "B"
+          ],
+          "design_rank": 5,
+          "family": "statsmodels_OLS",
+          "feature_order": [
+            "Y",
+            "D",
+            "C",
+            "B"
+          ],
+          "intercept": true,
+          "model_id": "nov2_scenario_2_systemic_ols_control",
+          "prediction_rescaling": "none",
+          "regularization": null,
+          "schema_version": "professor-bank-regression-v1",
+          "solver": "pinv",
+          "source_api_model_id": "professor_bank_ols_v1",
+          "target": "PN",
+          "target_transform": "none",
+          "training_ID_fingerprint": "244ee8e6a074836e654451ea423de0dbe317aaa7ec721b793eb17bbb77d44c95",
+          "training_count": 80000,
+          "training_mean_PN": 0.0014826984747846376,
+          "units": {
+            "B": "binary 0/1",
+            "C": "original continuous signal",
+            "D": "DTI ratio",
+            "Y": "annual synthetic USD, levels",
+            "const": "raw PN units"
+          }
+        },
+        "evaluation_ID_fingerprint": "454e526e12d96a9a779a850c537fb6f4b181775468e2fa508d61f7c878c2ef72",
+        "evaluation_count": 20000,
+        "features": [
+          "Y",
+          "D",
+          "C",
+          "B"
+        ],
+        "fit_ID_fingerprint": "b9bd662f7c8c34deb35bc6d9a5e9f962ffbfbfde2ee843867d1d441e3bc082db",
+        "ols_frozen_replay": false,
+        "scenario_id": "scenario_2_systemic",
+        "target": "raw_PN",
+        "training_ID_fingerprint": "244ee8e6a074836e654451ea423de0dbe317aaa7ec721b793eb17bbb77d44c95",
+        "training_count": 80000,
+        "training_mean_PN": 0.0014826984747846376,
+        "validation_ID_fingerprint": "d61c3d8eba549458241bf7ddac2273f6cc4c95a84bba2e8662b77be70a63f605"
+      },
+      "ols_model": {
+        "bounding": "clip_0_1_separate_column",
+        "coefficients": {
+          "B": 0.0008949665344748952,
+          "C": -0.0004112937415351432,
+          "D": -0.0023147573872015588,
+          "Y": -1.0930786375996051e-08,
+          "const": 0.003021197338280435
+        },
+        "design_condition_number": 651103.7094710303,
+        "design_order": [
+          "const",
+          "Y",
+          "D",
+          "C",
+          "B"
+        ],
+        "design_rank": 5,
+        "family": "statsmodels_OLS",
+        "feature_order": [
+          "Y",
+          "D",
+          "C",
+          "B"
+        ],
+        "intercept": true,
+        "model_id": "nov2_scenario_2_systemic_ols_control",
+        "prediction_rescaling": "none",
+        "regularization": null,
+        "schema_version": "professor-bank-regression-v1",
+        "solver": "pinv",
+        "source_api_model_id": "professor_bank_ols_v1",
+        "target": "PN",
+        "target_transform": "none",
+        "training_ID_fingerprint": "244ee8e6a074836e654451ea423de0dbe317aaa7ec721b793eb17bbb77d44c95",
+        "training_count": 80000,
+        "training_mean_PN": 0.0014826984747846376,
+        "units": {
+          "B": "binary 0/1",
+          "C": "original continuous signal",
+          "D": "DTI ratio",
+          "Y": "annual synthetic USD, levels",
+          "const": "raw PN units"
+        }
+      }
+    }
+  },
+  "parent_model_metadata_sha256": "2f0e1d177e267ca353ae925ec385b429183e32bdbb24f32ed46624422e548770",
+  "source_models": {
+    "results/models/professor_model/nov2_followup/scenario_1_no_systemic_histgb.joblib": "82f3e49959c9b2fdd3e873109fc4b1582ab07e0574de6bc773d21052a78371c1",
+    "results/models/professor_model/nov2_followup/scenario_2_systemic_histgb.joblib": "68af97ccaf4e608c67719f6eced688b064a4ac3869c15dc6a49c0bb855f352d9"
+  }
+}
