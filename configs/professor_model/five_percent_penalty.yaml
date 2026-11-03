@@ -1,0 +1,18 @@
+# Professor-requested illustrative policy calibration; prior studies stay frozen.
+schema_version: professor-five-percent-penalty-v1
+parent_study: nov2_followup
+penalty_candidates: [0.005, 0.0025, 0.00125, 0.000625, 0.0003125, 0.00015625]
+common_coefficient: true
+selection_rule: first_descending_candidate_with_at_least_5pct_B_and_lower_rate_than_A_in_both_worlds
+selection_information: prediction_cohort_bank_approval_counts_only
+minimum_B_rate_numerator: 1
+minimum_B_rate_denominator: 20
+profit_used_for_penalty_selection: false
+training_rows: 80000
+prediction_rows: 20000
+budget: 1826087220.7466326
+refit: false
+new_noise: false
+new_population: false
+policy: bounded_PD_common_cutoff_full_requests_indivisible_ties_reject_all
+reporting: total_true_expected_profit_from_funded_prediction_loans_by_group

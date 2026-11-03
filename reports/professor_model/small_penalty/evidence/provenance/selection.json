@@ -1,0 +1,12 @@
+{
+  "attempted_candidates": [
+    0.005
+  ],
+  "candidate_count": 1,
+  "criterion": "approved_B > 0 and approved_B*n_A < approved_A*n_B in BOTH scenarios",
+  "interpretation": "illustrative approval-based calibration on prediction cohort; not untouched confirmatory policy evaluation",
+  "scenario_attempt_count": 2,
+  "selected_delta": 0.005,
+  "selection_uses_true_profit": false,
+  "status": "criterion_met"
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "slide": 1,
+    "body": "Following your feedback, I required at least 5 percent minority-group approval. I started with 0.005 times B and used the predeclared descending sequence only if needed. The common selected value is 0.0003125. Group B reaches at least 5 percent approval and remains below Group A in both risk scenarios. The models remain frozen from the previous run. They learned from 80,000 training applicants, and all lending and profit results use the separate 20,000 prediction applicants. I frame the comparison as naïve OLS estimation, direct discrimination through an added penalty, and a more flexible gradient-boosting estimator, without assuming that ML must win.",
+    "sources": [
+      "Professor feedback supplied in the conversation; the 14-slide structure and earlier results remain preserved in prior deliveries.",
+      "configs/professor_model/five_percent_penalty.yaml; results/metrics/professor_model/five_percent_penalty/selection.json; run_manifest.json.",
+      "/Users/macbook/Desktop/nov_2_followup_slide_update.pptx.pdf; supplied source PDF SHA-256 97e471a5e34be3e42011d77999e4456af5c1d3dee1c5f8090a7d52b4bc0b821a.",
+      "The penalty is chosen using prediction-cohort approval counts. This is an illustrative policy calibration, not independent empirical evidence of discrimination.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 2,
+    "body": "This makes the split explicit. The training subset mimics past loan information and prior noisy risk measurements. OLS and Gradient Boosting use permitted characteristics and the credit proxy to learn PN. The bank does not observe true PD or every determinant of risk. We then apply frozen models to a separate prediction subset, add the manual group penalty only in that branch, clip scores for economic accounting, and select a common cutoff under capital. We calculate profits only from those prediction applicants. For ML, its original 64,000/16,000 fitting-validation subdivision is entirely within the 80,000 training applicants, followed by an 80,000-row refit. No model was refit for this 5% approval-floor update.",
+    "sources": [
+      "Original applicant_splits.csv and model_metadata.json from the frozen November 2 experiment; new split audit verifies disjointness and exact prediction-contract coverage.",
+      "The original contracts/profit functions use constant conditional per-period default and a survival-weighted payment sum. They are stylized expected values, not conventional mortgage returns.",
+      "No prediction target, hidden true risk or true profit is used to fit or choose the original models.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 3,
+    "body": "In the first risk scenario, Group A and minority Group B are generated under the same underlying risk conditions. This does not require their finite sample means to be numerically identical. Neither the OLS control nor Gradient Boosting includes B. The bank with direct discrimination adds a positive penalty after estimation, despite the lack of an underlying group treatment in true risk. This lets us compare an unadjusted estimate with the same estimate plus arbitrary discriminatory treatment.",
+    "sources": [
+      "Original November 2 Scenario 1 population, truth, observed inputs and noise remain unchanged.",
+      "Scenario 1 feature set: Y, D, C for both OLS and Gradient Boosting. The only new score change is the selected post-fit penalty.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 4,
+    "body": "These are three methods under Scenario 1, not three different applicant populations. OLS control is the naïve linear risk estimator. The discriminatory method uses exactly the same fitted OLS score and adds 0.0003125 times B. Gradient Boosting is the flexible predictive comparator, with performance evaluated empirically rather than assumed to be superior. The information set is Y, D, C; B is excluded from the first scenario fitted models. The common penalty was selected using prediction-cohort approval rates to reach at least 5 percent in both scenarios while remaining below Group A. This does not contaminate the model-fitting split with prediction labels, but the policy choice is not an untouched confirmatory evaluation.",
+    "sources": [
+      "results/metrics/professor_model/five_percent_penalty/selection.json; results/tables/professor_model/five_percent_penalty/penalty_search.csv.",
+      "Parent November 2 model metadata: original 80,000 training rows, 64,000/16,000 internal ML selection, then final 80,000-row refit.",
+      "No OLS refit, ML tuning, new noise, new population or true-profit-based penalty choice occurs in this update.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 5,
+    "body": "All results here use the same 20,000 prediction applicants, never the 80,000 training applicants. For Scenario 1, the selected common penalty is 0.0003125 times B, added to the frozen OLS raw score before clipping. Group A has 3450 approvals out of 16970 and minority Group B has 383 out of 3030. Group B therefore reaches the inclusive 5 percent minimum and has a lower approval rate than A. The true expected portfolio profit difference from control is −$23.3K. The profit bars sum each group's funded-loan contributions, so unequal group sizes matter. ML uses 72.4065 percent of capital; its next indivisible prediction block cannot fit under the common cutoff. More approvals need not mean greater capital use or greater profit. These are nominal synthetic expected values, not annual realized returns.",
+    "sources": [
+      "results/tables/professor_model/five_percent_penalty/group_results.csv; portfolio_results.csv; penalty_comparisons.csv.",
+      "Raw model predictions, control/ML portfolios, the 80,000/20,000 split, contracts and capital are reused unchanged from the November 2 experiment.",
+      "Penalty selection uses prediction-cohort group approval counts for illustration, not hidden true risk or true profit. The selected comparison is not an untouched confirmatory test.",
+      "Group A = B=0. Minority Group B = B=1. The Group B target is at least 5 percent, requiring 152 of 3,030 approvals. Counts and rates use prediction applicants only.",
+      "Scenario 1 absolute approval gaps: OLS about 0.16 pp, ML about 0.73 pp. Both are small; OLS is closer to parity.",
+      "Gradient Boosting true expected profit is 28.1 percent lower than OLS control. Its capital use differs. This is a material difference under this policy, not proof of a general fairness-profit tradeoff or a quantified decomposition of the loss.",
+      "Selected penalty minus previous +0.005B true-profit change: +$3.710M.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 6,
+    "body": "The second scenario represents a systemic difference outside this bank’s lending decision, potentially analogous to unequal treatment in other domains or the past. We do not claim real-world evidence about why any actual group is riskier. The existing synthetic world shifts epsilon by one standard deviation for Group B and updates C consistently. The noisy measurement uses the same eta. That existing risk response is modest because the frozen sigmoid is near saturation. We preserve it without retuning. Both fitted methods include B in this scenario. Changing both risk conditions and the feature set means the cross-scenario contrast is not a pure epsilon-only causal effect.",
+    "sources": [
+      "results/tables/professor_model/five_percent_penalty/systemic_risk_audit.csv is a hash-identical copy of the parent audit.",
+      "Original risk: sigmoid(.52-.65 logY)*sigmoid(4+.06D+epsilon); C=.4epsilon+omega. The 5% approval-floor study does not regenerate these variables.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 7,
+    "body": "These are three methods under Scenario 2, not three different applicant populations. OLS control is the naïve linear risk estimator. The discriminatory method uses exactly the same fitted OLS score and adds 0.0003125 times B. Gradient Boosting is the flexible predictive comparator, with performance evaluated empirically rather than assumed to be superior. The information set is Y, D, C, B; B is included in the second scenario because group membership can contain information about the systemic difference. It is therefore not a group-blind fit. The common penalty was selected using prediction-cohort approval rates to reach at least 5 percent in both scenarios while remaining below Group A. This does not contaminate the model-fitting split with prediction labels, but the policy choice is not an untouched confirmatory evaluation.",
+    "sources": [
+      "results/metrics/professor_model/five_percent_penalty/selection.json; results/tables/professor_model/five_percent_penalty/penalty_search.csv.",
+      "Parent November 2 model metadata: original 80,000 training rows, 64,000/16,000 internal ML selection, then final 80,000-row refit.",
+      "No OLS refit, ML tuning, new noise, new population or true-profit-based penalty choice occurs in this update.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 8,
+    "body": "All results here use the same 20,000 prediction applicants, never the 80,000 training applicants. For Scenario 2, the selected common penalty is 0.0003125 times B, added to the frozen OLS raw score before clipping. Group A has 3811 approvals out of 16970 and minority Group B has 154 out of 3030. Group B therefore reaches the inclusive 5 percent minimum and has a lower approval rate than A. The true expected portfolio profit difference from control is −$354.5K. The profit bars sum each group's funded-loan contributions, so unequal group sizes matter. ML uses 87.2452 percent of capital; its next indivisible prediction block cannot fit under the common cutoff. More approvals need not mean greater capital use or greater profit. These are nominal synthetic expected values, not annual realized returns.",
+    "sources": [
+      "results/tables/professor_model/five_percent_penalty/group_results.csv; portfolio_results.csv; penalty_comparisons.csv.",
+      "Raw model predictions, control/ML portfolios, the 80,000/20,000 split, contracts and capital are reused unchanged from the November 2 experiment.",
+      "Penalty selection uses prediction-cohort group approval counts for illustration, not hidden true risk or true profit. The selected comparison is not an untouched confirmatory test.",
+      "Group A = B=0. Minority Group B = B=1. The Group B target is at least 5 percent, requiring 152 of 3,030 approvals. Counts and rates use prediction applicants only.",
+      "Scenario 2 absolute approval gaps: OLS about 14.56 pp, ML about 0.07 pp. ML has substantially more equal approval rates by this measure.",
+      "Gradient Boosting true expected profit is 13.3 percent lower than OLS control. Its capital use differs. This is a material difference under this policy, not proof of a general fairness-profit tradeoff or a quantified decomposition of the loss.",
+      "Selected penalty minus previous +0.005B true-profit change: +$2.629M.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 9,
+    "body": "This page preserves the earlier slide for context. The original -0.1B treatment and positive-floor sensitivity. Its numbers, methods, and original page marker are unchanged. It does not describe the new 5% approval-floor demonstration. The new 5% approval-floor results are on slides 3 through 8.",
+    "sources": [
+      "/Users/macbook/Desktop/nov_2_followup_slide_update.pptx.pdf, original PDF page 9. Source SHA-256 97e471a5e34be3e42011d77999e4456af5c1d3dee1c5f8090a7d52b4bc0b821a.",
+      "Historical reference image: full page preserved with proportional fit, below an explicit historical banner. Native new-result charts appear only on slides 5 and 8.",
+      "The historical experiment was not rerun or reinterpreted as a new result.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 10,
+    "body": "This page preserves the earlier slide for context. The prior W/Z/F coefficient-removal comparison. Its numbers, methods, and original page marker are unchanged. It does not describe the new 5% approval-floor demonstration. The new 5% approval-floor results are on slides 3 through 8.",
+    "sources": [
+      "/Users/macbook/Desktop/nov_2_followup_slide_update.pptx.pdf, original PDF page 10. Source SHA-256 97e471a5e34be3e42011d77999e4456af5c1d3dee1c5f8090a7d52b4bc0b821a.",
+      "Historical reference image: full page preserved with proportional fit, below an explicit historical banner. Native new-result charts appear only on slides 5 and 8.",
+      "The historical experiment was not rerun or reinterpreted as a new result.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 11,
+    "body": "This page preserves the earlier slide for context. The prior 200-noise-draw study on one fixed population. Its numbers, methods, and original page marker are unchanged. It does not describe the new 5% approval-floor demonstration. The new 5% approval-floor results are on slides 3 through 8.",
+    "sources": [
+      "/Users/macbook/Desktop/nov_2_followup_slide_update.pptx.pdf, original PDF page 11. Source SHA-256 97e471a5e34be3e42011d77999e4456af5c1d3dee1c5f8090a7d52b4bc0b821a.",
+      "Historical reference image: full page preserved with proportional fit, below an explicit historical banner. Native new-result charts appear only on slides 5 and 8.",
+      "The historical experiment was not rerun or reinterpreted as a new result.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 12,
+    "body": "This page preserves the earlier slide for context. The separate prior raw-ordering policy sensitivity. Its numbers, methods, and original page marker are unchanged. It does not describe the new 5% approval-floor demonstration. The new 5% approval-floor results are on slides 3 through 8.",
+    "sources": [
+      "/Users/macbook/Desktop/nov_2_followup_slide_update.pptx.pdf, original PDF page 12. Source SHA-256 97e471a5e34be3e42011d77999e4456af5c1d3dee1c5f8090a7d52b4bc0b821a.",
+      "Historical reference image: full page preserved with proportional fit, below an explicit historical banner. Native new-result charts appear only on slides 5 and 8.",
+      "The historical experiment was not rerun or reinterpreted as a new result.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 13,
+    "body": "This page preserves the earlier slide for context. The prior six selected raw-ordering diagnostic cases. Its numbers, methods, and original page marker are unchanged. It does not describe the new 5% approval-floor demonstration. The new 5% approval-floor results are on slides 3 through 8.",
+    "sources": [
+      "/Users/macbook/Desktop/nov_2_followup_slide_update.pptx.pdf, original PDF page 13. Source SHA-256 97e471a5e34be3e42011d77999e4456af5c1d3dee1c5f8090a7d52b4bc0b821a.",
+      "Historical reference image: full page preserved with proportional fit, below an explicit historical banner. Native new-result charts appear only on slides 5 and 8.",
+      "The historical experiment was not rerun or reinterpreted as a new result.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  },
+  {
+    "slide": 14,
+    "body": "This page preserves the earlier slide for context. Historical discussion questions, not a current work-status claim. Its numbers, methods, and original page marker are unchanged. It does not describe the new 5% approval-floor demonstration. The new 5% approval-floor results are on slides 3 through 8.",
+    "sources": [
+      "/Users/macbook/Desktop/nov_2_followup_slide_update.pptx.pdf, original PDF page 14. Source SHA-256 97e471a5e34be3e42011d77999e4456af5c1d3dee1c5f8090a7d52b4bc0b821a.",
+      "Historical reference image: full page preserved with proportional fit, below an explicit historical banner. Native new-result charts appear only on slides 5 and 8.",
+      "The prior question about adding an ML benchmark is historical; the parent November 2 experiment already implemented the frozen gradient-boosting regressor.",
+      "Single matched synthetic realization. No empirical mortgage-discrimination claim."
+    ]
+  }
+]

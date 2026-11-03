@@ -1,0 +1,21 @@
+{
+  "all_six_cutoff_checks_valid": true,
+  "allowed_documentation_edits": [
+    "docs/CURRENT_RESEARCH.md",
+    "docs/PROJECT_STATUS.md"
+  ],
+  "calibration": "prediction-cohort approval-based illustrative selection; no true-profit selection",
+  "criterion_met_in_both_scenarios": true,
+  "new_fits": 0,
+  "new_noise": 0,
+  "parent_baseline_metrics_exact": [
+    "portfolio_results",
+    "group_results",
+    "risk_diagnostics"
+  ],
+  "parent_control_ML_predictions_and_masks_exact": true,
+  "prediction_only_profits": true,
+  "prior_files_in_inventory": 1933,
+  "selected_delta": 0.005,
+  "status": "validated"
+}

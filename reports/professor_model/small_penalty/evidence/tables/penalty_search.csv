@@ -1,0 +1,3 @@
+candidate_index,delta,scenario_id,n_A,n_B,approved_A,approved_B,rate_A,rate_B,criterion_met,optimal_tau,funded_principal_USD,available_capital_USD,common_criterion_met,selected
+0,0.005,scenario_1_no_systemic,16970,3030,4251,3,0.2505008839127873,0.0009900990099009901,True,0.0011320803589843552,1825797078.927691,1826087220.7466326,True,True
+0,0.005,scenario_2_systemic,16970,3030,4265,1,0.2513258691809075,0.00033003300330033004,True,0.0010267776997634353,1825890485.5158901,1826087220.7466326,True,True
